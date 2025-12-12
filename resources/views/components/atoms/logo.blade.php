@@ -2,12 +2,10 @@
 
 @php
 $sizes = [
-    'sm' => 'w-6 h-6',
-    'md' => 'w-8 h-8',
-    'lg' => 'w-12 h-12',
+    'sm' => 'h-6',
+    'md' => 'h-8',
+    'lg' => 'h-12',
 ];
 @endphp
 
-<svg class="{{ $sizes[$size] }} text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
-</svg>
+<img src="{{ asset('images/logo.png') }}" alt="PT. Tropis Fish Indonesia" class="{{ $sizes[$size] }} {{ $attributes->get('class') }}" />

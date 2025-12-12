@@ -7,6 +7,7 @@ Route::middleware(['web'])->group(function (): void {
     Route::get('/', App\Livewire\Pages\Landing::class)->name('home');
     Route::get('/company-profile', App\Livewire\Pages\CompanyProfile::class)->name('company-profile');
     Route::get('/stock-list', App\Livewire\Pages\StockList::class)->name('stock-list');
+    Route::get('/product/{code?}', App\Livewire\Pages\ProductDetail::class)->name('product-detail');
     Route::get('/gallery', App\Livewire\Pages\Gallery::class)->name('gallery');
     Route::get('/terms', App\Livewire\Pages\Terms::class)->name('terms');
     Route::get('/contact', App\Livewire\Pages\Contact::class)->name('contact');

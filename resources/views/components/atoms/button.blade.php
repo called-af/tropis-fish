@@ -8,7 +8,7 @@
 $variants = [
     'primary' => 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30',
     'secondary' => 'bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-500/30',
-    'outline' => 'bg-transparent hover:bg-gray-50 text-gray-900 border border-gray-200',
+    'outline' => 'inline-flex items-center px-8 py-3 border border-orange-500/50 text-orange-400 hover:bg-orange-500/10 hover:border-orange-500 transition-all duration-300 font-light tracking-wide',
 ];
 
 $sizes = [

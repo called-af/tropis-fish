@@ -2,22 +2,22 @@
     currentSlide: 0,
     slides: [
         {
-            title: 'Menciptakan Ikan Bahagia',
-            subtitle: 'Kualitas Terbaik untuk Akuarium Anda',
-            description: 'Lebih dari 500 varietas ikan hias tropis dengan kualitas breeding terjamin',
-            cta: 'Lihat Koleksi'
+            title: 'Creating Happy Fish',
+            subtitle: 'Premium Quality for Your Aquarium',
+            description: 'Over 500 varieties of tropical ornamental fish with guaranteed breeding quality',
+            cta: 'View Collection'
         },
         {
-            title: 'Pengiriman ke Seluruh Indonesia',
-            subtitle: 'Aman & Terpercaya',
-            description: 'Sistem packaging profesional untuk menjaga kesehatan ikan selama perjalanan',
-            cta: 'Hubungi Kami'
+            title: 'Nationwide Delivery',
+            subtitle: 'Safe & Reliable',
+            description: 'Professional packaging system to maintain fish health during transportation',
+            cta: 'Contact Us'
         },
         {
-            title: 'Mari Bicara Tentang Ikan',
-            subtitle: 'Konsultasi Gratis',
-            description: 'Tim ahli kami siap membantu Anda memilih ikan yang tepat',
-            cta: 'Chat Sekarang'
+            title: 'Let\'s Talk About Fish',
+            subtitle: 'Free Consultation',
+            description: 'Our expert team is ready to help you choose the right fish',
+            cta: 'Chat Now'
         }
     ],
     init() {
@@ -25,7 +25,7 @@
             this.currentSlide = (this.currentSlide + 1) % this.slides.length
         }, 5000)
     }
-}" class="relative h-[600px] md:h-[700px] overflow-hidden">
+}" class="relative h-screen overflow-hidden">
 
     {{-- Video Background --}}
     <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
@@ -33,7 +33,7 @@
     </video>
 
     {{-- Gradient Overlay --}}
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/85 to-orange-800/90"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-blue-800/90 to-blue-700/85"></div>
 
     {{-- Slides --}}
     <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
@@ -50,15 +50,15 @@
             >
                 <div class="max-w-3xl">
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" x-text="slide.title"></h1>
-                    <p class="text-2xl md:text-3xl text-orange-300 font-semibold mb-4" x-text="slide.subtitle"></p>
-                    <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl" x-text="slide.description"></p>
+                    <p class="text-2xl md:text-3xl text-amber-400 font-semibold mb-4" x-text="slide.subtitle"></p>
+                    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl" x-text="slide.description"></p>
 
                     <div class="flex flex-wrap gap-4">
-                        <x-atoms.button variant="secondary" size="lg" href="#produk">
+                        <x-atoms.button variant="secondary" size="lg" href="#products" class="!bg-amber-500 !text-white hover:!bg-amber-600">
                             <span x-text="slide.cta"></span>
                         </x-atoms.button>
-                        <x-atoms.button variant="outline" size="lg" href="#kontak" class="!text-white !border-white hover:!bg-white/10">
-                            Pelajari Lebih Lanjut
+                        <x-atoms.button variant="outline" size="lg" href="#contact" class="!text-white !border-white hover:!bg-white/10">
+                            Learn More
                         </x-atoms.button>
                     </div>
                 </div>
@@ -71,16 +71,9 @@
         <template x-for="(slide, index) in slides" :key="index">
             <button
                 @click="currentSlide = index"
-                :class="currentSlide === index ? 'bg-orange-500 w-12' : 'bg-white/50 w-3'"
-                class="h-3 rounded-full transition-all duration-300 hover:bg-orange-400"
+                :class="currentSlide === index ? 'bg-amber-500 w-12' : 'bg-white/50 w-3'"
+                class="h-3 rounded-full transition-all duration-300 hover:bg-amber-400"
             ></button>
         </template>
-    </div>
-
-    {{-- Scroll Indicator --}}
-    <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
     </div>
 </section>
