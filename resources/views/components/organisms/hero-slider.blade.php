@@ -54,10 +54,10 @@
                     <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl" x-text="slide.description"></p>
 
                     <div class="flex flex-wrap gap-4">
-                        <x-atoms.button variant="secondary" size="lg" href="#products" class="!bg-amber-500 !text-white hover:!bg-amber-600">
+                        <x-atoms.button variant="secondary" size="lg" href="#products">
                             <span x-text="slide.cta"></span>
                         </x-atoms.button>
-                        <x-atoms.button variant="outline" size="lg" href="#contact" class="!text-white !border-white hover:!bg-white/10">
+                        <x-atoms.button variant="outline" size="lg" href="#contact">
                             Learn More
                         </x-atoms.button>
                     </div>

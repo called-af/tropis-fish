@@ -1,7 +1,7 @@
 @props(['name', 'count', 'image' => null])
 
 <div class="group relative overflow-hidden rounded-2xl aspect-square cursor-pointer">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-orange-600"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-amber-600"></div>
 
     @if($image)
         <img src="{{ $image }}" alt="{{ $name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">

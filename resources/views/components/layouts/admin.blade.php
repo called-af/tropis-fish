@@ -70,7 +70,7 @@
                                 <p class="text-sm font-semibold text-gray-700">{{ Auth::guard('admin')->user()->name }}</p>
                                 <p class="text-xs text-gray-500">Administrator</p>
                             </div>
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-orange-600 rounded-full flex items-center justify-center text-white font-bold">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-amber-600 rounded-full flex items-center justify-center text-white font-bold">
                                 {{ substr(Auth::guard('admin')->user()->name, 0, 1) }}
                             </div>
                         </div>

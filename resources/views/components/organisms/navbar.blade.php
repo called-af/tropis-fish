@@ -1,69 +1,57 @@
 <nav id="desktop-nav" class="hidden md:block fixed top-0 z-50 backdrop-blur-md max-w-7xl mx-auto left-0 right-0 px-6 transition-all duration-300">
-    <div class="flex items-center justify-between h-16 w-full">
+    <div class="flex items-center justify-between h-20 w-full">
         <a href="{{ route('home') }}" class="flex items-center gap-3">
-            <x-atoms.logo class="h-10" />
+            <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia" class="h-12 w-12 object-cover rounded-full border-2 border-amber-400">
             <span id="nav-brand" class="font-bold text-xl transition-colors duration-300 text-white">PT. Tropis Fish Indonesia</span>
         </a>
 
         <div class="flex gap-6">
-            <a href="{{ route('home') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Home</a>
             <a href="{{ route('company-profile') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Company Profile</a>
             <a href="{{ route('stock-list') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Stock List</a>
             <a href="{{ route('gallery') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Gallery</a>
-            <a href="{{ route('terms') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Terms & Condition</a>
             <a href="{{ route('contact') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Contact Us</a>
         </div>
     </div>
 </nav>
 
-<nav class="md:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300">
     <div class="flex items-center justify-between h-16 px-4">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-            <x-atoms.logo class="h-10" />
-            <span class="font-bold text-lg text-primary-900">PT. Tropis Fish Indonesia</span>
+            <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
+            <span id="mobile-brand" class="font-bold text-base text-white transition-colors duration-300">PT. Tropis Fish</span>
         </a>
 
-        <button id="mobile-menu-button" class="p-2 hover:bg-gray-100 rounded-lg transition">
-            <x-heroicon-o-bars-3 class="w-6 h-6" id="menu-icon" />
-            <x-heroicon-o-x-mark class="w-6 h-6 hidden" id="close-icon" />
+        <button id="mobile-menu-button" class="p-2 rounded-lg transition text-white hover:bg-white/10 z-[80]">
+            <x-heroicon-o-bars-3 id="menu-icon" class="w-6 h-6" />
+            <x-heroicon-o-x-mark id="close-icon" class="w-6 h-6 hidden" />
         </button>
-    </div>
-
-    <div id="mobile-overlay" class="hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-200"></div>
-
-    <div id="mobile-menu" class="hidden fixed top-0 right-0 bottom-0 w-80 bg-white shadow-xl z-50 overflow-y-auto transition-transform duration-300 transform translate-x-full">
-        <div class="p-6 space-y-3">
-            <x-atoms.button variant="outline" size="md" :href="route('home')" class="w-full">
-                Home
-            </x-atoms.button>
-            <x-atoms.button variant="outline" size="md" :href="route('company-profile')" class="w-full">
-                Company Profile
-            </x-atoms.button>
-            <x-atoms.button variant="outline" size="md" :href="route('stock-list')" class="w-full">
-                Stock List
-            </x-atoms.button>
-            <x-atoms.button variant="outline" size="md" :href="route('gallery')" class="w-full">
-                Gallery
-            </x-atoms.button>
-            <x-atoms.button variant="outline" size="md" :href="route('terms')" class="w-full">
-                Terms & Condition
-            </x-atoms.button>
-            <x-atoms.button variant="outline" size="md" :href="route('contact')" class="w-full">
-                Contact Us
-            </x-atoms.button>
-        </div>
     </div>
 </nav>
 
-<style>
-    #mobile-menu.show {
-        display: block !important;
-        transform: translateX(0) !important;
-    }
+<!-- Mobile Dropdown Menu -->
+<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-300 max-h-0 opacity-0" style="top: 64px;">
+    <div class="px-4 py-2">
+        <div class="space-y-1">
+            <a href="{{ route('company-profile') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+                Company Profile
+            </a>
+            <a href="{{ route('stock-list') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+                Stock List
+            </a>
+            <a href="{{ route('gallery') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+                Gallery
+            </a>
+            <a href="{{ route('contact') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</div>
 
-    #mobile-overlay.show {
-        display: block !important;
-        opacity: 1 !important;
+<style>
+    #mobile-menu.active {
+        max-height: 500px;
+        opacity: 1;
     }
 </style>
 
@@ -73,6 +61,12 @@
         const desktopNav = document.getElementById('desktop-nav');
         const navBrand = document.getElementById('nav-brand');
         const navLinks = document.querySelectorAll('.nav-link');
+
+        // Mobile navbar scroll animation
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileBrand = document.getElementById('mobile-brand');
+        const menuButton = document.getElementById('mobile-menu-button');
+
         let scrolled = false;
 
         function handleScroll() {
@@ -82,37 +76,55 @@
                 scrolled = isScrolled;
 
                 if (scrolled) {
+                    // Desktop
                     desktopNav.style.borderRadius = '9999px';
                     desktopNav.style.marginTop = '1rem';
                     desktopNav.style.marginBottom = '1rem';
-                    desktopNav.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-                    desktopNav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                    desktopNav.style.backgroundColor = 'rgba(245, 158, 11, 0.95)';
+                    desktopNav.style.boxShadow = '0 4px 20px rgba(245, 158, 11, 0.3)';
 
-                    // Change brand text color to dark
-                    navBrand.classList.remove('text-white');
-                    navBrand.classList.add('text-gray-800');
+                    navBrand.classList.remove('text-gray-800');
+                    navBrand.classList.add('text-white');
 
-                    // Change link text colors to dark
                     navLinks.forEach(link => {
-                        link.classList.remove('text-white', 'hover:text-primary-300');
-                        link.classList.add('text-gray-900', 'hover:text-primary-800');
+                        link.classList.remove('text-gray-900', 'hover:text-amber-600');
+                        link.classList.add('text-white', 'hover:text-amber-100');
                     });
+
+                    // Mobile
+                    mobileNav.style.backgroundColor = 'rgba(245, 158, 11, 0.95)';
+                    mobileNav.style.boxShadow = '0 2px 10px rgba(245, 158, 11, 0.3)';
+
+                    mobileBrand.classList.remove('text-gray-800');
+                    mobileBrand.classList.add('text-white');
+
+                    menuButton.classList.remove('text-gray-800', 'hover:bg-gray-100');
+                    menuButton.classList.add('text-white', 'hover:bg-white/20');
                 } else {
+                    // Desktop
                     desktopNav.style.borderRadius = '0px';
                     desktopNav.style.marginTop = '0rem';
                     desktopNav.style.marginBottom = '0rem';
                     desktopNav.style.backgroundColor = 'rgba(255, 255, 255, 0)';
                     desktopNav.style.boxShadow = '';
 
-                    // Change brand text color to white
-                    navBrand.classList.remove('text-gray-800');
+                    navBrand.classList.remove('text-amber-500');
                     navBrand.classList.add('text-white');
 
-                    // Change link text colors to white
                     navLinks.forEach(link => {
-                        link.classList.remove('text-gray-900', 'hover:text-primary-800');
-                        link.classList.add('text-white', 'hover:text-primary-300');
+                        link.classList.remove('text-amber-100', 'hover:text-amber-100');
+                        link.classList.add('text-white', 'hover:text-amber-300');
                     });
+
+                    // Mobile
+                    mobileNav.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                    mobileNav.style.boxShadow = '';
+
+                    mobileBrand.classList.remove('text-amber-500');
+                    mobileBrand.classList.add('text-white');
+
+                    menuButton.classList.remove('text-amber-500', 'hover:bg-white/20');
+                    menuButton.classList.add('text-white', 'hover:bg-white/10');
                 }
             }
         }
@@ -120,51 +132,37 @@
         window.addEventListener('scroll', handleScroll);
         handleScroll(); // Initial check
 
-        // Mobile menu
-        const menuButton = document.getElementById('mobile-menu-button');
+        // Mobile menu dropdown
         const mobileMenu = document.getElementById('mobile-menu');
-        const overlay = document.getElementById('mobile-overlay');
         const menuIcon = document.getElementById('menu-icon');
         const closeIcon = document.getElementById('close-icon');
 
-        function openMobileMenu() {
-            mobileMenu.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-            // Force reflow
-            mobileMenu.offsetHeight;
-            mobileMenu.classList.add('show');
-            overlay.classList.add('show');
-            menuIcon.classList.add('hidden');
-            closeIcon.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+        function toggleMobileMenu() {
+            const isActive = mobileMenu.classList.contains('active');
 
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('show');
-            overlay.classList.remove('show');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-                overlay.classList.add('hidden');
-            }, 300);
-            menuIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-            document.body.style.overflow = 'unset';
-        }
-
-        menuButton.addEventListener('click', function() {
-            if (mobileMenu.classList.contains('show')) {
-                closeMobileMenu();
+            if (isActive) {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
             } else {
-                openMobileMenu();
+                mobileMenu.classList.add('active');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
             }
-        });
+        }
 
-        overlay.addEventListener('click', closeMobileMenu);
+        if (menuButton) {
+            menuButton.addEventListener('click', toggleMobileMenu);
+        }
 
-        // Close mobile menu on button/link click
-        const mobileLinks = mobileMenu.querySelectorAll('a, button');
+        // Close mobile menu on link click
+        const mobileLinks = document.querySelectorAll('.mobile-link');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
         });
     });
 </script>

@@ -1,7 +1,7 @@
 @props(['icon', 'title', 'value'])
 
 <div class="flex items-start gap-4">
-    <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-orange-100 rounded-xl flex items-center justify-center shrink-0">
+    <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-amber-100 rounded-xl flex items-center justify-center shrink-0">
         <x-atoms.icon :name="$icon" class="text-blue-600" />
     </div>
     <div>

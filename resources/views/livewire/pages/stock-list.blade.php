@@ -8,7 +8,7 @@
     <section class="pt-40 pb-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
         <div class="max-w-6xl mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-light text-white mb-6 tracking-tight">Stock List</h1>
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto mb-6"></div>
+            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-6"></div>
             <p class="text-lg text-gray-400 font-light">Browse Our Complete Fish Collection</p>
         </div>
     </section>
@@ -16,7 +16,7 @@
     {{-- Content --}}
     <section class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <x-molecules.product-card
                     code="GUP-001"
                     scientificName="Poecilia reticulata"

@@ -16,7 +16,7 @@
         {{-- Total Categories --}}
         <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition">
             <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
                     <x-heroicon-o-rectangle-stack class="w-6 h-6 text-white" />
                 </div>
                 <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">+5%</span>
@@ -43,7 +43,7 @@
                 <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
                     <x-heroicon-o-photo class="w-6 h-6 text-white" />
                 </div>
-                <span class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">+8%</span>
+                <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-1 rounded-full">+8%</span>
             </div>
             <h3 class="text-gray-500 text-sm font-medium mb-1">Total Gallery</h3>
             <p class="text-3xl font-bold text-gray-800">156</p>
@@ -61,7 +61,7 @@
                         Add Product
                     </button>
 
-                    <button class="w-full flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white rounded-xl transition">
+                    <button class="w-full flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-xl transition">
                         <x-heroicon-o-plus class="w-5 h-5" />
                         Add Category
                     </button>
@@ -91,7 +91,7 @@
                         ['action' => 'New message received', 'detail' => 'From customer@email.com', 'time' => '2 hours ago', 'icon' => 'chat-bubble-left-right'],
                     ] as $activity)
                         <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-amber-500 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <x-dynamic-component :component="'heroicon-o-' . $activity['icon']" class="w-5 h-5 text-white" />
                             </div>
                             <div class="flex-1">
