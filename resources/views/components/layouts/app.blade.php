@@ -3,10 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? config('app.name') }}</title>
+    @php
+        $websiteName = App\Models\Setting::get('website_name', config('app.name'));
+    @endphp
+    <title>{{ $title ?? $websiteName }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased bg-white font-poppins">
     {{ $slot }}
+
+    @stack('scripts')
 </body>
 </html>

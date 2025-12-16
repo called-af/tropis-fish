@@ -1,24 +1,29 @@
-<nav id="desktop-nav" class="hidden md:block fixed top-0 z-50 backdrop-blur-md max-w-7xl mx-auto left-0 right-0 px-6 transition-all duration-300">
-    <div class="flex items-center justify-between h-20 w-full">
+@php
+    $companyLogo = App\Models\Setting::get('company_logo');
+    $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+@endphp
+
+<nav id="desktop-nav" class="hidden md:block fixed top-0 z-40 backdrop-blur-md bg-transparent max-w-7xl mx-auto left-0 right-0 px-6 transition-all duration-300">
+    <div class="flex items-center justify-between h-18 w-full">
         <a href="{{ route('home') }}" class="flex items-center gap-3">
-            <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia" class="h-12 w-12 object-cover rounded-full border-2 border-amber-400">
-            <span id="nav-brand" class="font-bold text-xl transition-colors duration-300 text-white">PT. Tropis Fish Indonesia</span>
+            <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }}" class="h-12 w-12 object-cover rounded-full border-2 border-amber-400">
+            <span id="nav-brand" class="font-bold text-xl transition-colors duration-300 text-white">{{ $companyName }}</span>
         </a>
 
         <div class="flex gap-6">
             <a href="{{ route('company-profile') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Company Profile</a>
             <a href="{{ route('stock-list') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Stock List</a>
             <a href="{{ route('gallery') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Gallery</a>
-            <a href="{{ route('contact') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Contact Us</a>
+            <a href="{{ route('terms') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Terms</a>
         </div>
     </div>
 </nav>
 
-<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300">
-    <div class="flex items-center justify-between h-16 px-4">
+<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-40 backdrop-blur-md transition-all duration-300">
+    <div class="flex items-center justify-between h-15 px-4">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-            <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
-            <span id="mobile-brand" class="font-bold text-base text-white transition-colors duration-300">PT. Tropis Fish</span>
+            <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }}" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
+            <span id="mobile-brand" class="font-bold text-base text-white transition-colors duration-300">{{ Str::limit($companyName, 20) }}</span>
         </a>
 
         <button id="mobile-menu-button" class="p-2 rounded-lg transition text-white hover:bg-white/10 z-[80]">
@@ -29,7 +34,7 @@
 </nav>
 
 <!-- Mobile Dropdown Menu -->
-<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-300 max-h-0 opacity-0" style="top: 64px;">
+<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-300 max-h-0 opacity-0" style="top: 56px;">
     <div class="px-4 py-2">
         <div class="space-y-1">
             <a href="{{ route('company-profile') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
@@ -41,8 +46,8 @@
             <a href="{{ route('gallery') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
                 Gallery
             </a>
-            <a href="{{ route('contact') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
-                Contact Us
+            <a href="{{ route('terms') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+                Terms
             </a>
         </div>
     </div>

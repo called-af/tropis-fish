@@ -1,8 +1,5 @@
-<section class="py-20 relative overflow-hidden">
-    {{-- Background - Getting darker (dark blue to very dark) --}}
-    <div class="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-950 to-gray-950"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
+<section class="py-20">
+    <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             {{-- Left Side: Image Grid (Multiple images at once) --}}
             <div class="order-2 md:order-1">
@@ -83,20 +80,20 @@
                         </div>
                     </div>
 
-                    {{-- Stats --}}
-                    <div class="grid grid-cols-3 gap-6 pt-4">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-amber-500 mb-2">100+</div>
-                            <div class="text-sm text-gray-400">Aquarium Tanks</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-amber-500 mb-2">500+</div>
-                            <div class="text-sm text-gray-400">Fish Species</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-amber-500 mb-2">35+</div>
-                            <div class="text-sm text-gray-400">Years Experience</div>
-                        </div>
+                    {{-- Gallery Button --}}
+                    <div class="pt-6">
+                        <a href="{{ route('gallery') }}">
+                            <x-atoms.button
+                                variant="outline"
+                                size="lg"
+                            >
+                                <div class="flex items-center gap-3">
+                                    <x-heroicon-o-photo class="w-6 h-6" />
+                                    <span>View Our Farm Gallery</span>
+                                    <x-heroicon-o-arrow-right class="w-5 h-5" />
+                                </div>
+                            </x-atoms.button>
+                        </a>
                     </div>
                 </div>
             </div>

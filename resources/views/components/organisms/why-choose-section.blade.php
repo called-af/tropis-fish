@@ -1,11 +1,25 @@
 <section class="py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-        <x-molecules.section-header
-            title="Why Choose Us"
-            description="Our commitment to delivering the best"
-        />
+        <div
+            x-data="{ visible: false }"
+            x-intersect:enter="visible = true"
+            x-intersect:leave="visible = false"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="transition-all duration-1000 ease-out"
+        >
+            <x-molecules.section-header
+                title="Why Choose Us"
+                description="Our commitment to delivering the best"
+            />
+        </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <div
+            x-data="{ visible: false }"
+            x-intersect:enter="visible = true"
+            x-intersect:leave="visible = false"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="transition-all duration-1000 ease-out delay-200 grid md:grid-cols-2 gap-8"
+        >
             <x-molecules.why-choose-card
                 icon="check"
                 title="Own Breeding Center"

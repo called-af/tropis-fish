@@ -1,10 +1,15 @@
-<footer class="bg-gradient-to-l from-orange-500 via-amber-400 to-amber-600 py-12 px-4 sm:px-6 lg:px-8">
+@php
+    $companyLogo = App\Models\Setting::get('company_logo');
+    $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+@endphp
+
+<footer class="bg-amber-500 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-                <div class="flex items-center gap-2 mb-4">
-                    <x-atoms.logo size="lg" />
-                    <span class="text-xl font-bold text-white">PT. Tropis Fish Indonesia</span>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }} Logo" class="w-16 h-16 rounded-full object-cover shadow-lg">
+                    <span class="text-xl font-bold text-white">{{ $companyName }}</span>
                 </div>
                 <p class="text-white/90">Premium quality tropical ornamental fish supplier for your aquarium</p>
             </div>
@@ -52,7 +57,7 @@
         </div>
 
         <div class="border-t border-white/20 pt-8 text-center text-white">
-            <p>&copy; {{ date('Y') }} PT. Tropis Fish Indonesia. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} {{ $companyName }}. All rights reserved.</p>
         </div>
     </div>
 </footer>

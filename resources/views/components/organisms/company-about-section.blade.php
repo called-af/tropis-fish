@@ -1,9 +1,12 @@
-<section class="py-20 relative overflow-hidden">
-    {{-- Background - Transitioning from blue to darker blue --}}
-    <div class="absolute inset-0 bg-gradient-to-b from-blue-600 via-blue-700 to-blue-900"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
+<section class="min-h-screen flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <div
+            x-data="{ visible: false }"
+            x-intersect:enter="visible = true"
+            x-intersect:leave="visible = false"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="transition-all duration-1000 ease-out grid md:grid-cols-2 gap-16 items-center"
+        >
             {{-- Left Side: Text Content --}}
             <div class="space-y-8">
                 {{-- Title --}}
@@ -30,16 +33,6 @@
                             <h3 class="text-2xl font-bold text-white mb-2">Extensive Collection</h3>
                             <p class="text-gray-300 leading-relaxed text-lg">
                                 Our fishes collection consist of Indonesian origin fishes as well as from overseas such as Clown Loach, Brackish Fishes, Scats Fishes, many kinds of Tetra Fishes, Angel Fishes, Barb Fishes, Catfishes, Cichlids, Gar Fishes, Killie Fishes, Metynis, Ancient Fishes, Rasboras, Rainbows, Mollies, Platys, Guppies, Various Shrimps, Lobsters, Crabs, Snails, and Clams.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-4">
-                        <div class="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Quality & Competitive Prices</h3>
-                            <p class="text-gray-300 leading-relaxed text-lg">
-                                We also could supply for aquatic plants in our each shipment to you. We only have the highest quality stocks with competitive prices.
                             </p>
                         </div>
                     </div>

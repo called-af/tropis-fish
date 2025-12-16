@@ -13,28 +13,94 @@
         </svg>
     </div>
 
-    <div class="max-w-6xl mx-auto relative z-10">
-        <x-molecules.section-header
-            title="About Us"
-            description="Since 1998, we have been pioneers in breeding and distributing premium quality tropical ornamental fish"
-        />
+    <div class="max-w-7xl mx-auto relative pt-20 z-10">
+        {{-- Main About Section with Photo Left, Text Right --}}
+        <div
+            x-data="{ visible: false }"
+            x-intersect:enter="visible = true"
+            x-intersect:leave="visible = false"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="transition-all duration-1000 ease-out grid lg:grid-cols-2 gap-12 items-center mb-20"
+        >
+            {{-- Left: Photo --}}
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition duration-300"></div>
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <img
+                        src="{{ asset('assets/logo-pt.jpeg') }}"
+                        alt="PT. Tropis Fish Indonesia"
+                        class="w-full h-[500px] object-cover"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+                </div>
+            </div>
 
-        <div class="grid md:grid-cols-3 gap-12">
-            <x-molecules.feature-card
-                icon="check"
-                title="Guaranteed Quality"
-                description="All our fish are carefully selected and go through quarantine processes to ensure optimal health"
-            />
-            <x-molecules.feature-card
-                icon="money"
-                title="Affordable Prices"
-                description="Competitive pricing directly from our breeding center without burdensome intermediaries"
-            />
-            <x-molecules.feature-card
-                icon="lightning"
-                title="Fast Delivery"
-                description="Professional packaging with oxygen system for safe delivery throughout Indonesia"
-            />
+            {{-- Right: About Text --}}
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        About Us
+                    </h2>
+                </div>
+
+                <p class="text-lg text-white/90 leading-relaxed">
+                    Since 1998, <span class="text-amber-400 font-semibold">PT. Tropis Fish Indonesia</span> has been at the forefront of breeding and distributing premium quality tropical ornamental fish. With over two decades of experience, we have established ourselves as one of Indonesia's most trusted suppliers of aquatic life.
+                </p>
+
+                <p class="text-lg text-white/90 leading-relaxed">
+                    Our passion for aquatic excellence drives us to maintain the highest standards in fish breeding, health management, and customer service. We take pride in our commitment to sustainability and the well-being of every fish that leaves our facility.
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <x-heroicon-o-check-circle class="w-6 h-6 text-amber-400" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Premium Quality</h3>
+                            <p class="text-white/70 text-sm">Carefully selected and quarantined fish</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <x-heroicon-o-currency-dollar class="w-6 h-6 text-amber-400" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Best Prices</h3>
+                            <p class="text-white/70 text-sm">Direct from our breeding center</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <x-heroicon-o-truck class="w-6 h-6 text-amber-400" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Fast Delivery</h3>
+                            <p class="text-white/70 text-sm">Professional packaging nationwide</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <x-heroicon-o-heart class="w-6 h-6 text-amber-400" />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">Expert Care</h3>
+                            <p class="text-white/70 text-sm">Dedicated team of specialists</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

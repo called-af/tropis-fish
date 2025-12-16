@@ -1,9 +1,12 @@
-<section class="py-20 relative overflow-hidden">
-    {{-- Background - Darkest (pure black at bottom) --}}
-    <div class="absolute inset-0 bg-gradient-to-b from-gray-950 to-black"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
+<section class="py-20">
+    <div class="container mx-auto px-6">
+        <div
+            x-data="{ visible: false }"
+            x-intersect:enter="visible = true"
+            x-intersect:leave="visible = false"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="transition-all duration-1000 ease-out grid md:grid-cols-2 gap-16 items-center"
+        >
             {{-- Left Side: Text Content --}}
             <div class="space-y-8">
                 {{-- Title --}}
@@ -70,7 +73,7 @@
             </div>
 
             {{-- Right Side: Image Slider --}}
-            <div>
+            <div class="space-y-6">
                 <x-molecules.image-slider
                     :images="[
                         [
@@ -95,6 +98,22 @@
                     :interval="3000"
                     aspect-ratio="aspect-[4/3]"
                 />
+
+                {{-- Quality Footage Button --}}
+                <div class="pt-4">
+                    <a href="{{ route('gallery') }}">
+                        <x-atoms.button
+                            variant="outline"
+                            size="lg"
+                        >
+                            <div class="flex items-center gap-3">
+                                <x-heroicon-o-video-camera class="w-6 h-6" />
+                                <span>View Our Quality Footage</span>
+                                <x-heroicon-o-arrow-right class="w-5 h-5" />
+                            </div>
+                        </x-atoms.button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
