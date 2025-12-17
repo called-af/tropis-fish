@@ -76,7 +76,7 @@
                                 @endif
                                 <div class="flex items-center gap-2 mt-2">
                                     <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-gray-700/80 text-gray-300">
-                                        <x-heroicon-o-numbered-list class="w-3 h-3 text-amber-400" />
+                                        <x-heroicon-o-numbered-list class="w-3 h-3 text-amber-500" />
                                         Order: {{ $hero->order }}
                                     </span>
                                     <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full {{ $hero->is_active ? 'bg-green-900/80 text-green-300' : 'bg-red-900/80 text-red-300' }}">
@@ -145,7 +145,7 @@
         <div class="bg-gray-800 rounded-2xl border border-gray-700 p-16 text-center">
             <div class="flex flex-col items-center gap-4">
                 <div class="w-20 h-20 bg-gray-700/50 rounded-full flex items-center justify-center">
-                    <x-heroicon-o-photo class="w-10 h-10 text-amber-400/50" />
+                    <x-heroicon-o-photo class="w-10 h-10 text-amber-500/50" />
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-1">No heroes found</h3>

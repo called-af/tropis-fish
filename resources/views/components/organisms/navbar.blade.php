@@ -11,10 +11,10 @@
         </a>
 
         <div class="flex gap-6">
-            <a href="{{ route('company-profile') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Company Profile</a>
-            <a href="{{ route('stock-list') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Stock List</a>
-            <a href="{{ route('gallery') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Gallery</a>
-            <a href="{{ route('terms') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-300">Terms</a>
+            <a href="{{ route('company-profile') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Company Profile</a>
+            <a href="{{ route('stock-list') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Stock List</a>
+            <a href="{{ route('gallery') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Gallery</a>
+            <a href="{{ route('terms') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Terms</a>
         </div>
     </div>
 </nav>
@@ -37,16 +37,16 @@
 <div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-300 max-h-0 opacity-0" style="top: 56px;">
     <div class="px-4 py-2">
         <div class="space-y-1">
-            <a href="{{ route('company-profile') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+            <a href="{{ route('company-profile') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
                 Company Profile
             </a>
-            <a href="{{ route('stock-list') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+            <a href="{{ route('stock-list') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
                 Stock List
             </a>
-            <a href="{{ route('gallery') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+            <a href="{{ route('gallery') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
                 Gallery
             </a>
-            <a href="{{ route('terms') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-amber-100 rounded-lg transition-all duration-200">
+            <a href="{{ route('terms') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
                 Terms
             </a>
         </div>
@@ -93,7 +93,7 @@
 
                     navLinks.forEach(link => {
                         link.classList.remove('text-gray-900', 'hover:text-amber-600');
-                        link.classList.add('text-white', 'hover:text-amber-100');
+                        link.classList.add('text-white', 'hover:text-white');
                     });
 
                     // Mobile
@@ -117,8 +117,8 @@
                     navBrand.classList.add('text-white');
 
                     navLinks.forEach(link => {
-                        link.classList.remove('text-amber-100', 'hover:text-amber-100');
-                        link.classList.add('text-white', 'hover:text-amber-300');
+                        link.classList.remove('text-white', 'hover:text-white');
+                        link.classList.add('text-white', 'hover:text-amber-500');
                     });
 
                     // Mobile

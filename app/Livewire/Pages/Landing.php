@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use App\Models\AboutSection;
 use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Setting;
@@ -46,6 +47,9 @@ class Landing extends Component
             'statsTitle' => $statsTitle,
             'statsDescription' => $statsDescription,
             'downloadLink' => $downloadUrl,
+            'aboutSection' => AboutSection::where('is_active', true)
+                ->orderBy('order')
+                ->first(),
         ])->layout('components.layouts.app');
     }
 }

@@ -27,6 +27,7 @@ Route::middleware(['web'])->group(function (): void {
         Route::get('/galleries', App\Livewire\Pages\Admin\Galleries::class)->name('galleries');
         Route::get('/stock-lists', App\Livewire\Pages\Admin\StockLists::class)->name('stock-lists');
         Route::get('/stats', App\Livewire\Pages\Admin\Stats::class)->name('stats');
+        Route::get('/about-sections', App\Livewire\Pages\Admin\AboutSections::class)->name('about-sections');
         Route::get('/settings', App\Livewire\Pages\Admin\WebsiteSettings::class)->name('settings');
     });
 });

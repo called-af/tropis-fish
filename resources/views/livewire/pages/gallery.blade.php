@@ -4,21 +4,12 @@
     {{-- Scroll to Top Button --}}
     <x-atoms.scroll-to-top />
 
-    {{-- Hero Section --}}
-    <section class="pt-40 pb-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
-        <div class="max-w-6xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-light text-white mb-6 tracking-tight">Gallery</h1>
-            <div class="w-20 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-6"></div>
-            <p class="text-lg text-gray-400 font-light">Our Beautiful Fish Collection</p>
-        </div>
-    </section>
-
     {{-- Fish Gallery Section --}}
     <section class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Fish Gallery</h2>
-                <p class="text-lg text-gray-300">Our Premium Fish Collection</p>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Fish Gallery</h2>
+                <p class="text-xl text-gray-100">Our Premium Fish Collection</p>
             </div>
 
             @if($fishGalleries->count() > 0)
@@ -42,7 +33,7 @@
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)
-                                            <p class="text-gray-300 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
+                                            <p class="text-gray-100 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -61,7 +52,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Farm Gallery</h2>
-                <p class="text-lg text-gray-300">Our State-of-the-Art Facilities</p>
+                <p class="text-xl text-gray-100">Our State-of-the-Art Facilities</p>
             </div>
 
             @if($farmGalleries->count() > 0)
@@ -85,7 +76,7 @@
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)
-                                            <p class="text-gray-300 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
+                                            <p class="text-gray-100 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -104,7 +95,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Quality Control</h2>
-                <p class="text-lg text-gray-300">Our Rigorous Quality Standards</p>
+                <p class="text-xl text-gray-100">Our Rigorous Quality Standards</p>
             </div>
 
             @if($qualityGalleries->count() > 0)
@@ -128,7 +119,7 @@
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)
-                                            <p class="text-gray-300 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
+                                            <p class="text-gray-100 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
                                         @endif
                                     </div>
                                 </div>

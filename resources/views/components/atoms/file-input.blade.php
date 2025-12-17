@@ -6,7 +6,7 @@
 
 <div class="w-full">
     @if($label)
-        <label class="block text-sm font-semibold text-amber-400 mb-3">
+        <label class="block text-sm font-semibold text-amber-500 mb-3">
             {{ $label }}
         </label>
     @endif
@@ -21,13 +21,13 @@
 
         <label
             for="{{ $attributes->get('id', 'file-input-' . uniqid()) }}"
-            class="inline-flex items-center gap-2 px-6 py-3 border border-amber-500/50 text-amber-400 bg-transparent hover:bg-amber-500/10 rounded-lg transition cursor-pointer font-semibold"
+            class="inline-flex items-center gap-2 px-6 py-3 border border-amber-500/50 text-amber-500 bg-transparent hover:bg-amber-500/10 rounded-lg transition cursor-pointer font-semibold"
         >
             <x-heroicon-o-arrow-up-tray class="w-5 h-5" />
             <span>Choose File</span>
         </label>
 
-        <span class="ml-3 text-sm text-amber-400/60" x-text="fileName || 'No file chosen'"></span>
+        <span class="ml-3 text-sm text-amber-500/60" x-text="fileName || 'No file chosen'"></span>
     </div>
 
     @if($error)

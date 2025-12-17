@@ -53,7 +53,7 @@
         </template>
 
         {{-- Gradient Overlay --}}
-        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-blue-950/70 to-blue-900/65"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-blue-950/50 to-blue-900/45"></div>
 
         {{-- Slides Content --}}
         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">

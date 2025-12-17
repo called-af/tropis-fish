@@ -26,8 +26,8 @@
                         />
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-amber-400">PT. Tropis Fish Indonesia</h1>
-                        <p class="text-sm text-amber-300 font-light">Premium Ornamental Fish Supplier</p>
+                        <h1 class="text-xl font-bold text-amber-500">PT. Tropis Fish Indonesia</h1>
+                        <p class="text-sm text-amber-500 font-light">Premium Ornamental Fish Supplier</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             {{-- Center Message --}}
             <div class="flex-1 flex items-center">
                 <div class="max-w-lg">
-                    <h2 class="text-5xl xl:text-6xl font-extrabold text-amber-400 mb-6 leading-tight tracking-tight">
+                    <h2 class="text-5xl xl:text-6xl font-extrabold text-amber-500 mb-6 leading-tight tracking-tight">
                         Welcome to Admin Portal
                     </h2>
                     <div class="w-20 h-1 bg-gradient-to-r from-amber-500 to-transparent mb-6"></div>
@@ -44,28 +44,28 @@
                     <div class="mt-12 space-y-4">
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-check class="w-6 h-6 text-amber-400" />
+                                <x-heroicon-o-check class="w-6 h-6 text-amber-500" />
                             </div>
-                            <span class="text-amber-300 font-light">Real-time inventory management</span>
+                            <span class="text-amber-500 font-light">Real-time inventory management</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-check class="w-6 h-6 text-amber-400" />
+                                <x-heroicon-o-check class="w-6 h-6 text-amber-500" />
                             </div>
-                            <span class="text-amber-300 font-light">Advanced analytics & reporting</span>
+                            <span class="text-amber-500 font-light">Advanced analytics & reporting</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-check class="w-6 h-6 text-amber-400" />
+                                <x-heroicon-o-check class="w-6 h-6 text-amber-500" />
                             </div>
-                            <span class="text-amber-300 font-light">Secure & reliable platform</span>
+                            <span class="text-amber-500 font-light">Secure & reliable platform</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             {{-- Footer --}}
-            <div class="text-sm text-amber-300 font-light">
+            <div class="text-sm text-amber-500 font-light">
                 <p>&copy; {{ date('Y') }} PT. Tropis Fish Indonesia. All rights reserved.</p>
             </div>
         </div>
@@ -144,7 +144,7 @@
 
                     {{-- Back to Home --}}
                     <div class="text-center pt-4">
-                        <a href="{{ route('home') }}" class="text-sm text-amber-400 hover:text-amber-300 font-light tracking-wide transition-colors duration-300 inline-flex items-center gap-2">
+                        <a href="{{ route('home') }}" class="text-sm text-amber-500 hover:text-amber-500 font-light tracking-wide transition-colors duration-300 inline-flex items-center gap-2">
                             <x-heroicon-o-arrow-left class="w-4 h-4" />
                             Back to Home
                         </a>

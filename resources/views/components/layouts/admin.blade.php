@@ -50,6 +50,11 @@
                         Stats
                     </a>
 
+                    <a href="{{ route('admin.about-sections') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.about-sections') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <x-heroicon-o-information-circle class="w-5 h-5" />
+                        About Sections
+                    </a>
+
                     <div class="border-t border-gray-700 my-4"></div>
 
                     <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.settings') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">

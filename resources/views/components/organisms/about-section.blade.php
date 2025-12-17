@@ -1,3 +1,6 @@
+@props(['aboutSection' => null])
+
+@if($aboutSection)
 <section id="about" class="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
     {{-- Wave Top --}}
     <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
@@ -24,14 +27,12 @@
         >
             {{-- Left: Photo --}}
             <div class="relative group">
-                <div class="absolute -inset-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition duration-300"></div>
-                <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                <div class="relative overflow-hidden rounded-t-4xl">
                     <img
-                        src="{{ asset('assets/logo-pt.jpeg') }}"
-                        alt="PT. Tropis Fish Indonesia"
-                        class="w-full h-[500px] object-cover"
+                        src="{{ asset("storage/{$aboutSection->image_path}") }}"
+                        alt="{{ $aboutSection->title }}"
+                        class="w-full h-[550px] object-cover"
                     >
-                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
                 </div>
             </div>
 
@@ -39,68 +40,79 @@
             <div class="space-y-6">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                        About Us
+                        {{ $aboutSection->title }}
                     </h2>
                 </div>
 
-                <p class="text-lg text-white/90 leading-relaxed">
-                    Since 1998, <span class="text-amber-400 font-semibold">PT. Tropis Fish Indonesia</span> has been at the forefront of breeding and distributing premium quality tropical ornamental fish. With over two decades of experience, we have established ourselves as one of Indonesia's most trusted suppliers of aquatic life.
+                <p class="text-lg text-white leading-relaxed">
+                    {!! $aboutSection->description_1 !!}
                 </p>
 
-                <p class="text-lg text-white/90 leading-relaxed">
-                    Our passion for aquatic excellence drives us to maintain the highest standards in fish breeding, health management, and customer service. We take pride in our commitment to sustainability and the well-being of every fish that leaves our facility.
-                </p>
+                @if($aboutSection->description_2)
+                    <p class="text-lg text-white leading-relaxed">
+                        {{ $aboutSection->description_2 }}
+                    </p>
+                @endif
 
                 <div class="grid sm:grid-cols-2 gap-6 pt-4">
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-check-circle class="w-6 h-6 text-amber-400" />
+                    @if($aboutSection->feature_1_title)
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                    <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_1_icon" class="w-6 h-6 text-amber-500" />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold mb-1">{{ $aboutSection->feature_1_title }}</h3>
+                                <p class="text-white text-sm">{{ $aboutSection->feature_1_description }}</p>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-semibold mb-1">Premium Quality</h3>
-                            <p class="text-white/70 text-sm">Carefully selected and quarantined fish</p>
-                        </div>
-                    </div>
+                    @endif
 
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-currency-dollar class="w-6 h-6 text-amber-400" />
+                    @if($aboutSection->feature_2_title)
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                    <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_2_icon" class="w-6 h-6 text-amber-500" />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold mb-1">{{ $aboutSection->feature_2_title }}</h3>
+                                <p class="text-white text-sm">{{ $aboutSection->feature_2_description }}</p>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-semibold mb-1">Best Prices</h3>
-                            <p class="text-white/70 text-sm">Direct from our breeding center</p>
-                        </div>
-                    </div>
+                    @endif
 
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-truck class="w-6 h-6 text-amber-400" />
+                    @if($aboutSection->feature_3_title)
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                    <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_3_icon" class="w-6 h-6 text-amber-500" />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold mb-1">{{ $aboutSection->feature_3_title }}</h3>
+                                <p class="text-white text-sm">{{ $aboutSection->feature_3_description }}</p>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-semibold mb-1">Fast Delivery</h3>
-                            <p class="text-white/70 text-sm">Professional packaging nationwide</p>
-                        </div>
-                    </div>
+                    @endif
 
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
-                                <x-heroicon-o-heart class="w-6 h-6 text-amber-400" />
+                    @if($aboutSection->feature_4_title)
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                    <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_4_icon" class="w-6 h-6 text-amber-500" />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold mb-1">{{ $aboutSection->feature_4_title }}</h3>
+                                <p class="text-white text-sm">{{ $aboutSection->feature_4_description }}</p>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-white font-semibold mb-1">Expert Care</h3>
-                            <p class="text-white/70 text-sm">Dedicated team of specialists</p>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif

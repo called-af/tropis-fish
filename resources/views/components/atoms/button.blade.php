@@ -11,7 +11,7 @@
 $variants = [
     'primary' => 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30',
     'secondary' => 'bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-500/30',
-    'outline' => 'border border-amber-500/50 text-amber-400 hover:bg-amber-500/10 hover:border-amber-500 font-light tracking-wide',
+    'outline' => 'border border-amber-500/50 text-amber-500 hover:bg-amber-500/10 hover:border-amber-500 font-light tracking-wide',
 ];
 
 $sizes = [

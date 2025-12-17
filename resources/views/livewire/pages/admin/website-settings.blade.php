@@ -163,24 +163,24 @@
 
         <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6">
             <div class="flex items-center gap-3 mb-4">
-                <x-heroicon-o-light-bulb class="w-6 h-6 text-amber-400" />
+                <x-heroicon-o-light-bulb class="w-6 h-6 text-amber-500" />
                 <h3 class="text-lg font-semibold text-white">Tips</h3>
             </div>
             <ul class="space-y-2 text-sm text-gray-400">
                 <li class="flex items-start gap-2">
-                    <span class="text-amber-400 mt-0.5">•</span>
+                    <span class="text-amber-500 mt-0.5">•</span>
                     <span>Use a square logo for best results</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <span class="text-amber-400 mt-0.5">•</span>
+                    <span class="text-amber-500 mt-0.5">•</span>
                     <span>PNG format with transparent background works best</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <span class="text-amber-400 mt-0.5">•</span>
+                    <span class="text-amber-500 mt-0.5">•</span>
                     <span>Keep website name short and memorable</span>
                 </li>
                 <li class="flex items-start gap-2">
-                    <span class="text-amber-400 mt-0.5">•</span>
+                    <span class="text-amber-500 mt-0.5">•</span>
                     <span>Changes take effect immediately after saving</span>
                 </li>
             </ul>

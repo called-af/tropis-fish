@@ -9,10 +9,10 @@
             :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
             class="transition-all duration-1000 ease-out text-center mb-10 space-y-4"
         >
-            <h2 class="text-3xl md:text-5xl font-bold text-black tracking-tight">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-black tracking-tight">
                 {{ $title }}
             </h2>
-            <p class="text-lg text-gray-900 font-light max-w-2xl mx-auto">
+            <p class="text-lg text-gray-900 font-bold max-w-2xl mx-auto">
                 {{ $description }}
             </p>
         </div>

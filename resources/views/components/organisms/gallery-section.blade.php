@@ -34,7 +34,7 @@
                             <div>
                                 <p class="text-white font-semibold text-sm tracking-wide">{{ $gallery->title }}</p>
                                 @if($gallery->category)
-                                    <p class="text-amber-400 text-xs mt-1">{{ $gallery->category }}</p>
+                                    <p class="text-amber-500 text-xs mt-1">{{ $gallery->category }}</p>
                                 @endif
                             </div>
                         </div>

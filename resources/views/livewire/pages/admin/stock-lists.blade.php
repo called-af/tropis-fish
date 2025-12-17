@@ -32,7 +32,7 @@
     {{-- Download Section --}}
     <div class="mb-8 bg-gray-800 rounded-2xl border border-gray-700 p-6">
         <div class="flex items-center gap-3 mb-6">
-            <x-heroicon-o-arrow-down-tray class="w-5 h-5 text-amber-400" />
+            <x-heroicon-o-arrow-down-tray class="w-5 h-5 text-amber-500" />
             <h3 class="text-lg font-semibold text-white">Stock List Download</h3>
         </div>
 
@@ -92,7 +92,7 @@
 
                 @if($this->currentFile)
                     <div class="flex items-center gap-2 text-sm text-gray-400 bg-gray-700/50 p-3 rounded-lg">
-                        <x-heroicon-o-document class="w-4 h-4 text-amber-400" />
+                        <x-heroicon-o-document class="w-4 h-4 text-amber-500" />
                         <span>Current file: <span class="text-white font-medium">{{ basename($this->currentFile) }}</span></span>
                     </div>
                 @endif
@@ -144,7 +144,7 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="text-amber-400 font-mono font-semibold">{{ $stockList->code }}</span>
+                                    <span class="text-amber-500 font-mono font-semibold">{{ $stockList->code }}</span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="text-gray-300 italic">{{ $stockList->scientific_name }}</span>
@@ -197,7 +197,7 @@
         <div class="bg-gray-800 rounded-2xl border border-gray-700 p-16 text-center">
             <div class="flex flex-col items-center gap-4">
                 <div class="w-20 h-20 bg-gray-700/50 rounded-full flex items-center justify-center">
-                    <x-heroicon-o-clipboard-document-list class="w-10 h-10 text-amber-400/50" />
+                    <x-heroicon-o-clipboard-document-list class="w-10 h-10 text-amber-500/50" />
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-1">No stock items found</h3>

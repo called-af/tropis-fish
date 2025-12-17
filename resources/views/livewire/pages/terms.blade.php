@@ -18,7 +18,7 @@
         <div class="max-w-4xl mx-auto space-y-12">
             {{-- Price --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Price
                 </h2>
@@ -29,7 +29,7 @@
 
             {{-- Delivery Order --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Delivery Order
                 </h2>
@@ -40,7 +40,7 @@
 
             {{-- Packing --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Packing
                 </h2>
@@ -56,7 +56,7 @@
 
             {{-- Dimension --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Dimension
                 </h2>
@@ -65,7 +65,7 @@
                     <div class="space-y-3">
                         <div class="bg-blue-950/20 backdrop-blur-sm border border-amber-500/20 rounded-lg p-4">
                             <div class="flex items-start gap-3">
-                                <span class="text-amber-400 font-bold">1)</span>
+                                <span class="text-amber-500 font-bold">1)</span>
                                 <div>
                                     <p class="font-semibold text-white mb-1">60 x 40 x 32 cm</p>
                                     <p class="text-gray-300">Actual weight 15kgs for freshwater fishes. Estimated weight 14-16 kgs (4 bags).</p>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="bg-blue-950/20 backdrop-blur-sm border border-amber-500/20 rounded-lg p-4">
                             <div class="flex items-start gap-3">
-                                <span class="text-amber-400 font-bold">2)</span>
+                                <span class="text-amber-500 font-bold">2)</span>
                                 <div>
                                     <p class="font-semibold text-white mb-1">75 x 40 x 32 cm</p>
                                     <p class="text-gray-300">Actual weight 17kgs. Estimated weight 17-20kgs (6 bags).</p>
@@ -90,7 +90,7 @@
 
             {{-- Claim for D.O.A. --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Claim for D.O.A.
                 </h2>
@@ -101,7 +101,7 @@
 
             {{-- Payment --}}
             <div class="space-y-4">
-                <h2 class="text-2xl font-bold text-amber-400 flex items-center gap-3">
+                <h2 class="text-2xl font-bold text-amber-500 flex items-center gap-3">
                     <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
                     Payment
                 </h2>

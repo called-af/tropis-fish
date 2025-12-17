@@ -105,7 +105,7 @@
     <div class="bg-gray-800 rounded-2xl border border-gray-700 p-6 mb-8">
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
-                <x-heroicon-o-envelope class="w-6 h-6 text-amber-400" />
+                <x-heroicon-o-envelope class="w-6 h-6 text-amber-500" />
                 <h2 class="text-2xl font-bold text-white">Contact Messages</h2>
             </div>
             @if($stats['unread_messages'] > 0)
@@ -204,7 +204,7 @@
             <div class="text-center py-16">
                 <div class="flex flex-col items-center gap-4">
                     <div class="w-20 h-20 bg-gray-700/50 rounded-full flex items-center justify-center">
-                        <x-heroicon-o-envelope class="w-10 h-10 text-amber-400/50" />
+                        <x-heroicon-o-envelope class="w-10 h-10 text-amber-500/50" />
                     </div>
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">No messages found</h3>

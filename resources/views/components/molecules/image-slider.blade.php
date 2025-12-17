@@ -16,7 +16,7 @@
         }
     }"
     x-init="autoSlide()"
-    {{ $attributes->merge(['class' => "relative overflow-hidden rounded-2xl {$aspectRatio}"]) }}
+    {{ $attributes->merge(['class' => "relative overflow-hidden {$aspectRatio}"]) }}
 >
     {{-- Images --}}
     <template x-for="(image, index) in images" :key="index">

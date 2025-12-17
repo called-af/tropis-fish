@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gradient-to-b from-blue-400 via-blue-600 via-blue-900 to-black">
+<div class="min-h-screen bg-gradient-to-b bg-blue-900">
     {{-- Navbar --}}
     <x-organisms.navbar />
 
@@ -12,7 +12,7 @@
     <x-organisms.stats-section :stats="$stats" :title="$statsTitle" :description="$statsDescription" />
 
     {{-- About Section --}}
-    <x-organisms.about-section />
+    <x-organisms.about-section :aboutSection="$aboutSection" />
 
     {{-- Products Section --}}
     <x-organisms.products-section :stockLists="$stockLists" :downloadLink="$downloadLink" />

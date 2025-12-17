@@ -117,7 +117,7 @@
     <!-- Content - Compact 10% area -->
     <div class="p-3 bg-gray-900/80 backdrop-blur-sm">
         <!-- Common Name -->
-        <h3 class="font-bold text-base text-white mb-1 line-clamp-1 group-hover:text-amber-400 transition-colors">
+        <h3 class="font-bold text-base text-white mb-1 line-clamp-1 group-hover:text-amber-500 transition-colors">
             {{ $commonName }}
         </h3>
 
@@ -139,7 +139,7 @@
         @endif
 
         <!-- Available Badge -->
-        <div class="flex items-center justify-center gap-2 text-xs text-amber-400 font-semibold">
+        <div class="flex items-center justify-center gap-2 text-xs text-amber-500 font-semibold">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>

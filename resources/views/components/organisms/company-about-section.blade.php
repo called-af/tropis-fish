@@ -11,8 +11,8 @@
             <div class="space-y-8">
                 {{-- Title --}}
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-amber-500 mb-4">Company Profile</h2>
-                    <p class="text-xl text-gray-300">Leading Ornamental Fish Exporter</p>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Company Profile</h2>
+                    <p class="text-xl font-medium text-gray-100">Leading Ornamental Fish Exporter</p>
                 </div>
 
                 {{-- Text Content --}}
@@ -21,7 +21,7 @@
                         <div class="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                             <h3 class="text-2xl font-bold text-white mb-2">Established in 1986</h3>
-                            <p class="text-gray-300 leading-relaxed text-lg">
+                            <p class="text-gray-50 leading-relaxed text-lg">
                                 PT. Tropis Fish was established in 1986, and has exported to South East Asia, Middle East, Europe, and USA since 2005. We are the specialist for export ornamental fishes, Invertebrates, and Aquatic Plants.
                             </p>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
                         <div>
                             <h3 class="text-2xl font-bold text-white mb-2">Extensive Collection</h3>
-                            <p class="text-gray-300 leading-relaxed text-lg">
+                            <p class="text-gray-50 leading-relaxed text-lg">
                                 Our fishes collection consist of Indonesian origin fishes as well as from overseas such as Clown Loach, Brackish Fishes, Scats Fishes, many kinds of Tetra Fishes, Angel Fishes, Barb Fishes, Catfishes, Cichlids, Gar Fishes, Killie Fishes, Metynis, Ancient Fishes, Rasboras, Rainbows, Mollies, Platys, Guppies, Various Shrimps, Lobsters, Crabs, Snails, and Clams.
                             </p>
                         </div>
@@ -63,7 +63,7 @@
                         ]
                     ]"
                     :interval="3000"
-                    aspect-ratio="aspect-[4/3]"
+                    aspect-ratio="aspect-[3/3]"
                 />
             </div>
         </div>
