@@ -9,13 +9,20 @@
         currentIndex: 0,
         images: {{ json_encode($images) }},
         interval: {{ $interval }},
+        intervalId: null,
         autoSlide() {
-            setInterval(() => {
-                this.currentIndex = (this.currentIndex + 1) % this.images.length;
-            }, this.interval);
+            if (this.images.length > 1) {
+                this.intervalId = setInterval(() => {
+                    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                }, this.interval);
+            }
+        },
+        init() {
+            this.autoSlide();
+            this.$watch('currentIndex', () => {});
         }
     }"
-    x-init="autoSlide()"
+    x-init="init()"
     {{ $attributes->merge(['class' => "relative overflow-hidden {$aspectRatio}"]) }}
 >
     {{-- Images --}}
@@ -36,10 +43,12 @@
                 class="w-full h-full object-cover"
             />
             {{-- Image Caption --}}
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                <h3 class="text-xl font-bold text-white" x-text="image.title"></h3>
-                <p class="text-sm text-gray-300" x-text="image.description"></p>
-            </div>
+            <template x-if="image.title || image.description">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <h3 x-show="image.title" class="text-xl font-bold text-white" x-text="image.title"></h3>
+                    <p x-show="image.description" class="text-sm text-gray-300" x-text="image.description"></p>
+                </div>
+            </template>
         </div>
     </template>
 

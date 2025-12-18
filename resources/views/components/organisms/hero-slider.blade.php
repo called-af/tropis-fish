@@ -2,25 +2,91 @@
 
 <section x-data="{
     currentSlide: 0,
+    youtubePlayers: {},
     slides: {{ json_encode($heroes->map(fn($hero) => [
+        'id' => $hero->id,
         'title' => $hero->title,
         'description' => $hero->description,
-        'image' => asset('storage/' . $hero->image_path),
+        'backgroundType' => $hero->background_type,
+        'image' => $hero->image_path ? asset('storage/' . $hero->image_path) : null,
         'video' => $hero->video_path ? asset('storage/' . $hero->video_path) : null,
         'youtube' => $hero->youtube_url
     ])) }},
+    getYouTubeId(url) {
+        if (!url) {
+            return null;
+        }
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    },
+    initYouTubePlayer(index) {
+        const slide = this.slides[index];
+        if (slide.backgroundType !== 'youtube' || !slide.youtube) {
+            return;
+        }
+
+        const videoId = this.getYouTubeId(slide.youtube);
+        if (!videoId) {
+            return;
+        }
+
+        const iframeId = 'youtube-player-' + index;
+        const iframe = document.getElementById(iframeId);
+        if (!iframe) {
+            return;
+        }
+
+        // Reset iframe src to force reload with high quality
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&quality=highres`;
+        iframe.src = embedUrl;
+    },
+    restartVideo(index) {
+        const slide = this.slides[index];
+        const videoId = 'video-player-' + index;
+        const videoEl = document.getElementById(videoId);
+
+        if (videoEl && slide.backgroundType === 'video') {
+            videoEl.currentTime = 0;
+            videoEl.play().catch(() => {});
+        }
+    },
+    changeSlide(newIndex) {
+        this.currentSlide = newIndex;
+
+        // Delay untuk memberi waktu transisi
+        setTimeout(() => {
+            const slide = this.slides[newIndex];
+            if (slide.backgroundType === 'youtube') {
+                this.initYouTubePlayer(newIndex);
+            } else if (slide.backgroundType === 'video') {
+                this.restartVideo(newIndex);
+            }
+        }, 100);
+    },
     init() {
+        // Auto-advance slides
         if (this.slides.length > 1) {
             setInterval(() => {
-                this.currentSlide = (this.currentSlide + 1) % this.slides.length
-            }, 5000)
+                this.changeSlide((this.currentSlide + 1) % this.slides.length);
+            }, 8000);
         }
+
+        // Initialize first slide
+        this.$nextTick(() => {
+            const firstSlide = this.slides[0];
+            if (firstSlide.backgroundType === 'youtube') {
+                this.initYouTubePlayer(0);
+            } else if (firstSlide.backgroundType === 'video') {
+                this.restartVideo(0);
+            }
+        });
     }
 }" class="relative h-screen overflow-hidden">
 
     @if($heroes && $heroes->count() > 0)
-        {{-- Background (Video or Image) --}}
-        <template x-for="(slide, index) in slides" :key="index">
+        {{-- Background Media Layers --}}
+        <template x-for="(slide, index) in slides" :key="'slide-' + index">
             <div
                 x-show="currentSlide === index"
                 x-transition:enter="transition ease-out duration-1000"
@@ -31,23 +97,43 @@
                 x-transition:leave-end="opacity-0"
                 class="absolute inset-0"
             >
-                <template x-if="slide.youtube">
-                    <iframe
-                        :src="`${slide.youtube}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`"
-                        class="absolute inset-0 w-full h-full pointer-events-none"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        :key="`youtube-${index}`"
-                        style="transform: scale(1.5);"
-                    ></iframe>
+                {{-- YouTube Video --}}
+                <template x-if="slide.backgroundType === 'youtube' && slide.youtube">
+                    <div class="absolute inset-0 w-full h-full overflow-hidden bg-black">
+                        <iframe
+                            :id="'youtube-player-' + index"
+                            class="absolute inset-0 w-full h-full pointer-events-none"
+                            style="width: 100vw; height: 100vh; object-fit: cover;"
+                            frameborder="0"
+                            allow="autoplay; encrypted-media; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
                 </template>
-                <template x-if="!slide.youtube && slide.video">
-                    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" :key="`video-${index}`">
+
+                {{-- Local Video --}}
+                <template x-if="slide.backgroundType === 'video' && slide.video">
+                    <video
+                        :id="'video-player-' + index"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    >
                         <source :src="slide.video" type="video/mp4">
                     </video>
                 </template>
-                <template x-if="!slide.youtube && !slide.video">
-                    <img :src="slide.image" :alt="slide.title" class="absolute inset-0 w-full h-full object-cover">
+
+                {{-- Image --}}
+                <template x-if="slide.backgroundType === 'image' && slide.image">
+                    <img
+                        :src="slide.image"
+                        :alt="slide.title"
+                        loading="lazy"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    >
                 </template>
             </div>
         </template>
@@ -88,11 +174,12 @@
         {{-- Slide Indicators --}}
         @if($heroes->count() > 1)
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
-                <template x-for="(slide, index) in slides" :key="index">
+                <template x-for="(slide, index) in slides" :key="'indicator-' + index">
                     <button
-                        @click="currentSlide = index"
+                        @click="changeSlide(index)"
                         :class="currentSlide === index ? 'bg-amber-500 w-12' : 'bg-white/50 w-3'"
                         class="h-3 rounded-full transition-all duration-300 hover:bg-amber-400"
+                        :aria-label="'Go to slide ' + (index + 1)"
                     ></button>
                 </template>
             </div>

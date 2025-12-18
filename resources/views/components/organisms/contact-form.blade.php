@@ -1,7 +1,7 @@
 <div class="relative group h-full">
 
     {{-- Main Form Card --}}
-    <div class="relative bg-white/5 border border-white/10 hover:border-amber-500/30 p-8 transition-all duration-500 h-full">
+    <div class="relative bg-white/5 hover:border-amber-500/30 p-8 transition-all duration-500 h-full">
         {{-- Form Header --}}
         <div class="mb-6 pb-6 border-b border-amber-500/30">
             <h3 class="text-xl font-bold text-amber-500 flex items-center gap-3">

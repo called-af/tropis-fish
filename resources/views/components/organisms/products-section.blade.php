@@ -1,6 +1,6 @@
 @props(['stockLists' => [], 'downloadLink' => null])
 
-<section id="products" class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+<section id="products" class="py-24 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
         <div
             x-data="{ visible: false }"

@@ -1,14 +1,14 @@
-<div class="min-h-screen bg-gradient-to-b from-blue-400 via-blue-600 via-blue-900 to-black">
+<div class="min-h-screen bg-blue-950">
     <x-organisms.navbar />
 
     {{-- Scroll to Top Button --}}
     <x-atoms.scroll-to-top />
 
     {{-- Fish Gallery Section --}}
-    <section class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+    <section class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Fish Gallery</h2>
+                <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Fish Gallery</h2>
                 <p class="text-xl text-gray-100">Our Premium Fish Collection</p>
             </div>
 
@@ -23,13 +23,13 @@
                             class="transition-all duration-700 ease-out"
                             style="transition-delay: {{ $index * 50 }}ms"
                         >
-                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-2xl">
+                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 ">
                                 <img
                                     src="{{ asset('storage/' . $gallery->image_path) }}"
                                     alt="{{ $gallery->title }}"
                                     class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                                 >
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)
@@ -48,7 +48,7 @@
     </section>
 
     {{-- Farm Gallery Section --}}
-    <section class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+    <section class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Farm Gallery</h2>
@@ -66,13 +66,13 @@
                             class="transition-all duration-700 ease-out"
                             style="transition-delay: {{ $index * 50 }}ms"
                         >
-                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-2xl">
+                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 ">
                                 <img
                                     src="{{ asset('storage/' . $gallery->image_path) }}"
                                     alt="{{ $gallery->title }}"
                                     class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                                 >
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)
@@ -109,13 +109,13 @@
                             class="transition-all duration-700 ease-out"
                             style="transition-delay: {{ $index * 50 }}ms"
                         >
-                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-2xl">
+                            <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 ">
                                 <img
                                     src="{{ asset('storage/' . $gallery->image_path) }}"
                                     alt="{{ $gallery->title }}"
                                     class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                                 >
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
                                         <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
                                         @if($gallery->description)

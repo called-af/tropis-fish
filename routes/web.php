@@ -28,6 +28,9 @@ Route::middleware(['web'])->group(function (): void {
         Route::get('/stock-lists', App\Livewire\Pages\Admin\StockLists::class)->name('stock-lists');
         Route::get('/stats', App\Livewire\Pages\Admin\Stats::class)->name('stats');
         Route::get('/about-sections', App\Livewire\Pages\Admin\AboutSections::class)->name('about-sections');
+        Route::get('/company-sections', App\Livewire\Pages\Admin\CompanySections::class)->name('company-sections');
+        Route::get('/footer-sections', App\Livewire\Pages\Admin\FooterSections::class)->name('footer-sections');
+        Route::get('/terms', App\Livewire\Pages\Admin\Terms::class)->name('terms');
         Route::get('/settings', App\Livewire\Pages\Admin\WebsiteSettings::class)->name('settings');
     });
 });

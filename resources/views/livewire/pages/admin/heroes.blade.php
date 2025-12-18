@@ -258,13 +258,13 @@
                     <x-atoms.input
                         type="url"
                         wire:model="youtubeUrl"
-                        label="YouTube Embed URL *"
-                        placeholder="https://www.youtube.com/embed/VIDEO_ID"
+                        label="YouTube Video URL *"
+                        placeholder="https://youtu.be/VIDEO_ID or https://www.youtube.com/watch?v=VIDEO_ID"
                         :error="$errors->first('youtubeUrl')"
                         required
                     >
                         <x-slot:help>
-                            <p class="text-xs text-gray-500 mt-1">Use YouTube embed URL format: https://www.youtube.com/embed/VIDEO_ID</p>
+                            <p class="text-xs text-gray-500 mt-1">Paste any YouTube video link (youtu.be, youtube.com/watch, youtube.com/embed)</p>
                         </x-slot:help>
                     </x-atoms.input>
                 @endif

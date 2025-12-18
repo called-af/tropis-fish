@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gradient-to-b bg-blue-900">
+<div class="min-h-screen bg-gradient-to-b bg-blue-950">
     {{-- Navbar --}}
     <x-organisms.navbar />
 
@@ -24,10 +24,7 @@
     <x-organisms.why-choose-section />
 
     {{-- Contact Section --}}
-    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5 relative overflow-hidden">
-        {{-- Decorative Elements --}}
-        <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-black relative overflow-hidden">
 
         <div class="max-w-6xl mx-auto relative z-10">
             <div
@@ -62,7 +59,7 @@
                         <h3 class="text-4xl font-bold text-white tracking-wide mb-2">
                             PT. TROPIS FISH
                         </h3>
-                        <p class="text-amber-500 font-semibold text-lg mb-4">Ornamental Fish Exporter</p>
+                        <p class="text-amber-500 font-semibold text-lg mb-4">Export of Ornamental Freshwater Fish</p>
                         <div class="h-1 w-24 bg-gradient-to-r from-amber-500 to-transparent rounded-full"></div>
                     </div>
 

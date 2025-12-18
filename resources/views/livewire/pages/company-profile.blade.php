@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gradient-to-b from-blue-400 via-blue-600 via-blue-900 to-black">
+<div class="min-h-screen bg-blue-950">
     {{-- Navbar --}}
     <x-organisms.navbar />
 

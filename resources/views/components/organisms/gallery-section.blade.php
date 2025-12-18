@@ -1,6 +1,6 @@
 @props(['galleries' => collect()])
 
-<section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+<section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 ">
     <div class="max-w-6xl mx-auto">
         <div
             x-data="{ visible: false }"
@@ -10,7 +10,7 @@
             class="transition-all duration-1000 ease-out"
         >
             <x-molecules.section-header
-                title="Fish Gallery"
+                title="Gallery"
                 description="Explore our beautiful and diverse collection of tropical ornamental fish"
             />
         </div>

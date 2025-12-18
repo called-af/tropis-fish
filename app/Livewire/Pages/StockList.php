@@ -17,9 +17,16 @@ class StockList extends Component
     #[Url]
     public string $search = '';
 
+    public string $viewMode = 'grid'; // 'grid' or 'table'
+
     public function updatingSearch(): void
     {
         $this->resetPage();
+    }
+
+    public function setViewMode(string $mode): void
+    {
+        $this->viewMode = $mode;
     }
 
     #[Layout('components.layouts.app')]

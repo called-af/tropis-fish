@@ -55,6 +55,21 @@
                         About Sections
                     </a>
 
+                    <a href="{{ route('admin.company-sections') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.company-sections') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <x-heroicon-o-building-office class="w-5 h-5" />
+                        Company Profile
+                    </a>
+
+                    <a href="{{ route('admin.footer-sections') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.footer-sections') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <x-heroicon-o-square-3-stack-3d class="w-5 h-5" />
+                        Footer Sections
+                    </a>
+
+                    <a href="{{ route('admin.terms') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.terms') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
+                        <x-heroicon-o-document-text class="w-5 h-5" />
+                        Terms & Conditions
+                    </a>
+
                     <div class="border-t border-gray-700 my-4"></div>
 
                     <a href="{{ route('admin.settings') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.settings') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">

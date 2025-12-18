@@ -4,7 +4,7 @@
         {{-- Background Image --}}
         <div class="absolute inset-0">
             <img
-                src="{{ asset('assets/archer-fish-brackish.jpg') }}"
+                src="{{ asset('assets/fish/archer-fish-brackish.jpg') }}"
                 alt="Archer Fish - PT. Tropis Fish Indonesia"
                 class="w-full h-full object-cover opacity-80"
             />
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-bold text-amber-500">PT. Tropis Fish Indonesia</h1>
-                        <p class="text-sm text-amber-500 font-light">Premium Ornamental Fish Supplier</p>
+                        <p class="text-sm text-amber-500 font-light">Export of Ornamental Freshwater Fish</p>
                     </div>
                 </div>
             </div>

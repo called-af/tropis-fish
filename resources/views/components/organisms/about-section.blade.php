@@ -1,7 +1,7 @@
 @props(['aboutSection' => null])
 
 @if($aboutSection)
-<section id="about" class="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-white/5">
+<section id="about" class="relative py-24 px-4 sm:px-6 lg:px-8">
     {{-- Wave Top --}}
     <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg class="relative block w-full h-20 md:h-28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">

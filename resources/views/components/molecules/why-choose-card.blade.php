@@ -21,8 +21,8 @@
             </div>
         </div>
         <div>
-            <h3 class="text-xl font-light text-white mb-3 tracking-wide">{{ $title }}</h3>
-            <p class="text-gray-400 font-light leading-relaxed">
+            <h3 class="text-xl font-medium text-white mb-3 tracking-wide">{{ $title }}</h3>
+            <p class="text-gray-100 font-light leading-relaxed">
                 {{ $description }}
             </p>
         </div>
