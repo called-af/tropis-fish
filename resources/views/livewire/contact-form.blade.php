@@ -96,7 +96,7 @@
                     iconPosition="right"
                     class="shadow-lg shadow-amber-500/30"
                 >
-                    <span wire:loading.remove>Send Message</span>
+                    <span wire:loading.remove>Send</span>
                     <span wire:loading>Sending...</span>
                 </x-atoms.button>
             </div>

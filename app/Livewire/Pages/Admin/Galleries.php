@@ -40,7 +40,7 @@ class Galleries extends Component
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category' => 'required|in:fish,farm,quality',
-            'image' => $this->editingId ? 'nullable|image|max:2048' : 'required|image|max:2048',
+            'image' => $this->editingId ? 'nullable|image|max:7168' : 'required|image|max:7168',
         ]);
 
         $imagePath = null;

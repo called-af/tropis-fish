@@ -38,12 +38,12 @@
     @endif
 
     {{-- Header with Add Button --}}
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-white mb-2">Hero Slider Management</h1>
-            <p class="text-gray-400">Manage your hero slider images (Maximum 3 slides)</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Hero Slider Management</h1>
+            <p class="text-sm sm:text-base text-gray-400">Manage your hero slider images (Maximum 3 slides)</p>
         </div>
-        <x-atoms.button wire:click="openCreateModal" variant="secondary" icon="plus">
+        <x-atoms.button wire:click="openCreateModal" variant="secondary" icon="plus" class="self-start sm:self-auto">
             Add Hero
         </x-atoms.button>
     </div>
@@ -58,7 +58,7 @@
 
     {{-- Hero Grid --}}
     @if($heroes->count() > 0)
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
             @foreach($heroes as $hero)
                 <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden shadow-xl hover:border-amber-500/50 transition">
                     {{-- Image --}}
@@ -69,17 +69,17 @@
                             class="w-full h-full object-cover"
                         >
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                            <div class="absolute bottom-0 left-0 right-0 p-4">
-                                <h3 class="text-white font-bold text-lg line-clamp-1 mb-1">{{ $hero->title }}</h3>
+                            <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                                <h3 class="text-white font-bold text-base sm:text-lg line-clamp-1 mb-1">{{ $hero->title }}</h3>
                                 @if($hero->description)
-                                    <p class="text-gray-300 text-sm line-clamp-2">{{ $hero->description }}</p>
+                                    <p class="text-gray-300 text-xs sm:text-sm line-clamp-2">{{ $hero->description }}</p>
                                 @endif
-                                <div class="flex items-center gap-2 mt-2">
-                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-gray-700/80 text-gray-300">
+                                <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2">
+                                    <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-xs font-semibold rounded-full bg-gray-700/80 text-gray-300">
                                         <x-heroicon-o-numbered-list class="w-3 h-3 text-amber-500" />
                                         Order: {{ $hero->order }}
                                     </span>
-                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full {{ $hero->is_active ? 'bg-green-900/80 text-green-300' : 'bg-red-900/80 text-red-300' }}">
+                                    <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-xs font-semibold rounded-full {{ $hero->is_active ? 'bg-green-900/80 text-green-300' : 'bg-red-900/80 text-red-300' }}">
                                         @if($hero->is_active)
                                             <x-heroicon-o-check-circle class="w-3 h-3" />
                                             Active
@@ -89,17 +89,17 @@
                                         @endif
                                     </span>
                                     @if($hero->background_type === 'youtube')
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-red-900/80 text-red-300">
+                                        <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-xs font-semibold rounded-full bg-red-900/80 text-red-300">
                                             <x-heroicon-o-play-circle class="w-3 h-3" />
                                             YouTube
                                         </span>
                                     @elseif($hero->background_type === 'video')
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-900/80 text-purple-300">
+                                        <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-900/80 text-purple-300">
                                             <x-heroicon-o-video-camera class="w-3 h-3" />
                                             Video
                                         </span>
                                     @elseif($hero->background_type === 'image')
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-900/80 text-blue-300">
+                                        <span class="inline-flex items-center gap-1 px-1.5 sm:px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-900/80 text-blue-300">
                                             <x-heroicon-o-photo class="w-3 h-3" />
                                             Image
                                         </span>
@@ -110,7 +110,7 @@
                     </div>
 
                     {{-- Actions --}}
-                    <div class="p-4 flex gap-2">
+                    <div class="p-3 sm:p-4 flex gap-2">
                         <x-atoms.button
                             wire:click="edit({{ $hero->id }})"
                             variant="primary"
@@ -142,13 +142,13 @@
         @endif
     @else
         {{-- Empty State --}}
-        <div class="bg-gray-800 rounded-2xl border border-gray-700 p-16 text-center">
+        <div class="bg-gray-800 rounded-2xl border border-gray-700 p-12 sm:p-16 text-center">
             <div class="flex flex-col items-center gap-4">
-                <div class="w-20 h-20 bg-gray-700/50 rounded-full flex items-center justify-center">
-                    <x-heroicon-o-photo class="w-10 h-10 text-amber-500/50" />
+                <div class="w-16 sm:w-20 h-16 sm:h-20 bg-gray-700/50 rounded-full flex items-center justify-center">
+                    <x-heroicon-o-photo class="w-8 sm:w-10 h-8 sm:h-10 text-amber-500/50" />
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold text-white mb-1">No heroes found</h3>
+                    <h3 class="text-base sm:text-lg font-semibold text-white mb-1">No heroes found</h3>
                     <p class="text-sm text-gray-400 mb-4">
                         @if($search)
                             No results for "{{ $search }}". Try a different search term.
@@ -168,12 +168,12 @@
 
     {{-- Form Modal --}}
     <x-molecules.modal wire:model="showFormModal" max-width="3xl">
-        <div class="p-8">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
-                    <x-heroicon-o-photo class="w-6 h-6 text-white" />
+        <div class="p-4 sm:p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6 sm:mb-8">
+                <div class="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <x-heroicon-o-photo class="w-5 sm:w-6 h-5 sm:h-6 text-white" />
                 </div>
-                <h2 class="text-2xl font-bold text-white">{{ $editingId ? 'Edit Hero' : 'Add New Hero' }}</h2>
+                <h2 class="text-xl sm:text-2xl font-bold text-white">{{ $editingId ? 'Edit Hero' : 'Add New Hero' }}</h2>
             </div>
 
             <form wire:submit="save" class="space-y-6">
@@ -197,28 +197,28 @@
                 {{-- Background Type Selection --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-3">Background Type *</label>
-                    <div class="grid grid-cols-3 gap-4">
-                        <label class="relative flex items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'image' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
+                    <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                        <label class="relative flex items-center justify-center p-2 sm:p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'image' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
                             <input type="radio" wire:model.live="backgroundType" value="image" class="sr-only">
                             <div class="text-center">
-                                <x-heroicon-o-photo class="w-8 h-8 mx-auto mb-2 {{ $backgroundType === 'image' ? 'text-amber-500' : 'text-gray-400' }}" />
-                                <span class="text-sm font-semibold {{ $backgroundType === 'image' ? 'text-amber-500' : 'text-gray-300' }}">Image Only</span>
+                                <x-heroicon-o-photo class="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 {{ $backgroundType === 'image' ? 'text-amber-500' : 'text-gray-400' }}" />
+                                <span class="text-xs sm:text-sm font-semibold {{ $backgroundType === 'image' ? 'text-amber-500' : 'text-gray-300' }}">Image Only</span>
                             </div>
                         </label>
 
-                        <label class="relative flex items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'video' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
+                        <label class="relative flex items-center justify-center p-2 sm:p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'video' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
                             <input type="radio" wire:model.live="backgroundType" value="video" class="sr-only">
                             <div class="text-center">
-                                <x-heroicon-o-video-camera class="w-8 h-8 mx-auto mb-2 {{ $backgroundType === 'video' ? 'text-amber-500' : 'text-gray-400' }}" />
-                                <span class="text-sm font-semibold {{ $backgroundType === 'video' ? 'text-amber-500' : 'text-gray-300' }}">Upload Video</span>
+                                <x-heroicon-o-video-camera class="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 {{ $backgroundType === 'video' ? 'text-amber-500' : 'text-gray-400' }}" />
+                                <span class="text-xs sm:text-sm font-semibold {{ $backgroundType === 'video' ? 'text-amber-500' : 'text-gray-300' }}">Upload Video</span>
                             </div>
                         </label>
 
-                        <label class="relative flex items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'youtube' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
+                        <label class="relative flex items-center justify-center p-2 sm:p-4 border-2 rounded-xl cursor-pointer transition {{ $backgroundType === 'youtube' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
                             <input type="radio" wire:model.live="backgroundType" value="youtube" class="sr-only">
                             <div class="text-center">
-                                <x-heroicon-o-play-circle class="w-8 h-8 mx-auto mb-2 {{ $backgroundType === 'youtube' ? 'text-amber-500' : 'text-gray-400' }}" />
-                                <span class="text-sm font-semibold {{ $backgroundType === 'youtube' ? 'text-amber-500' : 'text-gray-300' }}">YouTube</span>
+                                <x-heroicon-o-play-circle class="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 {{ $backgroundType === 'youtube' ? 'text-amber-500' : 'text-gray-400' }}" />
+                                <span class="text-xs sm:text-sm font-semibold {{ $backgroundType === 'youtube' ? 'text-amber-500' : 'text-gray-300' }}">YouTube</span>
                             </div>
                         </label>
                     </div>
@@ -314,26 +314,26 @@
 
     {{-- Delete Confirmation Modal --}}
     <x-molecules.modal wire:model="showDeleteModal" max-width="md">
-        <div class="p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center">
-                    <x-heroicon-o-exclamation-triangle class="w-7 h-7 text-red-400" />
+        <div class="p-4 sm:p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-4 sm:mb-6">
+                <div class="w-10 sm:w-12 h-10 sm:h-12 bg-red-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <x-heroicon-o-exclamation-triangle class="w-6 sm:w-7 h-6 sm:h-7 text-red-400" />
                 </div>
-                <div>
-                    <h2 class="text-xl font-bold text-white">Delete Hero</h2>
-                    <p class="text-sm text-gray-400 mt-1">This action cannot be undone</p>
+                <div class="min-w-0">
+                    <h2 class="text-lg sm:text-xl font-bold text-white">Delete Hero</h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">This action cannot be undone</p>
                 </div>
             </div>
 
-            <p class="text-gray-300 mb-6">
+            <p class="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
                 Are you sure you want to delete this hero? All associated data will be permanently removed.
             </p>
 
-            <div class="flex gap-3">
-                <x-atoms.button wire:click="delete" variant="outline" icon="trash" class="!text-red-400 !border-red-500/50 hover:!bg-red-500/10">
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                <x-atoms.button wire:click="delete" variant="outline" icon="trash" class="!text-red-400 !border-red-500/50 hover:!bg-red-500/10 w-full sm:w-auto">
                     Delete
                 </x-atoms.button>
-                <x-atoms.button wire:click="$set('showDeleteModal', false)" variant="outline" icon="x-mark">
+                <x-atoms.button wire:click="$set('showDeleteModal', false)" variant="outline" icon="x-mark" class="w-full sm:w-auto">
                     Cancel
                 </x-atoms.button>
             </div>

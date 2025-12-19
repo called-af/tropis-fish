@@ -56,13 +56,13 @@ class Heroes extends Component
         ];
 
         if ($this->backgroundType === 'image') {
-            $rules['image'] = $this->editingId ? 'nullable|image|max:2048' : 'required|image|max:2048';
+            $rules['image'] = $this->editingId ? 'nullable|image|max:7168' : 'required|image|max:7168';
         } elseif ($this->backgroundType === 'video') {
             $rules['video'] = 'required|mimes:mp4,mov,avi,wmv|max:51200';
-            $rules['image'] = 'nullable|image|max:2048';
+            $rules['image'] = 'nullable|image|max:7168';
         } elseif ($this->backgroundType === 'youtube') {
             $rules['youtubeUrl'] = 'required|url';
-            $rules['image'] = 'nullable|image|max:2048';
+            $rules['image'] = 'nullable|image|max:7168';
         }
 
         $validated = $this->validate($rules);

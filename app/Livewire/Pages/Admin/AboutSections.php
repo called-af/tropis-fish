@@ -110,7 +110,7 @@ class AboutSections extends Component
             'title' => 'required|string|max:255',
             'description1' => 'required|string',
             'description2' => 'nullable|string',
-            'image' => $this->editingId ? 'nullable|image|max:2048' : 'required|image|max:2048',
+            'image' => $this->editingId ? 'nullable|image|max:7168' : 'required|image|max:7168',
             'feature1Title' => 'nullable|string|max:255',
             'feature1Description' => 'nullable|string',
             'feature1Icon' => 'nullable|string|max:255',

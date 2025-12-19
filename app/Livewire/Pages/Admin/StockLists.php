@@ -94,7 +94,7 @@ class StockLists extends Component
             'commonName' => 'required|string|max:255',
             'size' => 'required|string|max:255',
             'length' => 'required|string|max:255',
-            'image' => $this->editingId ? 'nullable|image|max:2048' : 'required|image|max:2048',
+            'image' => $this->editingId ? 'nullable|image|max:7168' : 'required|image|max:7168',
         ]);
 
         $imagePath = null;

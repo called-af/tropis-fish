@@ -34,7 +34,7 @@ class WebsiteSettings extends Component
         $this->validate([
             'websiteName' => 'required|string|max:255',
             'companyName' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048',
+            'logo' => 'nullable|image|max:7168',
         ]);
 
         Setting::set('website_name', $this->websiteName);

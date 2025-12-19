@@ -114,7 +114,6 @@
                         class="!text-red-400 !border-red-500/50 hover:!bg-red-500/10"
                     >
                         <span class="hidden sm:inline">Delete</span>
-                        <span class="sm:hidden"><x-heroicon-o-trash class="w-4 h-4" /></span>
                     </x-atoms.button>
                 @else
                     <x-atoms.button
@@ -199,7 +198,6 @@
                         class="!text-red-400 !border-red-500/50 hover:!bg-red-500/10"
                     >
                         <span class="hidden sm:inline">Delete</span>
-                        <span class="sm:hidden"><x-heroicon-o-trash class="w-4 h-4" /></span>
                     </x-atoms.button>
                 @else
                     <x-atoms.button
@@ -284,7 +282,6 @@
                         class="!text-red-400 !border-red-500/50 hover:!bg-red-500/10"
                     >
                         <span class="hidden sm:inline">Delete</span>
-                        <span class="sm:hidden"><x-heroicon-o-trash class="w-4 h-4" /></span>
                     </x-atoms.button>
                 @else
                     <x-atoms.button
@@ -303,7 +300,7 @@
 
     {{-- Form Modal --}}
     <x-molecules.modal wire:model="showFormModal" max-width="4xl">
-        <div class="p-4 sm:p-8">
+        <div class="p-4 sm:p-6 md:p-8">
             <div class="flex items-center gap-3 mb-6 sm:mb-8">
                 @php
                     $icon = match($type) {
@@ -319,18 +316,18 @@
                         default => 'from-amber-500 to-amber-600'
                     };
                 @endphp
-                <div class="w-10 h-10 bg-gradient-to-br {{ $color }} rounded-xl flex items-center justify-center">
+                <div class="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br {{ $color }} rounded-xl flex items-center justify-center flex-shrink-0">
                     @if($type === 'about')
-                        <x-heroicon-o-information-circle class="w-6 h-6 text-white" />
+                        <x-heroicon-o-information-circle class="w-5 sm:w-6 h-5 sm:h-6 text-white" />
                     @elseif($type === 'farm')
-                        <x-heroicon-o-home class="w-6 h-6 text-white" />
+                        <x-heroicon-o-home class="w-5 sm:w-6 h-5 sm:h-6 text-white" />
                     @elseif($type === 'quality')
-                        <x-heroicon-o-shield-check class="w-6 h-6 text-white" />
+                        <x-heroicon-o-shield-check class="w-5 sm:w-6 h-5 sm:h-6 text-white" />
                     @endif
                 </div>
-                <div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white">{{ $editingId ? 'Edit' : 'Create' }} {{ ucfirst($type) }} Section</h2>
-                    <p class="text-sm text-gray-400">Configure section content and images</p>
+                <div class="min-w-0">
+                    <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-white">{{ $editingId ? 'Edit' : 'Create' }} {{ ucfirst($type) }} Section</h2>
+                    <p class="text-xs sm:text-sm text-gray-400 truncate">Configure section content and images</p>
                 </div>
             </div>
 
@@ -356,20 +353,20 @@
                 {{-- Image Layout Selection --}}
                 <div>
                     <label class="block text-sm font-medium text-gray-300 mb-3">Image Display Style *</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="relative flex items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition {{ $imageLayout === 'slider' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <label class="relative flex items-center justify-center p-3 sm:p-4 border-2 rounded-xl cursor-pointer transition {{ $imageLayout === 'slider' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
                             <input type="radio" wire:model.live="imageLayout" value="slider" class="sr-only">
                             <div class="text-center">
-                                <x-heroicon-o-photo class="w-8 h-8 mx-auto mb-2 {{ $imageLayout === 'slider' ? 'text-amber-500' : 'text-gray-400' }}" />
+                                <x-heroicon-o-photo class="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 {{ $imageLayout === 'slider' ? 'text-amber-500' : 'text-gray-400' }}" />
                                 <span class="text-sm font-semibold {{ $imageLayout === 'slider' ? 'text-amber-500' : 'text-gray-300' }}">Slider</span>
                                 <p class="text-xs text-gray-500 mt-1">Auto-rotating carousel</p>
                             </div>
                         </label>
 
-                        <label class="relative flex items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition {{ $imageLayout === 'grid' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
+                        <label class="relative flex items-center justify-center p-3 sm:p-4 border-2 rounded-xl cursor-pointer transition {{ $imageLayout === 'grid' ? 'border-amber-500 bg-amber-500/10' : 'border-gray-600 bg-gray-700/50 hover:border-gray-500' }}">
                             <input type="radio" wire:model.live="imageLayout" value="grid" class="sr-only">
                             <div class="text-center">
-                                <x-heroicon-o-squares-2x2 class="w-8 h-8 mx-auto mb-2 {{ $imageLayout === 'grid' ? 'text-amber-500' : 'text-gray-400' }}" />
+                                <x-heroicon-o-squares-2x2 class="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-1 sm:mb-2 {{ $imageLayout === 'grid' ? 'text-amber-500' : 'text-gray-400' }}" />
                                 <span class="text-sm font-semibold {{ $imageLayout === 'grid' ? 'text-amber-500' : 'text-gray-300' }}">Grid</span>
                                 <p class="text-xs text-gray-500 mt-1">Static grid layout</p>
                             </div>
@@ -468,7 +465,7 @@
 
                 {{-- Content Blocks --}}
                 <div class="space-y-4">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <label class="block text-sm font-medium text-gray-300">Content Blocks</label>
                         <x-atoms.button
                             type="button"
@@ -476,28 +473,29 @@
                             variant="outline"
                             icon="plus"
                             size="sm"
+                            class="w-full sm:w-auto"
                         >
                             Add Block
                         </x-atoms.button>
                     </div>
 
                     @if(count($contentBlocks) === 0)
-                        <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700 text-center">
-                            <x-heroicon-o-document-text class="w-12 h-12 mx-auto text-gray-500 mb-2" />
-                            <p class="text-sm text-gray-400">No content blocks yet. Click "Add Block" to create one.</p>
+                        <div class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-700 text-center">
+                            <x-heroicon-o-document-text class="w-10 sm:w-12 h-10 sm:h-12 mx-auto text-gray-500 mb-2" />
+                            <p class="text-xs sm:text-sm text-gray-400">No content blocks yet. Click "Add Block" to create one.</p>
                         </div>
                     @endif
 
                     @foreach($contentBlocks as $index => $block)
-                        <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-700 space-y-3">
+                        <div class="bg-gray-900/50 rounded-xl p-3 sm:p-4 border border-gray-700 space-y-3">
                             <div class="flex items-center justify-between mb-2">
                                 <span class="text-sm font-semibold text-amber-500">Block {{ $index + 1 }}</span>
                                 <button
                                     type="button"
                                     wire:click="removeContentBlock({{ $index }})"
-                                    class="text-red-400 hover:text-red-300 text-sm flex items-center gap-1"
+                                    class="text-red-400 hover:text-red-300 text-xs sm:text-sm flex items-center gap-1"
                                 >
-                                    <x-heroicon-o-trash class="w-4 h-4" />
+                                    <x-heroicon-o-trash class="w-3.5 sm:w-4 h-3.5 sm:h-4" />
                                     <span class="hidden sm:inline">Remove</span>
                                 </button>
                             </div>
@@ -526,7 +524,7 @@
                 {{-- Process Steps (Only for Quality) --}}
                 @if($type === 'quality')
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                             <label class="block text-sm font-medium text-gray-300">Quality Process Steps</label>
                             <x-atoms.button
                                 type="button"
@@ -534,28 +532,29 @@
                                 variant="outline"
                                 icon="plus"
                                 size="sm"
+                                class="w-full sm:w-auto"
                             >
                                 Add Step
                             </x-atoms.button>
                         </div>
 
                         @if(count($processSteps) === 0)
-                            <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700 text-center">
-                                <x-heroicon-o-list-bullet class="w-12 h-12 mx-auto text-gray-500 mb-2" />
-                                <p class="text-sm text-gray-400">No process steps yet. Click "Add Step" to create one.</p>
+                            <div class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-700 text-center">
+                                <x-heroicon-o-list-bullet class="w-10 sm:w-12 h-10 sm:h-12 mx-auto text-gray-500 mb-2" />
+                                <p class="text-xs sm:text-sm text-gray-400">No process steps yet. Click "Add Step" to create one.</p>
                             </div>
                         @endif
 
                         @foreach($processSteps as $index => $step)
-                            <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-700 space-y-3">
+                            <div class="bg-gray-900/50 rounded-xl p-3 sm:p-4 border border-gray-700 space-y-3">
                                 <div class="flex items-center justify-between mb-2">
                                     <span class="text-sm font-semibold text-amber-500">Step {{ $step['number'] }}</span>
                                     <button
                                         type="button"
                                         wire:click="removeProcessStep({{ $index }})"
-                                        class="text-red-400 hover:text-red-300 text-sm flex items-center gap-1"
+                                        class="text-red-400 hover:text-red-300 text-xs sm:text-sm flex items-center gap-1"
                                     >
-                                        <x-heroicon-o-trash class="w-4 h-4" />
+                                        <x-heroicon-o-trash class="w-3.5 sm:w-4 h-3.5 sm:h-4" />
                                         <span class="hidden sm:inline">Remove</span>
                                     </button>
                                 </div>
@@ -608,22 +607,22 @@
 
     {{-- Delete Confirmation Modal --}}
     <x-molecules.modal wire:model="showDeleteModal" max-width="md">
-        <div class="p-6 sm:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="w-12 h-12 bg-red-600/20 rounded-xl flex items-center justify-center">
-                    <x-heroicon-o-exclamation-triangle class="w-7 h-7 text-red-400" />
+        <div class="p-4 sm:p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-4 sm:mb-6">
+                <div class="w-10 sm:w-12 h-10 sm:h-12 bg-red-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <x-heroicon-o-exclamation-triangle class="w-6 sm:w-7 h-6 sm:h-7 text-red-400" />
                 </div>
-                <div>
-                    <h2 class="text-xl font-bold text-white">Delete Section</h2>
-                    <p class="text-sm text-gray-400 mt-1">This action cannot be undone</p>
+                <div class="min-w-0">
+                    <h2 class="text-lg sm:text-xl font-bold text-white">Delete Section</h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">This action cannot be undone</p>
                 </div>
             </div>
 
-            <p class="text-gray-300 mb-6">
+            <p class="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
                 Are you sure you want to delete this section? All associated data will be permanently removed.
             </p>
 
-            <div class="flex flex-col-reverse sm:flex-row gap-3">
+            <div class="flex flex-col-reverse sm:flex-row gap-2 sm:gap-3">
                 <x-atoms.button wire:click="$set('showDeleteModal', false)" variant="outline" icon="x-mark" class="w-full sm:w-auto">
                     Cancel
                 </x-atoms.button>

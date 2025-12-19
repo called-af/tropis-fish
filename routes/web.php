@@ -18,6 +18,7 @@ Route::middleware(['web'])->group(function (): void {
     // Admin Routes
     Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/dashboard', App\Livewire\Pages\Admin\Dashboard::class)->name('dashboard');
+        Route::get('/profile', App\Livewire\Pages\Admin\Profile::class)->name('profile');
         Route::get('/logout', App\Livewire\Pages\Admin\Logout::class)->name('logout');
     });
 
