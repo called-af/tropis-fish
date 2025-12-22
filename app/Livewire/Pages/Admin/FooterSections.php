@@ -77,9 +77,9 @@ class FooterSections extends Component
     {
         $this->links = [
             ['text' => 'Home', 'url' => '/'],
-            ['text' => 'Company Profile', 'url' => '/company-profile'],
-            ['text' => 'Stock List', 'url' => '/stock-list'],
-            ['text' => 'Gallery', 'url' => '/gallery'],
+            ['text' => 'Company Profile', 'url' => '/#company-profile'],
+            ['text' => 'Stock List', 'url' => '/#stock-list'],
+            ['text' => 'Gallery', 'url' => '/#gallery'],
         ];
     }
 
@@ -88,7 +88,7 @@ class FooterSections extends Component
         $this->links = [
             ['text' => 'How to Order', 'url' => '#'],
             ['text' => 'Privacy Policy', 'url' => '#'],
-            ['text' => 'Terms & Conditions', 'url' => '/terms'],
+            ['text' => 'Terms & Conditions', 'url' => '#terms'],
         ];
     }
 

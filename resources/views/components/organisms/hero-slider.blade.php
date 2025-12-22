@@ -146,23 +146,41 @@
             <template x-for="(slide, index) in slides" :key="index">
                 <div
                     x-show="currentSlide === index"
-                    x-transition:enter="transition ease-out duration-700"
-                    x-transition:enter-start="opacity-0 translate-x-12"
-                    x-transition:enter-end="opacity-100 translate-x-0"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 translate-x-0"
-                    x-transition:leave-end="opacity-0 -translate-x-12"
+                    x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0 scale-95 translate-y-8"
+                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-500"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95"
                     class="absolute inset-0 flex items-center"
                 >
-                    <div class="max-w-3xl">
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" x-text="slide.title"></h1>
-                        <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl" x-text="slide.description"></p>
+                    <div class="max-w-3xl space-y-6">
+                        <h1
+                            class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                            x-text="slide.title"
+                            x-transition:enter="transition ease-out duration-1000 delay-200"
+                            x-transition:enter-start="opacity-0 translate-x-[-50px]"
+                            x-transition:enter-end="opacity-100 translate-x-0"
+                        ></h1>
 
-                        <div class="flex flex-wrap gap-4">
-                            <x-atoms.button variant="secondary" size="lg" href="#products">
+                        <p
+                            class="text-lg md:text-xl text-white/90 max-w-2xl"
+                            x-text="slide.description"
+                            x-transition:enter="transition ease-out duration-1000 delay-400"
+                            x-transition:enter-start="opacity-0 translate-x-[-30px]"
+                            x-transition:enter-end="opacity-100 translate-x-0"
+                        ></p>
+
+                        <div
+                            class="flex flex-wrap gap-4"
+                            x-transition:enter="transition ease-out duration-1000 delay-600"
+                            x-transition:enter-start="opacity-0 translate-y-4"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                        >
+                            <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift">
                                 View Collection
                             </x-atoms.button>
-                            <x-atoms.button variant="outline" size="lg" href="#contact">
+                            <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift">
                                 Contact Us
                             </x-atoms.button>
                         </div>
@@ -177,8 +195,8 @@
                 <template x-for="(slide, index) in slides" :key="'indicator-' + index">
                     <button
                         @click="changeSlide(index)"
-                        :class="currentSlide === index ? 'bg-amber-500 w-12' : 'bg-white/50 w-3'"
-                        class="h-3 rounded-full transition-all duration-300 hover:bg-amber-400"
+                        :class="currentSlide === index ? 'bg-amber-500 w-12 scale-110' : 'bg-white/50 w-3 scale-100'"
+                        class="h-3 rounded-full transition-all duration-500-400"
                         :aria-label="'Go to slide ' + (index + 1)"
                     ></button>
                 </template>

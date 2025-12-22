@@ -3,30 +3,79 @@
     $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
 @endphp
 
-<nav id="desktop-nav" class="hidden md:block fixed top-0 z-40 backdrop-blur-md bg-transparent max-w-7xl mx-auto left-0 right-0 px-6 transition-all duration-300">
+<nav
+    id="desktop-nav"
+    class="hidden md:block fixed top-0 z-40 backdrop-blur-md bg-transparent max-w-7xl mx-auto left-0 right-0 px-6 transition-all duration-500 ease-out"
+    x-data="{ scrolled: false }"
+    x-init="
+        window.addEventListener('scroll', () => {
+            scrolled = window.scrollY > 10;
+        });
+    "
+>
     <div class="flex items-center justify-between h-18 w-full">
         <a href="{{ route('home') }}" class="flex items-center gap-3">
-            <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }}" class="h-12 w-12 object-cover rounded-full border-2 border-amber-400">
-            <span id="nav-brand" class="font-bold text-xl transition-colors duration-300 text-white">{{ $companyName }}</span>
+            <img
+                src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
+                alt="{{ $companyName }}"
+                class="h-12 w-12 object-cover rounded-full border-2 border-amber-400"
+            >
+            <span id="nav-brand" class="font-stencil font-bold text-xl text-white">
+                PT TROPIS FISH
+            </span>
         </a>
 
         <div class="flex gap-6">
-            <a href="{{ route('company-profile') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Company Profile</a>
-            <a href="{{ route('stock-list') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Stock List</a>
-            <a href="{{ route('gallery') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Gallery</a>
-            <a href="{{ route('terms') }}" class="nav-link transition-colors duration-300 text-white hover:text-amber-500">Terms</a>
+            <a
+                href="{{ route('home') }}#company-profile"
+                class="nav-link company-profile-link transition-colors duration-300 text-white hover:text-amber-500"
+            >
+                Company Profile
+            </a>
+            <a
+                href="{{ route('home') }}#stock-list"
+                class="nav-link stock-list-link transition-colors duration-300 text-white hover:text-amber-500"
+            >
+                Stock List
+            </a>
+            <a
+                href="{{ route('home') }}#gallery"
+                class="nav-link gallery-link transition-colors duration-300 text-white hover:text-amber-500"
+            >
+                Gallery
+            </a>
+            <a
+                href="#"
+                @click.prevent="$dispatch('open-terms-modal')"
+                class="nav-link transition-colors duration-300 text-white hover:text-amber-500"
+            >
+                Terms
+            </a>
+            <a
+                href="{{ route('home') }}#contact"
+                class="nav-link contact-link transition-colors duration-300 text-white hover:text-amber-500"
+            >
+                Contact Us
+            </a>
         </div>
     </div>
 </nav>
 
-<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-40 backdrop-blur-md transition-all duration-300">
+<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-40 backdrop-blur-md transition-all duration-500 ease-out">
     <div class="flex items-center justify-between h-15 px-4">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-            <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }}" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
-            <span id="mobile-brand" class="font-bold text-base text-white transition-colors duration-300">{{ Str::limit($companyName, 20) }}</span>
+            <img
+                src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
+                alt="{{ $companyName }}"
+                class="h-10 w-10 object-cover rounded-full border-2 border-amber-400"
+            >
+            <span id="mobile-brand" class="font-stencil font-bold text-base text-white">PT TROPIS FISH</span>
         </a>
 
-        <button id="mobile-menu-button" class="p-2 rounded-lg transition text-white hover:bg-white/10 z-[80]">
+        <button
+            id="mobile-menu-button"
+            class="p-2 rounded-lg transition-all duration-300 text-white z-[80]"
+        >
             <x-heroicon-o-bars-3 id="menu-icon" class="w-6 h-6" />
             <x-heroicon-o-x-mark id="close-icon" class="w-6 h-6 hidden" />
         </button>
@@ -34,20 +83,39 @@
 </nav>
 
 <!-- Mobile Dropdown Menu -->
-<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-300 max-h-0 opacity-0" style="top: 56px;">
+<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0" style="top: 56px;">
     <div class="px-4 py-2">
         <div class="space-y-1">
-            <a href="{{ route('company-profile') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
+            <a
+                href="{{ route('home') }}#company-profile"
+                class="mobile-link company-profile-link block px-4 py-3 text-white rounded-lg transition-all duration-300"
+            >
                 Company Profile
             </a>
-            <a href="{{ route('stock-list') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
+            <a
+                href="{{ route('home') }}#stock-list"
+                class="mobile-link stock-list-link block px-4 py-3 text-white rounded-lg transition-all duration-300"
+            >
                 Stock List
             </a>
-            <a href="{{ route('gallery') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
+            <a
+                href="{{ route('home') }}#gallery"
+                class="mobile-link gallery-link block px-4 py-3 text-white rounded-lg transition-all duration-300"
+            >
                 Gallery
             </a>
-            <a href="{{ route('terms') }}" class="mobile-link block px-4 py-3 text-white hover:bg-white/20 hover:text-white rounded-lg transition-all duration-200">
+            <a
+                href="#"
+                @click.prevent="$dispatch('open-terms-modal')"
+                class="mobile-link block px-4 py-3 text-white rounded-lg transition-all duration-300"
+            >
                 Terms
+            </a>
+            <a
+                href="{{ route('home') }}#contact"
+                class="mobile-link contact-link block px-4 py-3 text-white rounded-lg transition-all duration-300"
+            >
+                Contact Us
             </a>
         </div>
     </div>
@@ -168,6 +236,83 @@
                 menuIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
             });
+        });
+
+        // Smooth scroll for anchor links (Contact, Company Profile, Gallery)
+        function smoothScrollToSection(targetId) {
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                // Get navbar height for offset
+                const navbarHeight = desktopNav ? desktopNav.offsetHeight : 80;
+                const offset = 20; // Additional padding
+
+                // Calculate position
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - navbarHeight - offset;
+
+                // Smooth scroll with animation
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            }
+        }
+
+        function setupSmoothScroll(selector, targetId) {
+            const links = document.querySelectorAll(selector);
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+
+                    // Check if link contains the target ID
+                    if (href && href.includes(targetId)) {
+                        e.preventDefault();
+
+                        // Check current page
+                        const currentPath = window.location.pathname;
+                        const isHomePage = currentPath === '/' || currentPath === '';
+
+                        // If we're not on the home page, navigate first
+                        if (!isHomePage && !href.startsWith('#')) {
+                            window.location.href = href;
+                        } else {
+                            // If already on home page, just scroll
+                            smoothScrollToSection(targetId);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Setup smooth scroll for all anchor links
+        setupSmoothScroll('.contact-link', '#contact');
+        setupSmoothScroll('.company-profile-link', '#company-profile');
+        setupSmoothScroll('.stock-list-link', '#stock-list');
+        setupSmoothScroll('.gallery-link', '#gallery');
+
+        // Handle hash in URL on page load (for when user comes from another page)
+        window.addEventListener('load', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                // Small delay to ensure page is fully loaded
+                setTimeout(() => {
+                    smoothScrollToSection(hash);
+                }, 100);
+            }
+        });
+
+        // Also handle hash changes
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                smoothScrollToSection(hash);
+            }
         });
     });
 </script>

@@ -280,4 +280,7 @@
     </section>
 
     <x-organisms.footer />
+
+    {{-- Terms Modal --}}
+    <x-organisms.terms-modal />
 </div>

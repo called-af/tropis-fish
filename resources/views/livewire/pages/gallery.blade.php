@@ -1,11 +1,27 @@
-<div class="min-h-screen bg-blue-950">
+<div class="min-h-screen bg-gradient-to-b bg-blue-950">
     <x-organisms.navbar />
+
+    {{-- Page Header --}}
+    <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black/50 to-transparent">
+        <div class="max-w-6xl mx-auto">
+            <div x-data="{ visible: false }" x-intersect:enter="visible = true"
+                :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                class="transition-all duration-1000 ease-out text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+                    Our <span class="text-amber-500">Gallery</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+                    Explore our beautiful collection of ornamental fish, state-of-the-art facilities, and quality control processes
+                </p>
+            </div>
+        </div>
+    </section>
 
     {{-- Scroll to Top Button --}}
     <x-atoms.scroll-to-top />
 
     {{-- Fish Gallery Section --}}
-    <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="fish" class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Fish Gallery</h2>
@@ -48,7 +64,7 @@
     </section>
 
     {{-- Farm Gallery Section --}}
-    <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="farm" class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Farm Gallery</h2>
@@ -91,7 +107,7 @@
     </section>
 
     {{-- Quality Control Gallery Section --}}
-    <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="quality" class="py-24 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold text-amber-500 mb-4">Quality Control</h2>
@@ -134,4 +150,7 @@
     </section>
 
     <x-organisms.footer />
+
+    {{-- Terms Modal --}}
+    <x-organisms.terms-modal />
 </div>

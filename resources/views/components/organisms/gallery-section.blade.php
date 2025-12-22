@@ -10,7 +10,7 @@
             class="transition-all duration-1000 ease-out"
         >
             <x-molecules.section-header
-                title="Gallery"
+                title="Fish Gallery"
                 description="Explore our beautiful and diverse collection of tropical ornamental fish"
             />
         </div>
@@ -20,31 +20,40 @@
                 x-data="{ visible: false }"
                 x-intersect:enter="visible = true"
                 x-intersect:leave="visible = false"
-                :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
-                class="transition-all duration-1000 ease-out delay-200 grid grid-cols-2 md:grid-cols-4 gap-6"
+                class="grid grid-cols-2 md:grid-cols-4 gap-6"
             >
                 @foreach($galleries as $index => $gallery)
-                    <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500">
-                        <img
-                            src="{{ asset("storage/{$gallery->image_path}") }}"
-                            alt="{{ $gallery->title }}"
-                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <div>
-                                <p class="text-white font-semibold text-sm tracking-wide">{{ $gallery->title }}</p>
-                                @if($gallery->category)
-                                    <p class="text-amber-500 text-xs mt-1">{{ $gallery->category }}</p>
-                                @endif
+                    <div
+                        :class="visible ? 'opacity-100 translate-y-0 scale-100 rotate-0' : 'opacity-0 translate-y-12 scale-90 rotate-2'"
+                        class="transition-all duration-1000 ease-out stagger-{{ ($index % 4) + 1 }}"
+                    >
+                        <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-xl">
+                            <img
+                                src="{{ asset("storage/{$gallery->image_path}") }}"
+                                alt="{{ $gallery->title }}"
+                                class="w-full h-full object-cover transition-all duration-700"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 transition-all duration-500 flex items-end p-4">
+                                <div class="transform translate-y-4 transition-transform duration-500">
+                                    <p class="text-white font-semibold text-sm tracking-wide">{{ $gallery->title }}</p>
+                                    @if($gallery->category)
+                                        <p class="text-amber-500 text-xs mt-1">{{ $gallery->category }}</p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
 
-            <div class="text-center mt-16">
-                <x-atoms.button variant="outline" href="{{ route('gallery') }}">
-                    View All Gallery
+            <div
+                x-data="{ visible: false }"
+                x-intersect:enter="visible = true"
+                :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'"
+                class="text-center mt-16 transition-all duration-700 ease-out delay-500"
+            >
+                <x-atoms.button variant="outline" href="{{ route('gallery.fish') }}" class="hover-lift">
+                    View All Fish Gallery
                 </x-atoms.button>
             </div>
         @else

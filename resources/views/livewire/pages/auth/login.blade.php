@@ -26,7 +26,7 @@
                         />
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-amber-500">PT. Tropis Fish Indonesia</h1>
+                        <h1 class="text-xl font-stencil font-bold text-amber-500">PT TROPIS FISH</h1>
                         <p class="text-sm text-amber-500 font-light">Export of Ornamental Freshwater Fish</p>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
 
             {{-- Footer --}}
             <div class="text-sm text-amber-500 font-light">
-                <p>&copy; {{ date('Y') }} PT. Tropis Fish Indonesia. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} <span class="font-stencil">PT TROPIS FISH</span>. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -85,7 +85,7 @@
                         />
                     </div>
                 </div>
-                <h1 class="text-2xl font-bold text-white">PT. Tropis Fish Indonesia</h1>
+                <h1 class="text-2xl font-stencil font-bold text-white">PT TROPIS FISH</h1>
             </div>
 
                 {{-- Form Header --}}

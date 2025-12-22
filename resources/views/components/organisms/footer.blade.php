@@ -7,25 +7,84 @@
     $socialSection = App\Models\FooterSection::getByType('social');
 @endphp
 
-<footer class="bg-amber-500 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+<footer
+    class="bg-amber-500 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    x-data="{ visible: false }"
+    x-intersect:enter="visible = true"
+>
+    {{-- Animated Background Elements --}}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-float"></div>
+        <div class="absolute bottom-20 right-20 w-24 h-24 bg-white/5 rounded-full animate-wave"></div>
+        <div class="absolute top-1/2 left-1/3 w-16 h-16 bg-white/5 rounded-full animate-pulse"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             {{-- Company Info --}}
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }} Logo" class="w-16 h-16 rounded-full object-cover shadow-lg">
-                    <span class="text-xl font-bold text-white">{{ $companyName }}</span>
+            <div
+                :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                class="transition-all duration-700 ease-out"
+            >
+                <div class="flex items-center gap-3 mb-4 transform transition-transform duration-300">
+                    <img
+                        src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
+                        alt="{{ $companyName }} Logo"
+                        class="w-16 h-16 rounded-full object-cover shadow-lg animate-pulse"
+                    >
+                    <span class="text-xl font-stencil font-bold text-white">PT TROPIS FISH</span>
                 </div>
-                <p class="text-white/90">{{ $companySection?->description ?? 'Premium quality tropical ornamental fish supplier for your aquarium' }}</p>
+                <p class="text-white/90 leading-relaxed">
+                    {{ $companySection?->description ?? 'Premium quality tropical ornamental fish supplier for your aquarium' }}
+                </p>
             </div>
 
             {{-- Menu Section --}}
             @if($menuSection)
-                <div>
-                    <h4 class="font-bold text-white mb-4">{{ $menuSection->title }}</h4>
+                <div
+                    :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                    class="transition-all duration-700 ease-out delay-100"
+                >
+                    <h4 class="font-bold text-white mb-4 text-lg">{{ $menuSection->title }}</h4>
                     <div class="flex flex-col gap-2">
-                        @foreach($menuSection->links as $link)
-                            <a href="{{ $link['url'] }}" class="text-white/80 hover:text-white transition">{{ $link['text'] }}</a>
+                        @foreach($menuSection->links as $index => $link)
+                            @if($link['text'] === 'Terms' || str_contains($link['url'], 'terms'))
+                                <a
+                                    href="#"
+                                    @click.prevent="$dispatch('open-terms-modal')"
+                                    class="text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @elseif(str_contains($link['url'], '#company-profile'))
+                                <a
+                                    href="{{ $link['url'] }}"
+                                    class="company-profile-link text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @elseif(str_contains($link['url'], '#stock-list'))
+                                <a
+                                    href="{{ $link['url'] }}"
+                                    class="stock-list-link text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @elseif(str_contains($link['url'], '#gallery'))
+                                <a
+                                    href="{{ $link['url'] }}"
+                                    class="gallery-link text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @else
+                                <a
+                                    href="{{ $link['url'] }}"
+                                    class="text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -33,11 +92,29 @@
 
             {{-- Information Section --}}
             @if($informationSection)
-                <div>
-                    <h4 class="font-bold text-white mb-4">{{ $informationSection->title }}</h4>
+                <div
+                    :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                    class="transition-all duration-700 ease-out delay-200"
+                >
+                    <h4 class="font-bold text-white mb-4 text-lg">{{ $informationSection->title }}</h4>
                     <div class="flex flex-col gap-2">
                         @foreach($informationSection->links as $link)
-                            <a href="{{ $link['url'] }}" class="text-white/80 hover:text-white transition">{{ $link['text'] }}</a>
+                            @if($link['text'] === 'Terms & Conditions' || str_contains($link['url'], 'terms'))
+                                <a
+                                    href="#"
+                                    @click.prevent="$dispatch('open-terms-modal')"
+                                    class="text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @else
+                                <a
+                                    href="{{ $link['url'] }}"
+                                    class="text-white/80 hover:text-white transition-all duration-300 inline-block"
+                                >
+                                    {{ $link['text'] }}
+                                </a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -45,11 +122,18 @@
 
             {{-- Social Media Section --}}
             @if($socialSection)
-                <div>
-                    <h4 class="font-bold text-white mb-4">{{ $socialSection->title }}</h4>
+                <div
+                    :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                    class="transition-all duration-700 ease-out delay-300"
+                >
+                    <h4 class="font-bold text-white mb-4 text-lg">{{ $socialSection->title }}</h4>
                     <div class="flex gap-4">
-                        @foreach($socialSection->links as $link)
-                            <a href="{{ $link['url'] }}" class="w-10 h-10 bg-white/20 backdrop-blur-sm hover:bg-white hover:text-amber-600 text-white rounded-lg flex items-center justify-center transition" title="{{ $link['text'] }}">
+                        @foreach($socialSection->links as $index => $link)
+                            <a
+                                href="{{ $link['url'] }}"
+                                class="w-10 h-10 bg-white/20 backdrop-blur-sm hover:text-amber-600 text-white rounded-lg flex items-center justify-center transition-all duration-300 stagger-{{ $index + 1 }}"
+                                title="{{ $link['text'] }}"
+                            >
                                 @if($link['icon'] === 'facebook')
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                                 @elseif($link['icon'] === 'twitter')
@@ -70,8 +154,13 @@
             @endif
         </div>
 
-        <div class="border-t border-white/20 pt-8 text-center text-white">
-            <p>&copy; {{ date('Y') }} {{ $companyName }}. {{ $companySection?->copyright_text ?? 'All rights reserved' }}.</p>
+        <div
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            class="border-t border-white/20 pt-8 text-center text-white transition-all duration-700 ease-out delay-400"
+        >
+            <p class="hover:scale-105 transition-transform duration-300 inline-block">
+                &copy; {{ date('Y') }} {{ $companyName }}. {{ $companySection?->copyright_text ?? 'All rights reserved' }}.
+            </p>
         </div>
     </div>
 </footer>

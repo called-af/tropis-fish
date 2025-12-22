@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('footer_sections', function (Blueprint $table) {
-            \DB::statement("ALTER TABLE footer_sections MODIFY COLUMN type ENUM('company', 'menu', 'information', 'social')");
-        });
+        if (Schema::hasTable('footer_sections') && config('database.default') !== 'sqlite') {
+            Schema::table('footer_sections', function (Blueprint $table) {
+                \DB::statement("ALTER TABLE footer_sections MODIFY COLUMN type ENUM('company', 'menu', 'information', 'social')");
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('footer_sections', function (Blueprint $table) {
-            \DB::statement("ALTER TABLE footer_sections MODIFY COLUMN type ENUM('menu', 'information', 'social')");
-        });
+        if (Schema::hasTable('footer_sections') && config('database.default') !== 'sqlite') {
+            Schema::table('footer_sections', function (Blueprint $table) {
+                \DB::statement("ALTER TABLE footer_sections MODIFY COLUMN type ENUM('menu', 'information', 'social')");
+            });
+        }
     }
 };

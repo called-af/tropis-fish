@@ -22,14 +22,18 @@
                 x-data="{ visible: false }"
                 x-intersect:enter="visible = true"
                 x-intersect:leave="visible = false"
-                :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
-                class="transition-all duration-1000 ease-out delay-200 grid grid-cols-2 md:grid-cols-4 gap-8"
+                class="grid grid-cols-2 md:grid-cols-4 gap-8"
             >
-                @foreach($stats as $stat)
-                    <x-molecules.stat-card
-                        :value="$stat->value"
-                        :label="$stat->label"
-                    />
+                @foreach($stats as $index => $stat)
+                    <div
+                        :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-90'"
+                        class="transition-all duration-1000 ease-out stagger-{{ $index + 1 }}"
+                    >
+                        <x-molecules.stat-card
+                            :value="$stat->value"
+                            :label="$stat->label"
+                        />
+                    </div>
                 @endforeach
             </div>
 

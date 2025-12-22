@@ -1,7 +1,7 @@
 @props(['aboutSection' => null])
 
 @if($aboutSection)
-<section id="about" class="relative py-24 px-4 sm:px-6 lg:px-8">
+<section id="about" class="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-400 via to-blue-600 to-transparent">
     {{-- Wave Top --}}
     <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg class="relative block w-full h-20 md:h-28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -22,43 +22,58 @@
             x-data="{ visible: false }"
             x-intersect:enter="visible = true"
             x-intersect:leave="visible = false"
-            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
-            class="transition-all duration-1000 ease-out grid lg:grid-cols-2 gap-12 items-center mb-20"
+            class="grid lg:grid-cols-2 gap-12 items-center mb-20"
         >
             {{-- Left: Photo --}}
-            <div class="relative group">
+            <div
+                :class="visible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 -translate-x-12 scale-95'"
+                class="relative group transition-all duration-1200 ease-out"
+            >
                 <div class="relative overflow-hidden rounded-t-4xl">
                     <img
                         src="{{ asset("storage/{$aboutSection->image_path}") }}"
                         alt="{{ $aboutSection->title }}"
-                        class="w-full h-[550px] object-cover"
+                        class="w-full h-[550px] object-cover transition-all duration-700"
                     >
+                    <div class="absolute inset-0 bg-gradient-to-t from-amber-900/50 to-transparent opacity-0 transition-opacity duration-500"></div>
                 </div>
             </div>
 
             {{-- Right: About Text --}}
             <div class="space-y-6">
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                <div
+                    :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+                    class="transition-all duration-1000 ease-out"
+                >
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 hover:text-amber-500 transition-colors duration-300">
                         {{ $aboutSection->title }}
                     </h2>
                 </div>
 
-                <p class="text-lg text-white leading-relaxed">
+                <p
+                    :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+                    class="text-lg text-white leading-relaxed transition-all duration-1000 ease-out delay-100"
+                >
                     {!! $aboutSection->description_1 !!}
                 </p>
 
                 @if($aboutSection->description_2)
-                    <p class="text-lg text-white leading-relaxed">
+                    <p
+                        :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+                        class="text-lg text-white leading-relaxed transition-all duration-1000 ease-out delay-200"
+                    >
                         {{ $aboutSection->description_2 }}
                     </p>
                 @endif
 
                 <div class="grid sm:grid-cols-2 gap-6 pt-4">
                     @if($aboutSection->feature_1_title)
-                        <div class="flex gap-4">
+                        <div
+                            :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-3 rounded-xl p-4"
+                        >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_1_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -70,9 +85,12 @@
                     @endif
 
                     @if($aboutSection->feature_2_title)
-                        <div class="flex gap-4">
+                        <div
+                            :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-4 rounded-xl p-4"
+                        >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_2_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -84,9 +102,12 @@
                     @endif
 
                     @if($aboutSection->feature_3_title)
-                        <div class="flex gap-4">
+                        <div
+                            :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-5 rounded-xl p-4"
+                        >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_3_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -98,9 +119,12 @@
                     @endif
 
                     @if($aboutSection->feature_4_title)
-                        <div class="flex gap-4">
+                        <div
+                            :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-6 rounded-xl p-4"
+                        >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_4_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>

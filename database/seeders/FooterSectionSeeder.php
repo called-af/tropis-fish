@@ -28,9 +28,9 @@ class FooterSectionSeeder extends Seeder
                 'description' => null,
                 'links' => [
                     ['text' => 'Home', 'url' => '/'],
-                    ['text' => 'Company Profile', 'url' => '/company-profile'],
-                    ['text' => 'Stock List', 'url' => '/stock-list'],
-                    ['text' => 'Gallery', 'url' => '/gallery'],
+                    ['text' => 'Company Profile', 'url' => '/#company-profile'],
+                    ['text' => 'Stock List', 'url' => '/#stock-list'],
+                    ['text' => 'Gallery', 'url' => '/#gallery'],
                 ],
                 'copyright_text' => null,
                 'order' => 1,
@@ -43,7 +43,7 @@ class FooterSectionSeeder extends Seeder
                 'links' => [
                     ['text' => 'How to Order', 'url' => '#'],
                     ['text' => 'Privacy Policy', 'url' => '#'],
-                    ['text' => 'Terms & Conditions', 'url' => '/terms'],
+                    ['text' => 'Terms & Conditions', 'url' => '#terms'],
                 ],
                 'copyright_text' => null,
                 'order' => 2,
