@@ -21,7 +21,7 @@
                 class="h-12 w-12 object-cover rounded-full border-2 border-amber-400"
             >
             <span id="nav-brand" class="font-stencil font-bold text-xl text-white">
-                PT TROPIS FISH
+                PT. TROPIS FISH
             </span>
         </a>
 
@@ -61,15 +61,15 @@
     </div>
 </nav>
 
-<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-40 backdrop-blur-md transition-all duration-500 ease-out">
-    <div class="flex items-center justify-between h-15 px-4">
+<nav id="mobile-nav" class="md:hidden fixed top-0 left-0 right-0 z-40 w-full backdrop-blur-md transition-all duration-500 ease-out">
+    <div class="flex items-center justify-between h-15 px-4 w-full">
         <a href="{{ route('home') }}" class="flex items-center gap-2">
             <img
                 src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
                 alt="{{ $companyName }}"
                 class="h-10 w-10 object-cover rounded-full border-2 border-amber-400"
             >
-            <span id="mobile-brand" class="font-stencil font-bold text-base text-white">PT TROPIS FISH</span>
+            <span id="mobile-brand" class="font-stencil font-bold text-base text-white">PT. TROPIS FISH</span>
         </a>
 
         <button
@@ -83,8 +83,8 @@
 </nav>
 
 <!-- Mobile Dropdown Menu -->
-<div id="mobile-menu" class="md:hidden fixed left-0 right-0 bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0" style="top: 56px;">
-    <div class="px-4 py-2">
+<div id="mobile-menu" class="md:hidden fixed left-0 right-0 w-full bg-amber-500 shadow-xl z-40 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0" style="top: 56px;">
+    <div class="px-4 py-2 w-full">
         <div class="space-y-1">
             <a
                 href="{{ route('home') }}#company-profile"

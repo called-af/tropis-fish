@@ -1,10 +1,4 @@
 <section class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    {{-- Animated Background Elements --}}
-    <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-        <div class="absolute top-20 right-10 w-64 h-64 bg-amber-500 rounded-full animate-float blur-3xl"></div>
-        <div class="absolute bottom-20 left-10 w-48 h-48 bg-blue-500 rounded-full animate-wave blur-3xl"></div>
-    </div>
-
     <div class="max-w-6xl mx-auto relative z-10">
         <div
             x-data="{ visible: false }"

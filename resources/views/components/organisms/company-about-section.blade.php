@@ -3,8 +3,8 @@
 @endphp
 
 @if($aboutSection)
-<section id="company-profile" class="min-h-screen flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+<section id="company-profile" class="min-h-screen w-full flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full mx-auto">
         <div
             x-data="{ visible: false }"
             x-intersect:enter="visible = true"

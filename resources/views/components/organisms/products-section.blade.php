@@ -1,9 +1,9 @@
 @props(['stockLists' => [], 'downloadLink' => null])
 
-<section id="stock-list" class="py-24 px-4 sm:px-6 lg:px-8">
+<section id="stock-list" class="py-24 px-4 sm:px-6 lg:px-8 w-full">
     {{-- Anchor point for stock-list navigation --}}
     <div id="stock-list" class="absolute -top-24"></div>
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl w-full mx-auto">
         <div
             x-data="{ visible: false }"
             x-intersect:enter="visible = true"

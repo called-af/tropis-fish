@@ -45,7 +45,7 @@
                     @endphp
                     <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="Logo" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
                     <div class="min-w-0">
-                        <h1 class="text-sm font-stencil font-bold text-white truncate">PT TROPIS FISH</h1>
+                        <h1 class="text-sm font-stencil font-bold text-white truncate">PT. TROPIS FISH</h1>
                         <p class="text-xs text-gray-400">Admin Panel</p>
                     </div>
                 </div>

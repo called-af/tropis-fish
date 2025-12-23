@@ -1,43 +1,31 @@
 @props(['galleries' => collect()])
 
-<section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 ">
-    <div class="max-w-6xl mx-auto">
-        <div
-            x-data="{ visible: false }"
-            x-intersect:enter="visible = true"
-            x-intersect:leave="visible = false"
+<section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 w-full">
+    <div class="max-w-6xl w-full mx-auto">
+        <div x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false"
             :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
-            class="transition-all duration-1000 ease-out"
-        >
-            <x-molecules.section-header
-                title="Fish Gallery"
-                description="Explore our beautiful and diverse collection of tropical ornamental fish"
-            />
+            class="transition-all duration-1000 ease-out">
+            <x-molecules.section-header title="Fish Gallery"
+                description="Explore our beautiful and diverse collection of tropical ornamental fish" />
         </div>
 
         @if($galleries->count() > 0)
-            <div
-                x-data="{ visible: false }"
-                x-intersect:enter="visible = true"
-                x-intersect:leave="visible = false"
-                class="grid grid-cols-2 md:grid-cols-4 gap-6"
-            >
+            <div x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false"
+                class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 @foreach($galleries as $index => $gallery)
-                    <div
-                        :class="visible ? 'opacity-100 translate-y-0 scale-100 rotate-0' : 'opacity-0 translate-y-12 scale-90 rotate-2'"
-                        class="transition-all duration-1000 ease-out stagger-{{ ($index % 4) + 1 }}"
-                    >
-                        <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-xl">
-                            <img
-                                src="{{ asset("storage/{$gallery->image_path}") }}"
-                                alt="{{ $gallery->title }}"
-                                class="w-full h-full object-cover transition-all duration-700"
-                            >
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 transition-all duration-500 flex items-end p-4">
-                                <div class="transform translate-y-4 transition-transform duration-500">
-                                    <p class="text-white font-semibold text-sm tracking-wide">{{ $gallery->title }}</p>
-                                    @if($gallery->category)
-                                        <p class="text-amber-500 text-xs mt-1">{{ $gallery->category }}</p>
+                    <div x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false"
+                        :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                        class="transition-all duration-700 ease-out" style="transition-delay: {{ $index * 50 }}ms">
+                        <div
+                            class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-xl">
+                            <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}"
+                                class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div>
+                                    <p class="text-white font-semibold text-base tracking-wide">{{ $gallery->title }}</p>
+                                    @if($gallery->description)
+                                        <p class="text-gray-100 text-xs mt-2">{{ Str::limit($gallery->description, 60) }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -46,24 +34,17 @@
                 @endforeach
             </div>
 
-            <div
-                x-data="{ visible: false }"
-                x-intersect:enter="visible = true"
+            <div x-data="{ visible: false }" x-intersect:enter="visible = true"
                 :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'"
-                class="text-center mt-16 transition-all duration-700 ease-out delay-500"
-            >
+                class="text-center mt-16 transition-all duration-700 ease-out delay-500">
                 <x-atoms.button variant="outline" href="{{ route('gallery.fish') }}" class="hover-lift">
                     View All Fish Gallery
                 </x-atoms.button>
             </div>
         @else
-            <div
-                x-data="{ visible: false }"
-                x-intersect:enter="visible = true"
-                x-intersect:leave="visible = false"
+            <div x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false"
                 :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
-                class="transition-all duration-1000 ease-out delay-200 text-center py-16"
-            >
+                class="transition-all duration-1000 ease-out delay-200 text-center py-16">
                 <div class="max-w-md mx-auto">
                     <div class="w-20 h-20 mx-auto mb-6 bg-white/5 rounded-full flex items-center justify-center">
                         <x-heroicon-o-photo class="w-10 h-10 text-gray-500" />

@@ -82,7 +82,7 @@
             }
         });
     }
-}" class="relative h-screen overflow-hidden">
+}" class="relative h-screen w-full overflow-hidden">
 
     @if($heroes && $heroes->count() > 0)
         {{-- Background Media Layers --}}
@@ -95,15 +95,15 @@
                 x-transition:leave="transition ease-in duration-500"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="absolute inset-0"
+                class="absolute inset-0 h-screen"
             >
                 {{-- YouTube Video --}}
                 <template x-if="slide.backgroundType === 'youtube' && slide.youtube">
-                    <div class="absolute inset-0 w-full h-full overflow-hidden bg-black">
+                    <div class="absolute inset-0 w-full h-screen overflow-hidden bg-black">
                         <iframe
                             :id="'youtube-player-' + index"
-                            class="absolute inset-0 w-full h-full pointer-events-none"
-                            style="width: 100vw; height: 100vh; object-fit: cover;"
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                            style="width: 177.77777778vh; height: 56.25vw; min-height: 100vh; min-width: 100vw;"
                             frameborder="0"
                             allow="autoplay; encrypted-media; picture-in-picture"
                             allowfullscreen
@@ -120,7 +120,7 @@
                         loop
                         playsinline
                         preload="metadata"
-                        class="absolute inset-0 w-full h-full object-cover"
+                        class="absolute inset-0 w-full h-screen object-cover"
                     >
                         <source :src="slide.video" type="video/mp4">
                     </video>
@@ -132,14 +132,14 @@
                         :src="slide.image"
                         :alt="slide.title"
                         loading="lazy"
-                        class="absolute inset-0 w-full h-full object-cover"
+                        class="absolute inset-0 w-full h-screen object-cover"
                     >
                 </template>
             </div>
         </template>
 
         {{-- Gradient Overlay --}}
-        <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-blue-950/50 to-blue-900/45"></div>
+        <div class="absolute inset-0 h-screen bg-gradient-to-b from-black/90 via-blue-950/50 to-blue-900/45 pointer-events-none"></div>
 
         {{-- Slides Content --}}
         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
@@ -152,11 +152,11 @@
                     x-transition:leave="transition ease-in duration-500"
                     x-transition:leave-start="opacity-100 scale-100"
                     x-transition:leave-end="opacity-0 scale-95"
-                    class="absolute inset-0 flex items-center"
+                    class="absolute inset-0 flex items-center px-4 sm:px-6 lg:px-8"
                 >
-                    <div class="max-w-3xl space-y-6">
+                    <div class="max-w-3xl space-y-4 sm:space-y-6 w-full">
                         <h1
-                            class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight break-words"
                             x-text="slide.title"
                             x-transition:enter="transition ease-out duration-1000 delay-200"
                             x-transition:enter-start="opacity-0 translate-x-[-50px]"
@@ -164,7 +164,7 @@
                         ></h1>
 
                         <p
-                            class="text-lg md:text-xl text-white/90 max-w-2xl"
+                            class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl break-words"
                             x-text="slide.description"
                             x-transition:enter="transition ease-out duration-1000 delay-400"
                             x-transition:enter-start="opacity-0 translate-x-[-30px]"
@@ -172,15 +172,15 @@
                         ></p>
 
                         <div
-                            class="flex flex-wrap gap-4"
+                            class="flex flex-col sm:flex-row gap-3 sm:gap-4"
                             x-transition:enter="transition ease-out duration-1000 delay-600"
                             x-transition:enter-start="opacity-0 translate-y-4"
                             x-transition:enter-end="opacity-100 translate-y-0"
                         >
-                            <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift">
+                            <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift w-full sm:w-auto justify-center">
                                 View Collection
                             </x-atoms.button>
-                            <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift">
+                            <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift w-full sm:w-auto justify-center">
                                 Contact Us
                             </x-atoms.button>
                         </div>
@@ -191,12 +191,12 @@
 
         {{-- Slide Indicators --}}
         @if($heroes->count() > 1)
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
+            <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10 px-4">
                 <template x-for="(slide, index) in slides" :key="'indicator-' + index">
                     <button
                         @click="changeSlide(index)"
-                        :class="currentSlide === index ? 'bg-amber-500 w-12 scale-110' : 'bg-white/50 w-3 scale-100'"
-                        class="h-3 rounded-full transition-all duration-500-400"
+                        :class="currentSlide === index ? 'bg-amber-500 w-8 sm:w-12 scale-110' : 'bg-white/50 w-2 sm:w-3 scale-100'"
+                        class="h-2 sm:h-3 rounded-full transition-all duration-500"
                         :aria-label="'Go to slide ' + (index + 1)"
                     ></button>
                 </template>
@@ -204,20 +204,21 @@
         @endif
     @else
         {{-- Fallback Hero --}}
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"></div>
+        <div class="absolute inset-0 h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700"></div>
 
         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-            <div class="max-w-3xl">
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">Welcome to PT. Tropis Fish Indonesia</h1>
-                <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">Premium quality ornamental fish exporter with worldwide delivery</p>
+            <div class="max-w-3xl px-4 sm:px-0">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight break-words">Welcome to <span class="font-stencil">PT. TROPIS FISH INDONESIA</span></h1>
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl break-words">Premium quality ornamental fish exporter with worldwide delivery</p>
 
-                <div class="flex flex-wrap gap-4">
-                    <x-atoms.button variant="secondary" size="lg" href="#products">
-                        View Collection
-                    </x-atoms.button>
-                    <x-atoms.button variant="outline" size="lg" href="#contact">
-                        Contact Us
-                    </x-atoms.button>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <x-atoms.button variant="secondary" size="lg" href="#products" class="w-full sm:w-auto justify-center">
+                            View Collection
+                        </x-atoms.button>
+                        <x-atoms.button variant="outline" size="lg" href="#contact" class="w-full sm:w-auto justify-center">
+                            Contact Us
+                        </x-atoms.button>
+                    </div>
                 </div>
             </div>
         </div>

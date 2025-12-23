@@ -32,7 +32,7 @@
                         alt="{{ $companyName }} Logo"
                         class="w-16 h-16 rounded-full object-cover shadow-lg animate-pulse"
                     >
-                    <span class="text-xl font-stencil font-bold text-white">PT TROPIS FISH</span>
+                    <span class="text-xl font-stencil font-bold text-white">PT. TROPIS FISH</span>
                 </div>
                 <p class="text-white/90 leading-relaxed">
                     {{ $companySection?->description ?? 'Premium quality tropical ornamental fish supplier for your aquarium' }}

@@ -9,7 +9,7 @@
     <title>{{ $title ?? $websiteName }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased bg-white">
+<body class="antialiased bg-white w-full overflow-x-hidden">
     {{ $slot }}
 
     @stack('scripts')

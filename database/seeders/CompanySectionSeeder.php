@@ -39,21 +39,21 @@ class CompanySectionSeeder extends Seeder
             [
                 'type' => 'farm',
                 'title' => 'Our Farm',
-                'subtitle' => 'State-of-the-Art Facilities in Bekasi',
-                'main_description_1' => 'Our Fishes Farm is located in Bekasi, it is a small suburban city near Jakarta. This strategic location allows us to efficiently manage our operations and expedite shipments worldwide.',
+                'subtitle' => 'State-of-the-Art Facilities Across Strategic Locations',
+                'main_description_1' => 'Our facilities are strategically located across West Java to ensure optimal fish breeding, health management, and efficient distribution. Each location is equipped with modern infrastructure and managed by experienced professionals.',
                 'main_description_2' => 'We have hundreds of aquarium and tanks to cover all of our fishes stocks. Besides, we have many other facilities to support us in doing business and ensuring the best care for our aquatic life.',
-                'main_title_1' => 'Strategic Location',
+                'main_title_1' => 'Strategic Locations',
                 'main_title_2' => 'Extensive Infrastructure',
                 'images' => [],
                 'image_layout' => 'slider',
                 'content_blocks' => [
                     [
-                        'title' => 'Strategic Location',
-                        'description' => 'Our Fishes Farm is located in Bekasi, it is a small suburban city near Jakarta. This strategic location allows us to efficiently manage our operations and expedite shipments worldwide.',
+                        'title' => 'Cibitung - Main Office & Quarantine Facility',
+                        'description' => 'Our main office and quarantine facility is located in Cibitung, Bekasi. This central hub serves as our primary operation center, featuring state-of-the-art quarantine systems to ensure all fish are healthy and disease-free before shipment. The facility is strategically positioned near Jakarta for efficient logistics and international shipping.',
                     ],
                     [
-                        'title' => 'Extensive Infrastructure',
-                        'description' => 'We have hundreds of aquarium and tanks to cover all of our fishes stocks. Besides, we have many other facilities to support us in doing business and ensuring the best care for our aquatic life.',
+                        'title' => 'Bogor - Breeding Facility',
+                        'description' => 'Our specialized breeding facility in Bogor is dedicated to cultivating high-quality ornamental fish. With optimal water conditions and carefully controlled environments, this location focuses on breeding various species of tropical fish. The natural surroundings and superior water quality make it an ideal location for fish reproduction and early-stage development.',
                     ],
                 ],
                 'process_steps' => null,
@@ -106,7 +106,10 @@ class CompanySectionSeeder extends Seeder
         ];
 
         foreach ($sections as $section) {
-            CompanySection::create($section);
+            CompanySection::updateOrCreate(
+                ['type' => $section['type']],
+                $section
+            );
         }
     }
 }

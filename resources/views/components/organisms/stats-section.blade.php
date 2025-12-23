@@ -1,7 +1,7 @@
 @props(['stats' => [], 'title' => 'Trusted by Thousands of Customers', 'description' => 'Our experience and dedication in the ornamental fish industry'])
 
-<section class="py-14 px-4 sm:px-6 lg:px-8 bg-gradient-to-l from-amber-500 via-amber-400 to-amber-600">
-    <div class="max-w-6xl mx-auto">
+<section class="py-14 px-4 sm:px-6 lg:px-8 w-full bg-gradient-to-l from-amber-500 via-amber-400 to-amber-600">
+    <div class="max-w-6xl w-full mx-auto">
         <div
             x-data="{ visible: false }"
             x-intersect:enter="visible = true"
