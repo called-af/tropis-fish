@@ -62,14 +62,14 @@
                                 alt="{{ $companyName }} Logo"
                                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-4 border-amber-500 shadow-lg">
                             <div class="flex flex-col space-y-4">
-                                <h3 class="text-2xl sm:text-3xl md:text-4xl font-stencil font-bold text-white tracking-wide">
-                                    PT. TROPIS FISH
-                                </h3>
-                                <div
-                                    class="h-1 w-20 sm:w-24 bg-gradient-to-r from-amber-500 to-transparent rounded-full">
+                                <div>
+                                    <h1 class="text-xl font-stencil font-bold text-white">PT TROPIS FISH</h1>
+                                    <div
+                                        class="h-1 w-20 sm:w-24 bg-gradient-to-r from-amber-500 to-transparent rounded-full">
+                                    </div>
+                                    <p class="text-sm text-amber-500 font-light">Export of Ornamental Freshwater Fish
+                                    </p>
                                 </div>
-                                <p class="text-amber-500 font-semibold text-base sm:text-lg">Export of Ornamental
-                                    Freshwater Fish</p>
                             </div>
                         </div>
                     </div>
