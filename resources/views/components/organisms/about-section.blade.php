@@ -70,10 +70,10 @@
                     @if($aboutSection->feature_1_title)
                         <div
                             :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
-                            class="flex gap-4 transition-all duration-1000 ease-out stagger-3 rounded-xl p-4"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-3 p-4"
                         >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
+                                <div class="w-12 h-12 border border-amber-500/50 flex items-center justify-center group-hover:bg-amber-500/10 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_1_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -87,10 +87,10 @@
                     @if($aboutSection->feature_2_title)
                         <div
                             :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
-                            class="flex gap-4 transition-all duration-1000 ease-out stagger-4 rounded-xl p-4"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-4 p-4"
                         >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
+                                <div class="w-12 h-12 border border-amber-500/50 flex items-center justify-center group-hover:bg-amber-500/10 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_2_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -104,10 +104,10 @@
                     @if($aboutSection->feature_3_title)
                         <div
                             :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
-                            class="flex gap-4 transition-all duration-1000 ease-out stagger-5 rounded-xl p-4"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-5 p-4"
                         >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
+                                <div class="w-12 h-12 border border-amber-500/50 flex items-center justify-center group-hover:bg-amber-500/10 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_3_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
@@ -121,10 +121,10 @@
                     @if($aboutSection->feature_4_title)
                         <div
                             :class="visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-90'"
-                            class="flex gap-4 transition-all duration-1000 ease-out stagger-6 rounded-xl p-4"
+                            class="flex gap-4 transition-all duration-1000 ease-out stagger-6 p-4"
                         >
                             <div class="flex-shrink-0">
-                                <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center-500/30 transition-all duration-300">
+                                <div class="w-12 h-12 border border-amber-500/50 flex items-center justify-center group-hover:bg-amber-500/10 transition-all duration-300">
                                     <x-dynamic-component :component="'heroicon-o-'.$aboutSection->feature_4_icon" class="w-6 h-6 text-amber-500" />
                                 </div>
                             </div>
