@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->trustProxies(at: '*');
+
+        $middleware->append(\App\Http\Middleware\StaticAssetCache::class);
+        $middleware->append(\App\Http\Middleware\CacheResponse::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

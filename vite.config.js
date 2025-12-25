@@ -18,4 +18,16 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    build: {
+        cssCodeSplit: true,
+        minify: 'esbuild',
+        reportCompressedSize: false,
+        chunkSizeWarningLimit: 1000,
+        assetsInlineLimit: 4096,
+        rollupOptions: {
+            output: {
+                manualChunks: undefined,
+            },
+        },
+    },
 });

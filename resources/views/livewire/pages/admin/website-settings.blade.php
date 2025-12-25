@@ -122,6 +122,111 @@
                 @endif
             </div>
 
+            {{-- SEO Settings --}}
+            <div class="pt-8 border-t border-gray-700">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+                        <x-heroicon-o-magnifying-glass class="w-6 h-6 text-white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-white">SEO Settings</h3>
+                </div>
+
+                <div class="space-y-6">
+                    {{-- SEO Title --}}
+                    <div>
+                        <x-atoms.input
+                            type="text"
+                            wire:model="seoTitle"
+                            label="SEO Title"
+                            placeholder="e.g., Premium Ornamental Fish Exporter | PT. Tropis Fish Indonesia"
+                            :error="$errors->first('seoTitle')"
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    This appears in search engine results. Leave empty to use website name.
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SEO Description --}}
+                    <div>
+                        <x-atoms.textarea
+                            wire:model="seoDescription"
+                            label="SEO Description"
+                            placeholder="Brief description of your business for search engines..."
+                            rows="3"
+                            :error="$errors->first('seoDescription')"
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Appears in search results. Recommended length: 150-160 characters.
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.textarea>
+                    </div>
+
+                    {{-- SEO Keywords --}}
+                    <div>
+                        <x-atoms.textarea
+                            wire:model="seoKeywords"
+                            label="SEO Keywords"
+                            placeholder="ornamental fish, tropical fish, fish export, aquarium fish, Indonesia"
+                            rows="2"
+                            :error="$errors->first('seoKeywords')"
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Comma-separated keywords related to your business.
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.textarea>
+                    </div>
+
+                    {{-- OG Image --}}
+                    <div>
+                        <div x-data="fileInputData">
+                            <x-atoms.file-input
+                                wire:model="ogImage"
+                                accept="image/*"
+                                label="Open Graph Image"
+                                :error="$errors->first('ogImage')"
+                                id="og-image-input"
+                            >
+                                <x-slot:help>
+                                    <p class="text-xs text-gray-500 mt-1">
+                                        This image appears when sharing on social media. Recommended: 1200x630px. Leave empty to use company logo.
+                                    </p>
+                                </x-slot:help>
+
+                                <x-slot:preview>
+                                    @if ($ogImage)
+                                        <div class="mt-4">
+                                            <p class="text-xs text-gray-400 mb-2">Preview:</p>
+                                            <div class="relative group inline-block">
+                                                <img src="{{ $ogImage->temporaryUrl() }}" class="h-32 w-auto object-cover rounded-xl border-2 border-purple-500/50 shadow-lg">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </x-slot:preview>
+                            </x-atoms.file-input>
+                        </div>
+
+                        @if($this->currentOgImage)
+                            <div class="mt-4 p-4 bg-gray-900/50 rounded-xl border border-gray-700">
+                                <p class="text-xs text-gray-400 mb-3">Current OG Image:</p>
+                                <img
+                                    src="{{ asset('storage/' . $this->currentOgImage) }}"
+                                    alt="Current OG Image"
+                                    class="h-32 w-auto object-cover rounded-xl border-2 border-gray-600"
+                                >
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             {{-- Submit Button --}}
             <div class="flex items-center justify-between pt-6 border-t border-gray-700">
                 <p class="text-xs text-gray-500">

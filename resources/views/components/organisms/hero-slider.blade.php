@@ -85,107 +85,109 @@
 }" class="relative h-screen w-full overflow-hidden">
 
     @if($heroes && $heroes->count() > 0)
-        {{-- Background Media Layers --}}
+        {{-- Background Media Layers - Only render active slide --}}
         <template x-for="(slide, index) in slides" :key="'slide-' + index">
-            <div
-                x-show="currentSlide === index"
-                x-transition:enter="transition ease-out duration-1000"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-500"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="absolute inset-0 h-screen"
-            >
-                {{-- YouTube Video --}}
-                <template x-if="slide.backgroundType === 'youtube' && slide.youtube">
-                    <div class="absolute inset-0 w-full h-screen overflow-hidden bg-black">
-                        <iframe
-                            :id="'youtube-player-' + index"
-                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                            style="width: 177.77777778vh; height: 56.25vw; min-height: 100vh; min-width: 100vw;"
-                            frameborder="0"
-                            allow="autoplay; encrypted-media; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
-                    </div>
-                </template>
+            <template x-if="currentSlide === index">
+                <div
+                    x-transition:enter="transition ease-out duration-1000"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-500"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="absolute inset-0 h-screen"
+                >
+                    {{-- YouTube Video --}}
+                    <template x-if="slide.backgroundType === 'youtube' && slide.youtube">
+                        <div class="absolute inset-0 w-full h-screen overflow-hidden bg-black">
+                            <iframe
+                                :id="'youtube-player-' + index"
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                                style="width: 177.77777778vh; height: 56.25vw; min-height: 100vh; min-width: 100vw;"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </template>
 
-                {{-- Local Video --}}
-                <template x-if="slide.backgroundType === 'video' && slide.video">
-                    <video
-                        :id="'video-player-' + index"
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        preload="metadata"
-                        class="absolute inset-0 w-full h-screen object-cover"
-                    >
-                        <source :src="slide.video" type="video/mp4">
-                    </video>
-                </template>
+                    {{-- Local Video --}}
+                    <template x-if="slide.backgroundType === 'video' && slide.video">
+                        <video
+                            :id="'video-player-' + index"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="none"
+                            class="absolute inset-0 w-full h-screen object-cover"
+                        >
+                            <source :src="slide.video" type="video/mp4">
+                        </video>
+                    </template>
 
-                {{-- Image --}}
-                <template x-if="slide.backgroundType === 'image' && slide.image">
-                    <img
-                        :src="slide.image"
-                        :alt="slide.title"
-                        loading="lazy"
-                        class="absolute inset-0 w-full h-screen object-cover"
-                    >
-                </template>
-            </div>
+                    {{-- Image --}}
+                    <template x-if="slide.backgroundType === 'image' && slide.image">
+                        <img
+                            :src="slide.image"
+                            :alt="slide.title"
+                            loading="eager"
+                            class="absolute inset-0 w-full h-screen object-cover"
+                        >
+                    </template>
+                </div>
+            </template>
         </template>
 
         {{-- Gradient Overlay --}}
         <div class="absolute inset-0 h-screen bg-gradient-to-b from-black/90 via-blue-950/50 to-blue-900/45 pointer-events-none"></div>
 
-        {{-- Slides Content --}}
+        {{-- Slides Content - Only render active slide --}}
         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
             <template x-for="(slide, index) in slides" :key="index">
-                <div
-                    x-show="currentSlide === index"
-                    x-transition:enter="transition ease-out duration-1000"
-                    x-transition:enter-start="opacity-0 scale-95 translate-y-8"
-                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
-                    x-transition:leave="transition ease-in duration-500"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-95"
-                    class="absolute inset-0 flex items-center px-4 sm:px-6 lg:px-8"
-                >
-                    <div class="max-w-3xl space-y-4 sm:space-y-6 w-full">
-                        <h1
-                            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight break-words"
-                            x-text="slide.title"
-                            x-transition:enter="transition ease-out duration-1000 delay-200"
-                            x-transition:enter-start="opacity-0 translate-x-[-50px]"
-                            x-transition:enter-end="opacity-100 translate-x-0"
-                        ></h1>
+                <template x-if="currentSlide === index">
+                    <div
+                        x-transition:enter="transition ease-out duration-1000"
+                        x-transition:enter-start="opacity-0 scale-95 translate-y-8"
+                        x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-500"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="absolute inset-0 flex items-center px-4 sm:px-6 lg:px-8"
+                    >
+                        <div class="max-w-3xl space-y-4 sm:space-y-6 w-full">
+                            <h1
+                                class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight break-words"
+                                x-text="slide.title"
+                                x-transition:enter="transition ease-out duration-1000 delay-200"
+                                x-transition:enter-start="opacity-0 translate-x-[-50px]"
+                                x-transition:enter-end="opacity-100 translate-x-0"
+                            ></h1>
 
-                        <p
-                            class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl break-words"
-                            x-text="slide.description"
-                            x-transition:enter="transition ease-out duration-1000 delay-400"
-                            x-transition:enter-start="opacity-0 translate-x-[-30px]"
-                            x-transition:enter-end="opacity-100 translate-x-0"
-                        ></p>
+                            <p
+                                class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-2xl break-words"
+                                x-text="slide.description"
+                                x-transition:enter="transition ease-out duration-1000 delay-400"
+                                x-transition:enter-start="opacity-0 translate-x-[-30px]"
+                                x-transition:enter-end="opacity-100 translate-x-0"
+                            ></p>
 
-                        <div
-                            class="flex flex-col sm:flex-row gap-3 sm:gap-4"
-                            x-transition:enter="transition ease-out duration-1000 delay-600"
-                            x-transition:enter-start="opacity-0 translate-y-4"
-                            x-transition:enter-end="opacity-100 translate-y-0"
-                        >
-                            <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift w-full sm:w-auto justify-center">
-                                View Collection
-                            </x-atoms.button>
-                            <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift w-full sm:w-auto justify-center">
-                                Contact Us
-                            </x-atoms.button>
+                            <div
+                                class="flex flex-col sm:flex-row gap-3 sm:gap-4"
+                                x-transition:enter="transition ease-out duration-1000 delay-600"
+                                x-transition:enter-start="opacity-0 translate-y-4"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                            >
+                                <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift w-full sm:w-auto justify-center">
+                                    View Collection
+                                </x-atoms.button>
+                                <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift w-full sm:w-auto justify-center">
+                                    Contact Us
+                                </x-atoms.button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </template>
             </template>
         </div>
 
