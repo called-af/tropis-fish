@@ -7,8 +7,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Load image
                 if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
+                    // Create new image object for preloading
+                    const tempImg = new Image();
+
+                    tempImg.onload = () => {
+                        // Use requestAnimationFrame for smooth transition
+                        requestAnimationFrame(() => {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            img.classList.remove('lazy');
+                            img.classList.add('lazy-loaded');
+                        });
+                    };
+
+                    tempImg.onerror = () => {
+                        // Fallback if image fails to load
+                        img.classList.remove('lazy');
+                        img.classList.add('lazy-error');
+                    };
+
+                    tempImg.src = img.dataset.src;
                 }
 
                 // Load srcset if exists
@@ -23,13 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     img.removeAttribute('data-bg');
                 }
 
-                img.classList.remove('lazy');
-                img.classList.add('lazy-loaded');
                 observer.unobserve(img);
             }
         });
     }, {
-        rootMargin: '50px 0px',
+        rootMargin: '100px 0px',
         threshold: 0.01
     });
 

@@ -36,9 +36,12 @@
                         >
                             <div class="group aspect-square bg-white/5 border border-white/10 hover:border-amber-500/50 overflow-hidden cursor-pointer relative transition-all duration-500 rounded-xl">
                                 <img
-                                    src="{{ asset('storage/' . $gallery->image_path) }}"
+                                    data-src="{{ asset('storage/' . $gallery->image_path) }}"
                                     alt="{{ $gallery->title }}"
-                                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                                    class="lazy w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 bg-gradient-to-br from-gray-800 to-gray-900"
+                                    loading="lazy"
+                                    decoding="async"
+                                    fetchpriority="low"
                                 >
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                     <div>
