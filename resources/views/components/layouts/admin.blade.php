@@ -3,7 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @php
+        $companyLogo = App\Models\Setting::get('company_logo');
+        $faviconUrl = $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg');
+    @endphp
     <title>{{ $title ?? 'Dashboard - PT. Tropis Fish Indonesia' }}</title>
+
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ $faviconUrl }}">
+    <link rel="apple-touch-icon" href="{{ $faviconUrl }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>

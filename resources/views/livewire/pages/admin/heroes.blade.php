@@ -267,6 +267,18 @@
                             <p class="text-xs text-gray-500 mt-1">Paste any YouTube video link (youtu.be, youtube.com/watch, youtube.com/embed)</p>
                         </x-slot:help>
                     </x-atoms.input>
+
+                    <x-atoms.input
+                        type="text"
+                        wire:model="courtesyText"
+                        label="YouTube Channel/Source Name"
+                        placeholder="e.g., @ChannelName or FishWorld"
+                        :error="$errors->first('courtesyText')"
+                    >
+                        <x-slot:help>
+                            <p class="text-xs text-gray-500 mt-1">Will be displayed as "courtesy YT: @ChannelName" at bottom right (optional)</p>
+                        </x-slot:help>
+                    </x-atoms.input>
                 @endif
 
                 {{-- Video Upload Field (Only when Video is selected) --}}

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->string('video_path')->nullable();
             $table->string('youtube_url')->nullable();
+            $table->string('courtesy_text')->nullable();
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

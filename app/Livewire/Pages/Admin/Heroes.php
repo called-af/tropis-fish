@@ -24,6 +24,8 @@ class Heroes extends Component
 
     public string $youtubeUrl = '';
 
+    public string $courtesyText = '';
+
     public string $backgroundType = 'image';
 
     public bool $isActive = true;
@@ -62,6 +64,7 @@ class Heroes extends Component
             $rules['image'] = 'nullable|image|max:7168';
         } elseif ($this->backgroundType === 'youtube') {
             $rules['youtubeUrl'] = 'required|url';
+            $rules['courtesyText'] = 'nullable|string|max:255';
             $rules['image'] = 'nullable|image|max:7168';
         }
 
@@ -78,8 +81,10 @@ class Heroes extends Component
         }
 
         $youtubeUrl = null;
+        $courtesyText = null;
         if ($this->backgroundType === 'youtube') {
             $youtubeUrl = $this->youtubeUrl;
+            $courtesyText = $this->courtesyText;
         }
 
         if ($this->editingId) {
@@ -91,6 +96,7 @@ class Heroes extends Component
                 'image_path' => $imagePath ?? $hero->image_path,
                 'video_path' => $videoPath,
                 'youtube_url' => $youtubeUrl,
+                'courtesy_text' => $courtesyText,
                 'is_active' => $validated['isActive'],
             ]);
 
@@ -105,6 +111,7 @@ class Heroes extends Component
                 'image_path' => $imagePath,
                 'video_path' => $videoPath,
                 'youtube_url' => $youtubeUrl,
+                'courtesy_text' => $courtesyText,
                 'is_active' => $validated['isActive'],
                 'order' => $maxOrder + 1,
             ]);
@@ -112,7 +119,7 @@ class Heroes extends Component
             session()->flash('message', 'Hero created successfully.');
         }
 
-        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'backgroundType', 'isActive', 'editingId']);
+        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'courtesyText', 'backgroundType', 'isActive', 'editingId']);
         $this->isActive = true;
         $this->backgroundType = 'image';
         $this->showFormModal = false;
@@ -128,7 +135,7 @@ class Heroes extends Component
             return;
         }
 
-        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'backgroundType', 'isActive', 'editingId']);
+        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'courtesyText', 'backgroundType', 'isActive', 'editingId']);
         $this->isActive = true;
         $this->backgroundType = 'image';
         $this->showFormModal = true;
@@ -142,6 +149,7 @@ class Heroes extends Component
         $this->description = $hero->description ?? '';
         $this->backgroundType = $hero->background_type ?? 'image';
         $this->youtubeUrl = $hero->youtube_url ?? '';
+        $this->courtesyText = $hero->courtesy_text ?? '';
         $this->isActive = $hero->is_active;
         $this->showFormModal = true;
     }
@@ -177,7 +185,7 @@ class Heroes extends Component
 
     public function cancelEdit(): void
     {
-        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'backgroundType', 'isActive', 'editingId']);
+        $this->reset(['title', 'description', 'image', 'video', 'youtubeUrl', 'courtesyText', 'backgroundType', 'isActive', 'editingId']);
         $this->showFormModal = false;
     }
 

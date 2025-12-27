@@ -13,6 +13,7 @@ class Hero extends Model
         'image_path',
         'video_path',
         'youtube_url',
+        'courtesy_text',
         'order',
         'is_active',
     ];

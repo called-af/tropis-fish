@@ -17,7 +17,7 @@ class CompanySectionSeeder extends Seeder
                 'type' => 'about',
                 'title' => 'Company Profile',
                 'subtitle' => 'Leading Ornamental Fish Exporter',
-                'main_description_1' => 'PT. Tropis Fish was established in 1986, and has exported to South East Asia, Middle East, Europe, and USA since 2005. We are the specialist for export ornamental fishes, Invertebrates, and Aquatic Plants.',
+                'main_description_1' => 'CV. Tropis Fish was established in 1986, and has exported to South East Asia, Middle East, Europe, and USA since 2005. We are the specialist for export ornamental fishes, Invertebrates, and Aquatic Plants. In 2026 CV Tropis Fish has officially transitioned into PT Tropis Fish Indonesia. This change represents a strategic step to strengthen our corporate structure, improve administrative compliance, and enhance the quality of our services.',
                 'main_description_2' => 'Our fishes collection consist of Indonesian origin fishes as well as from overseas such as Clown Loach, Brackish Fishes, Scats Fishes, many kinds of Tetra Fishes, Angel Fishes, Barb Fishes, Catfishes, Cichlids, Gar Fishes, Killie Fishes, Metynis, Ancient Fishes, Rasboras, Rainbows, Mollies, Platys, Guppies, Various Shrimps, Lobsters, Crabs, Snails, and Clams.',
                 'main_title_1' => 'Established in 1986',
                 'main_title_2' => 'Extensive Collection',

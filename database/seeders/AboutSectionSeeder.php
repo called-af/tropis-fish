@@ -27,7 +27,7 @@ class AboutSectionSeeder extends Seeder
 
         AboutSection::create([
             'title' => 'About Us',
-            'description_1' => 'Since 1986, <span class="text-amber-400 font-semibold">PT. Tropis Fish Indonesia</span> has been at the forefront of breeding and distributing premium quality tropical ornamental fish. With over two decades of experience, we have established ourselves as one of Indonesia\'s most trusted suppliers of aquatic life.',
+            'description_1' => 'Since 1986, we has been at the forefront of breeding and distributing premium quality tropical ornamental fish. With over two decades of experience, we have established ourselves as one of Indonesia\'s most trusted suppliers of aquatic life.',
             'description_2' => 'Our passion for aquatic excellence drives us to maintain the highest standards in fish breeding, health management, and customer service. We take pride in our commitment to sustainability and the well-being of every fish that leaves our facility.',
             'image_path' => 'about/banner-home1.jpg',
             'feature_1_title' => 'Premium Quality',

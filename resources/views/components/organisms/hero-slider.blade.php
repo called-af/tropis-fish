@@ -10,7 +10,8 @@
         'backgroundType' => $hero->background_type,
         'image' => $hero->image_path ? asset('storage/' . $hero->image_path) : null,
         'video' => $hero->video_path ? asset('storage/' . $hero->video_path) : null,
-        'youtube' => $hero->youtube_url
+        'youtube' => $hero->youtube_url,
+        'courtesyText' => $hero->courtesy_text
     ])) }},
     getYouTubeId(url) {
         if (!url) {
@@ -141,6 +142,17 @@
 
         {{-- Gradient Overlay --}}
         <div class="absolute inset-0 h-screen bg-gradient-to-b from-black/90 via-blue-950/50 to-blue-900/45 pointer-events-none"></div>
+
+        {{-- YouTube Credit --}}
+        <template x-for="(slide, index) in slides" :key="'credit-' + index">
+            <template x-if="currentSlide === index && slide.backgroundType === 'youtube'">
+                <div class="absolute bottom-6 sm:bottom-8 right-4 sm:right-8 z-10">
+                    <p class="text-xs sm:text-sm text-white font-medium">
+                        courtesy YT :<span x-show="slide.courtesyText" x-text="' ' + slide.courtesyText"></span>
+                    </p>
+                </div>
+            </template>
+        </template>
 
         {{-- Slides Content - Only render active slide --}}
         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
