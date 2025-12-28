@@ -7,7 +7,7 @@
     <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             {{-- Left Side: Text Content --}}
-            <div class="space-y-8">
+            <div class="space-y-3">
                 {{-- Title --}}
                 <div
                     :class="visible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 -translate-x-12 scale-95'"
@@ -22,7 +22,7 @@
                 </div>
 
                 {{-- Text Content --}}
-                <div class="space-y-6">
+                <div class="space-y-1">
                     @foreach($qualitySection->content_blocks ?? [] as $index => $block)
                         <div
                             :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
@@ -40,7 +40,7 @@
 
                     {{-- Quality Process Steps --}}
                     @if($qualitySection->process_steps && count($qualitySection->process_steps) > 0)
-                        <div class="space-y-3 pt-4">
+                        <div class="space-y-1 pt-4">
                             <h4
                                 :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
                                 class="text-xl font-bold text-white mb-4 transition-all duration-1000 ease-out delay-300"

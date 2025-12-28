@@ -104,6 +104,12 @@ class StockLists extends Component
 
         if ($this->editingId) {
             $stockList = StockList::findOrFail($this->editingId);
+
+            // Delete old image if new image uploaded
+            if ($imagePath && $stockList->image_path && \Storage::disk('public')->exists($stockList->image_path)) {
+                \Storage::disk('public')->delete($stockList->image_path);
+            }
+
             $stockList->update([
                 'code' => $validated['code'],
                 'scientific_name' => $validated['scientificName'],

@@ -155,6 +155,12 @@ class AboutSections extends Component
 
         if ($this->editingId) {
             $aboutSection = AboutSection::findOrFail($this->editingId);
+
+            // Delete old image if new image uploaded
+            if (isset($data['image_path']) && $aboutSection->image_path && \Storage::disk('public')->exists($aboutSection->image_path)) {
+                \Storage::disk('public')->delete($aboutSection->image_path);
+            }
+
             $aboutSection->update($data);
             session()->flash('message', 'About section updated successfully.');
         } else {

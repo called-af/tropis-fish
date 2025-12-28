@@ -50,6 +50,12 @@ class Galleries extends Component
 
         if ($this->editingId) {
             $gallery = Gallery::findOrFail($this->editingId);
+
+            // Delete old image if new image uploaded
+            if ($imagePath && $gallery->image_path && \Storage::disk('public')->exists($gallery->image_path)) {
+                \Storage::disk('public')->delete($gallery->image_path);
+            }
+
             $gallery->update([
                 'title' => $validated['title'],
                 'description' => $validated['description'],

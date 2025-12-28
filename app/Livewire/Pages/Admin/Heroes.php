@@ -89,6 +89,17 @@ class Heroes extends Component
 
         if ($this->editingId) {
             $hero = Hero::findOrFail($this->editingId);
+
+            // Delete old image if new image uploaded
+            if ($imagePath && $hero->image_path && \Storage::disk('public')->exists($hero->image_path)) {
+                \Storage::disk('public')->delete($hero->image_path);
+            }
+
+            // Delete old video if new video uploaded or type changed
+            if (($videoPath || $this->backgroundType !== 'video') && $hero->video_path && \Storage::disk('public')->exists($hero->video_path)) {
+                \Storage::disk('public')->delete($hero->video_path);
+            }
+
             $hero->update([
                 'title' => $validated['title'],
                 'description' => $validated['description'],

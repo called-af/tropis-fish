@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             GallerySeeder::class,
             AboutSectionSeeder::class,
             CompanySectionSeeder::class,
+            FooterSectionSeeder::class,
+            TermSeeder::class,
         ]);
     }
 }
