@@ -57,18 +57,26 @@
                             @php
                                 $companyLogo = App\Models\Setting::get('company_logo');
                                 $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+                                $companyDesc = App\Models\Setting::get('company_description', 'Export of Ornamental Freshwater Fish');
                             @endphp
                             <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
                                 alt="{{ $companyName }} Logo"
                                 class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-4 border-amber-500 shadow-lg">
                             <div class="flex flex-col space-y-4">
-                                <div>
-                                    <h1 class="text-xl font-stencil font-bold text-white">PT TROPIS FISH</h1>
-                                    <div
-                                        class="h-1 w-20 sm:w-24 bg-gradient-to-r from-amber-500 to-transparent rounded-full">
+                                <div class="flex flex-col gap-0.5">
+                                    <span id="nav-brand"
+                                        class="font-stencil font-bold text-xl text-white leading-tight">
+                                        {{ $companyName }}
+                                    </span>
+
+                                    <div class="relative w-full flex justify-center">
+                                        <span
+                                            class="block h-[2px] w-52 bg-gradient-to-r from-transparent via-white to-transparent opacity-80"></span>
                                     </div>
-                                    <p class="text-sm text-amber-500 font-light">Export of Ornamental Freshwater Fish
-                                    </p>
+
+                                    <span class="text-sm text-white font-medium">
+                                        {{ $companyDesc }}
+                                    </span>
                                 </div>
                             </div>
                         </div>

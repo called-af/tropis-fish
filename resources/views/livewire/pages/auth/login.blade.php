@@ -1,10 +1,16 @@
+@php
+    $companyLogo = App\Models\Setting::get('company_logo');
+    $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+    $companyDesc = App\Models\Setting::get('company_description', 'Export of Ornamental Freshwater Fish');
+@endphp
+
 <div class="h-screen flex overflow-hidden">
     {{-- Left Side - Image Section --}}
     <div
         class="hidden lg:flex lg:w-1/2 xl:w-3/5 relative bg-gradient-to-br from-blue-900/70 via-blue-800/60 to-black/80 overflow-hidden">
         {{-- Background Image --}}
         <div class="absolute inset-0">
-            <img src="{{ asset('assets/fish/archer-fish-brackish.jpg') }}" alt="Archer Fish - PT. Tropis Fish Indonesia"
+            <img src="{{ asset('assets/fish/CLOWN LOACH.jpeg') }}" alt="Clown Loach - {{ $companyName }}"
                 class="w-full h-full object-cover opacity-80" />
         </div>
 
@@ -16,16 +22,24 @@
             {{-- Logo & Brand --}}
             <div>
                 <div class="flex items-center gap-3 mb-8">
-                    <div
-                        class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
-                        <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia Logo"
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                        <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
+                            alt="{{ $companyName }} Logo"
                             class="w-full h-full object-cover" />
                     </div>
-                    <div>
-                        <h1 class="text-xl font-stencil font-bold text-white">PT TROPIS FISH</h1>
-                        <div class="h-1 w-20 sm:w-24 bg-gradient-to-r from-amber-500 to-transparent rounded-full">
+                    <div class="flex flex-col gap-0.5">
+                        <span id="nav-brand" class="font-stencil font-bold text-xl text-white leading-tight">
+                            {{ $companyName }}
+                        </span>
+
+                        <div class="relative w-full flex justify-center">
+                            <span
+                                class="block h-[2px] w-52 bg-gradient-to-r from-transparent via-white to-transparent opacity-80"></span>
                         </div>
-                        <p class="text-sm text-amber-500 font-light">Export of Ornamental Freshwater Fish</p>
+
+                        <span class="text-sm text-white font-medium">
+                            {{ $companyDesc }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -67,7 +81,7 @@
 
             {{-- Footer --}}
             <div class="text-sm text-amber-500 font-light">
-                <p>&copy; {{ date('Y') }} <span class="font-stencil">PT TROPIS FISH</span>. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} <span class="font-stencil">{{ $companyName }}</span>. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -78,13 +92,18 @@
             {{-- Mobile Logo --}}
             <div class="lg:hidden text-center mb-10">
                 <div class="flex justify-center mb-4">
-                    <div
-                        class="w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
-                        <img src="{{ asset('assets/logo-pt.jpeg') }}" alt="PT. Tropis Fish Indonesia Logo"
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                        <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}" alt="{{ $companyName }} Logo"
                             class="w-full h-full object-cover" />
                     </div>
                 </div>
-                <h1 class="text-2xl font-stencil font-bold text-white">PT TROPIS FISH</h1>
+                <div class="flex flex-col gap-1 items-center">
+                    <h1 class="text-2xl font-stencil font-bold text-white">{{ $companyName }}</h1>
+                    <div class="relative w-full flex justify-center">
+                        <span class="block h-[2px] w-52 bg-gradient-to-r from-transparent via-white to-transparent opacity-80"></span>
+                    </div>
+                    <p class="text-sm text-white font-medium">{{ $companyDesc }}</p>
+                </div>
             </div>
 
             {{-- Form Header --}}

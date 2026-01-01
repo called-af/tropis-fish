@@ -1,6 +1,6 @@
 @props(['code' => null, 'scientificName' => null, 'commonName', 'size' => null, 'length' => null, 'image' => null, 'href' => null])
 
-<div class="block group relative bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border-1 border-amber-500 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-1">
+<div class="block group relative bg-gray-900/50 backdrop-blur-sm  overflow-hidden border-1 border-amber-500 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-1">
     <!-- Code Badge -->
     @if($code)
         <div class="absolute top-3 left-3 z-10">
@@ -55,7 +55,7 @@
                 <svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
-                <span class="text-xs font-semibold">{{ $length }} cm</span>
+                <span class="text-xs font-semibold">{{ $length }}</span>
             </div>
         @endif
 

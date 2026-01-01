@@ -10,9 +10,12 @@ use App\Models\Stat;
 use App\Models\StockList;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Landing extends Component
 {
+    use WithPagination;
+
     #[Url(as: 'q')]
     public $search = '';
 
@@ -54,7 +57,7 @@ class Landing extends Component
                 ->orderBy('order')
                 ->limit(8)
                 ->get(),
-            'stockLists' => $stockListsQuery->orderBy('code')->get(),
+            'stockLists' => $stockListsQuery->orderBy('code')->paginate(8),
             'stats' => Stat::where('is_active', true)
                 ->orderBy('order')
                 ->get(),
@@ -65,5 +68,10 @@ class Landing extends Component
                 ->orderBy('order')
                 ->first(),
         ])->layout('components.layouts.app');
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
     }
 }

@@ -1,6 +1,7 @@
 @php
     $companyLogo = App\Models\Setting::get('company_logo');
     $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+    $companyDesc = App\Models\Setting::get('company_description', 'Export of Ornamental Freshwater Fish');
     $companySection = App\Models\FooterSection::getByType('company');
     $menuSection = App\Models\FooterSection::getByType('menu');
     $informationSection = App\Models\FooterSection::getByType('information');
@@ -12,13 +13,7 @@
     x-data="{ visible: false }"
     x-intersect:enter="visible = true"
 >
-    {{-- Animated Background Elements --}}
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-float"></div>
-        <div class="absolute bottom-20 right-20 w-24 h-24 bg-white/5 rounded-full animate-wave"></div>
-        <div class="absolute top-1/2 left-1/3 w-16 h-16 bg-white/5 rounded-full animate-pulse"></div>
-    </div>
-
+   
     <div class="max-w-7xl mx-auto relative z-10">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             {{-- Company Info --}}
@@ -30,9 +25,22 @@
                     <img
                         src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
                         alt="{{ $companyName }} Logo"
-                        class="w-16 h-16 rounded-full object-cover shadow-lg animate-pulse"
+                        class="w-16 h-16 rounded-full object-cover shadow-lg "
                     >
-                    <span class="text-xl font-stencil font-bold text-white">PT. TROPIS FISH</span>
+                    <div class="flex flex-col gap-0.5">
+                <span id="nav-brand" class="font-stencil font-bold text-xl text-white leading-tight">
+                    {{ $companyName }}
+                </span>
+
+                <div class="relative w-full flex justify-center">
+                    <span
+                        class="block h-[2px] w-52 bg-gradient-to-r from-transparent via-white to-transparent opacity-80"></span>
+                </div>
+
+                <span class="text-sm text-white font-medium">
+                    {{ $companyDesc }}
+                </span>
+            </div>
                 </div>
                 <p class="text-white/90 leading-relaxed">
                     {{ $companySection?->description ?? 'Premium quality tropical ornamental fish supplier for your aquarium' }}

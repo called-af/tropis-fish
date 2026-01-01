@@ -70,6 +70,196 @@
                 </x-atoms.input>
             </div>
 
+            {{-- Company Description --}}
+            <div>
+                <x-atoms.input
+                    type="text"
+                    wire:model="companyDescription"
+                    label="Company Description *"
+                    placeholder="e.g., Export of Ornamental Freshwater Fish"
+                    :error="$errors->first('companyDescription')"
+                    required
+                >
+                    <x-slot:help>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Short tagline displayed below company name in navbar and footer
+                        </p>
+                    </x-slot:help>
+                </x-atoms.input>
+            </div>
+
+            {{-- Email Configuration --}}
+            <div class="pt-8 border-t border-gray-700">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+                        <x-heroicon-o-envelope class="w-6 h-6 text-white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Email Configuration (SMTP)</h3>
+                </div>
+
+                <div class="space-y-6">
+                    {{-- Contact Email --}}
+                    <div>
+                        <x-atoms.input
+                            type="email"
+                            wire:model="contactEmail"
+                            label="Contact Email *"
+                            placeholder="e.g., sales@tropisfish.com"
+                            :error="$errors->first('contactEmail')"
+                            required
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Email address where contact form submissions will be sent
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SMTP Host --}}
+                    <div>
+                        <x-atoms.input
+                            type="text"
+                            wire:model="mailHost"
+                            label="SMTP Host *"
+                            placeholder="e.g., smtp.gmail.com or sandbox.smtp.mailtrap.io"
+                            :error="$errors->first('mailHost')"
+                            required
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    SMTP server hostname (Gmail: smtp.gmail.com, Mailtrap: sandbox.smtp.mailtrap.io)
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SMTP Port --}}
+                    <div>
+                        <x-atoms.input
+                            type="number"
+                            wire:model="mailPort"
+                            label="SMTP Port *"
+                            placeholder="e.g., 587 or 2525"
+                            :error="$errors->first('mailPort')"
+                            required
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Common ports: 587 (TLS), 465 (SSL), 2525 (Mailtrap)
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SMTP Username --}}
+                    <div>
+                        <x-atoms.input
+                            type="text"
+                            wire:model="mailUsername"
+                            label="SMTP Username"
+                            placeholder="Your SMTP username or email"
+                            :error="$errors->first('mailUsername')"
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Your email address or SMTP username provided by your email service
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SMTP Password --}}
+                    <div>
+                        <x-atoms.input
+                            type="password"
+                            wire:model="mailPassword"
+                            label="SMTP Password"
+                            placeholder="Your SMTP password or app password"
+                            :error="$errors->first('mailPassword')"
+                        >
+                            <x-slot:help>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    Your email password or app-specific password (for Gmail, use App Password)
+                                </p>
+                            </x-slot:help>
+                        </x-atoms.input>
+                    </div>
+
+                    {{-- SMTP Encryption --}}
+                    <div>
+                        <x-atoms.select
+                            wire:model="mailEncryption"
+                            label="Encryption Type *"
+                            :options="['tls' => 'TLS (Recommended)', 'ssl' => 'SSL']"
+                            :error="$errors->first('mailEncryption')"
+                        />
+                        <p class="text-xs text-gray-500 mt-1">
+                            TLS is recommended for most providers (port 587)
+                        </p>
+                    </div>
+
+                    {{-- Test Email Button --}}
+                    <div class="pt-6 border-t border-gray-600">
+                        @if (session()->has('test_email_success'))
+                            <div
+                                x-data="{ show: true }"
+                                x-show="show"
+                                x-transition
+                                x-init="setTimeout(() => show = false, 8000)"
+                                class="mb-4 bg-green-900/50 border border-green-700 text-green-300 px-4 py-3 rounded-lg flex items-center justify-between"
+                                role="alert"
+                            >
+                                <div class="flex items-center gap-2">
+                                    <x-heroicon-o-check-circle class="w-5 h-5" />
+                                    <span class="text-sm">{{ session('test_email_success') }}</span>
+                                </div>
+                                <button @click="show = false" class="text-green-300 hover:text-green-100">
+                                    <x-heroicon-o-x-mark class="w-4 h-4" />
+                                </button>
+                            </div>
+                        @endif
+
+                        @if (session()->has('test_email_error'))
+                            <div
+                                x-data="{ show: true }"
+                                x-show="show"
+                                x-transition
+                                x-init="setTimeout(() => show = false, 10000)"
+                                class="mb-4 bg-red-900/50 border border-red-700 text-red-300 px-4 py-3 rounded-lg flex items-center justify-between"
+                                role="alert"
+                            >
+                                <div class="flex items-center gap-2">
+                                    <x-heroicon-o-exclamation-triangle class="w-5 h-5" />
+                                    <span class="text-sm">{{ session('test_email_error') }}</span>
+                                </div>
+                                <button @click="show = false" class="text-red-300 hover:text-red-100">
+                                    <x-heroicon-o-x-mark class="w-4 h-4" />
+                                </button>
+                            </div>
+                        @endif
+
+                        <button
+                            type="button"
+                            wire:click="testEmail"
+                            wire:loading.attr="disabled"
+                            class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                        >
+                            <x-heroicon-o-paper-airplane class="w-5 h-5" wire:loading.remove wire:target="testEmail" />
+                            <svg wire:loading wire:target="testEmail" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span wire:loading.remove wire:target="testEmail">Send Test Email</span>
+                            <span wire:loading wire:target="testEmail">Sending...</span>
+                        </button>
+                        <p class="text-xs text-gray-500 mt-2 text-center">
+                            Send a test email to verify your SMTP configuration before saving
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             {{-- Company Logo --}}
             <div>
                 <div x-data="fileInputData">

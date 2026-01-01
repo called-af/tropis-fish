@@ -76,18 +76,6 @@
                     @endforelse
                 </div>
             </div>
-
-            <!-- Footer -->
-            <div class="sticky bottom-0 bg-gradient-to-r from-blue-900 to-blue-950 px-6 py-4 border-t border-white/10">
-                <div class="flex justify-end">
-                    <button
-                        @click="open = false"
-                        class="px-6 py-2.5 bg-amber-500-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-                    >
-                        Close
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

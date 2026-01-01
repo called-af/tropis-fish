@@ -1,6 +1,7 @@
 @php
     $companyLogo = App\Models\Setting::get('company_logo');
     $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
+    $companyDesc = App\Models\Setting::get('company_description', 'Export of Ornamental Freshwater Fish');
 @endphp
 
 <nav id="desktop-nav"
@@ -16,7 +17,7 @@
                 alt="{{ $companyName }}" class="h-12 w-12 object-cover rounded-full border-2 border-amber-400">
             <div class="flex flex-col gap-0.5">
                 <span id="nav-brand" class="font-stencil font-bold text-xl text-white leading-tight">
-                    PT. TROPIS FISH INDONESIA
+                    {{ $companyName }}
                 </span>
 
                 <div class="relative w-full flex justify-center">
@@ -25,7 +26,7 @@
                 </div>
 
                 <span class="text-sm text-white font-medium">
-                    Export of Ornamental Freshwater Fish
+                    {{ $companyDesc }}
                 </span>
             </div>
         </a>
@@ -63,7 +64,7 @@
                 alt="{{ $companyName }}" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
             <div class="flex flex-col gap-0.5 items-center sm:hidden">
                 <span class="font-stencil font-bold text-base text-white leading-tight text-center">
-                    PT. TROPIS FISH INDONESIA
+                    {{ $companyName }}
                 </span>
 
                 <!-- GARIS PEMISAH MOBILE -->
@@ -71,7 +72,7 @@
                 </span>
 
                 <span class="text-xs text-white font-medium text-center">
-                    Export of Ornamental Freshwater Fish
+                    {{ $companyDesc }}
                 </span>
             </div>
 

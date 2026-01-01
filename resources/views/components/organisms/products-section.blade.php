@@ -96,10 +96,10 @@
                     </button>
                 </div>
 
-                {{-- Grid View - Max 10 Items --}}
+                {{-- Grid View - Max 8 Items per page --}}
                 <div x-show="viewMode === 'grid'" x-cloak>
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        @foreach($stockLists->take(10) as $index => $stock)
+                        @foreach($stockLists as $index => $stock)
                             <div
                                 x-data="{ visible: false }"
                                 x-intersect:enter="visible = true"
@@ -114,18 +114,17 @@
                                         :commonName="$stock->common_name"
                                         :size="$stock->size"
                                         :length="$stock->length"
-                                        :image="$stock->image_path ? asset('storage/' . $stock->image_path) : null"
+                                        :image="$stock->image_path ? asset($stock->image_path) : null"
                                     />
                                 </div>
                             </div>
                         @endforeach
                     </div>
 
-                    @if($stockLists->count() > 10)
-                        <div class="mt-8 text-center">
-                            <p class="text-amber-500 mb-4">Showing 10 of {{ $stockLists->count() }} fish. View all to see complete list.</p>
-                        </div>
-                    @endif
+                    {{-- Pagination --}}
+                    <div class="mt-8">
+                        {{ $stockLists->links() }}
+                    </div>
                 </div>
 
                 {{-- Table View - Scrollable --}}
@@ -158,7 +157,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-800">
                                                     @if($stock->image_path)
-                                                        <img src="{{ asset('storage/' . $stock->image_path) }}" alt="{{ $stock->common_name }}" class="w-full h-full object-cover">
+                                                        <img src="{{ asset($stock->image_path) }}" alt="{{ $stock->common_name }}" class="w-full h-full object-cover">
                                                     @else
                                                         <div class="w-full h-full flex items-center justify-center">
                                                             <svg class="w-8 h-8 text-amber-500/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,7 +198,7 @@
                                                         <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                                         </svg>
-                                                        <span class="text-sm font-semibold">{{ $stock->length }} cm</span>
+                                                        <span class="text-sm font-semibold">{{ $stock->length }}</span>
                                                     </div>
                                                 @else
                                                     <span class="text-gray-500 text-sm">-</span>
