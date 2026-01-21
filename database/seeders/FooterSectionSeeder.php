@@ -54,7 +54,7 @@ class FooterSectionSeeder extends Seeder
                 'title' => 'Follow Us',
                 'description' => null,
                 'links' => [
-                    ['text' => 'Facebook', 'url' => '#', 'icon' => 'facebook'],
+                    ['text' => 'Facebook', 'url' => 'https://www.facebook.com/share/1JYUvRNZ1Q/', 'icon' => 'facebook'],
                     ['text' => 'Twitter', 'url' => '#', 'icon' => 'twitter'],
                     ['text' => 'Instagram', 'url' => '#', 'icon' => 'instagram'],
                 ],

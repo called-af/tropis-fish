@@ -114,7 +114,7 @@
                                         :commonName="$stock->common_name"
                                         :size="$stock->size"
                                         :length="$stock->length"
-                                        :image="$stock->image_path ? asset($stock->image_path) : null"
+                                        :image="$stock->image_path ? asset('storage/' . $stock->image_path) : null"
                                     />
                                 </div>
                             </div>
@@ -157,7 +157,10 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-800">
                                                     @if($stock->image_path)
-                                                        <img src="{{ asset($stock->image_path) }}" alt="{{ $stock->common_name }}" class="w-full h-full object-cover">
+                                                        <img
+                                                            src="{{ asset('storage/' . $stock->image_path) }}"
+                                                            alt="{{ $stock->common_name }}"
+                                                            class="w-full h-full object-cover">
                                                     @else
                                                         <div class="w-full h-full flex items-center justify-center">
                                                             <svg class="w-8 h-8 text-amber-500/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">

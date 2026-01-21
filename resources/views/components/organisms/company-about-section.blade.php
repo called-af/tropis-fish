@@ -75,7 +75,7 @@
                             @foreach($images as $index => $img)
                                 <div class="{{ $index === 0 ? 'col-span-2' : '' }} aspect-{{ $index === 0 ? 'video' : 'square' }} overflow-hidden rounded-xl relative group">
                                     <img
-                                        src="{{ asset('storage/' . $img['path']) }}"
+                                        src="{{ asset('storage/company/' . $img['path']) }}"
                                         alt="{{ $img['alt'] ?? 'Company Image' }}"
                                         class="w-full h-full object-cover transform transition-all duration-700"
                                     />
