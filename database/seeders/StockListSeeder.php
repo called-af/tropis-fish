@@ -35,7 +35,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Paracheirodon simulans',
                 'size' => 'Small',
                 'length' => '2-3 cm',
-                'image_path' => 'assets/fish/GREEN NEON TETRA.jpeg',
+                'image_path' => 'assets/fish/GREEN NEON TETRA.png',
             ],
             [
                 'code' => 'OMC001',
@@ -43,7 +43,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Cambarellus patzcuarensis',
                 'size' => 'Small',
                 'length' => '3-4 cm',
-                'image_path' => 'assets/fish/ORANGE MINI MEXICAN CRAYFISH.jpeg',
+                'image_path' => 'assets/fish/ORANGE MINI MEXICAN CRAYFISH.png',
             ],
             [
                 'code' => 'ORS001',
@@ -51,7 +51,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Tylomelania sp.',
                 'size' => 'Medium',
                 'length' => '5-8 cm',
-                'image_path' => 'assets/fish/ORANGE RABBIT SNAIL.jpeg',
+                'image_path' => 'assets/fish/ORANGE RABBIT SNAIL.png',
             ],
             [
                 'code' => 'PC001',
@@ -59,7 +59,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Corydoras panda',
                 'size' => 'Small',
                 'length' => '4-5 cm',
-                'image_path' => 'assets/fish/PANDA CORYDORAS.jpeg',
+                'image_path' => 'assets/fish/PANDA CORYDORAS.png',
             ],
             [
                 'code' => 'RLB001',
@@ -67,7 +67,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Puntius denisonii',
                 'size' => 'Small',
                 'length' => '10-15 cm',
-                'image_path' => 'assets/fish/ROSE LINE BARB.jpeg',
+                'image_path' => 'assets/fish/ROSE LINE BARB.png',
             ],
             [
                 'code' => 'SBS001',
@@ -75,7 +75,7 @@ class StockListSeeder extends Seeder
                 'scientific_name' => 'Neocaridina cf zhangjiajiensis',
                 'size' => 'Small',
                 'length' => '2-3 cm',
-                'image_path' => 'assets/fish/SNOWBALL SHRIMP.jpeg',
+                'image_path' => 'assets/fish/SNOWBALL SHRIMP.png',
             ],
         ];
 

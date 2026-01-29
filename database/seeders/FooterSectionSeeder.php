@@ -16,7 +16,7 @@ class FooterSectionSeeder extends Seeder
             [
                 'type' => 'company',
                 'title' => 'Company Info',
-                'description' => 'Premium quality tropical ornamental fish supplier for your aquarium',
+                'description' => 'Premium quality ornamental freshwater fish supplier for your aquarium',
                 'links' => [],
                 'copyright_text' => 'All rights reserved',
                 'order' => 0,
@@ -41,8 +41,6 @@ class FooterSectionSeeder extends Seeder
                 'title' => 'Information',
                 'description' => null,
                 'links' => [
-                    ['text' => 'How to Order', 'url' => '#'],
-                    ['text' => 'Privacy Policy', 'url' => '#'],
                     ['text' => 'Terms & Conditions', 'url' => '#terms'],
                 ],
                 'copyright_text' => null,

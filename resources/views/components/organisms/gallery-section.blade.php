@@ -6,7 +6,7 @@
             :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
             class="transition-all duration-1000 ease-out">
             <x-molecules.section-header title="Fish Gallery"
-                description="Explore our beautiful and diverse collection of tropical ornamental fish" />
+                description="Explore our beautiful and diverse collection of premium quality tropical ornamental fish" />
         </div>
 
         @if($galleries->count() > 0)
