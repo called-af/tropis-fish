@@ -3,8 +3,8 @@
 @endphp
 
 @if($qualitySection)
-<section class="py-20" x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false">
-    <div class="container mx-auto px-6">
+<section class="min-h-screen flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8" x-data="{ visible: false }" x-intersect:enter="visible = true" x-intersect:leave="visible = false">
+    <div class="container max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             {{-- Left Side: Text Content --}}
             <div class="space-y-3">

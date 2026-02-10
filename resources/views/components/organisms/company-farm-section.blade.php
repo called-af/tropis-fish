@@ -3,9 +3,9 @@
 @endphp
 
 @if($farmSection)
-    <section class="py-20 w-full" x-data="{ visible: false }" x-intersect:enter="visible = true"
+    <section class="min-h-screen flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8" x-data="{ visible: false }" x-intersect:enter="visible = true"
         x-intersect:leave="visible = false">
-        <div class="container w-full mx-auto px-6">
+        <div class="container w-full max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 {{-- Left Side: Images (Grid or Slider) --}}
                 <div :class="visible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 -translate-x-16 scale-90'"
