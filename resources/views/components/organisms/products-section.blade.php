@@ -114,7 +114,7 @@
                                         :commonName="$stock->common_name"
                                         :size="$stock->size"
                                         :length="$stock->length"
-                                        :image="$stock->image_path ? asset('storage/' . $stock->image_path) : null"
+                                       :image="$stock->image_path ? asset('storage/' . $stock->image_path) : null"
                                     />
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                                 <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-800">
                                                     @if($stock->image_path)
                                                         <img
-                                                            src="{{ asset('storage/' . $stock->image_path) }}"
+                                                            src="{{ asset("storage/{$stock->image_path}") }}"
                                                             alt="{{ $stock->common_name }}"
                                                             class="w-full h-full object-cover">
                                                     @else
