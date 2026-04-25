@@ -190,7 +190,7 @@
                                 x-transition:enter-start="opacity-0 translate-y-4"
                                 x-transition:enter-end="opacity-100 translate-y-0"
                             >
-                                <x-atoms.button variant="secondary" size="lg" href="#products" class="hover-lift w-full sm:w-auto justify-center">
+                                <x-atoms.button variant="secondary" size="lg" href="#stock-list" class="hover-lift w-full sm:w-auto justify-center">
                                     View Collection
                                 </x-atoms.button>
                                 <x-atoms.button variant="outline" size="lg" href="#contact" class="hover-lift w-full sm:w-auto justify-center">
