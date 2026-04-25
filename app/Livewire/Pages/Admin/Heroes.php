@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin;
 
 use App\Models\Hero;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -111,6 +112,7 @@ class Heroes extends Component
                 'is_active' => $validated['isActive'],
             ]);
 
+            Cache::forget('landing_heroes');
             session()->flash('message', 'Hero updated successfully.');
         } else {
             $maxOrder = Hero::max('order') ?? 0;
@@ -127,6 +129,7 @@ class Heroes extends Component
                 'order' => $maxOrder + 1,
             ]);
 
+            Cache::forget('landing_heroes');
             session()->flash('message', 'Hero created successfully.');
         }
 
@@ -188,6 +191,7 @@ class Heroes extends Component
         }
 
         $hero->delete();
+        Cache::forget('landing_heroes');
         session()->flash('message', 'Hero deleted successfully.');
 
         $this->reset(['deletingId']);

@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin;
 
 use App\Models\Gallery;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -63,6 +64,7 @@ class Galleries extends Component
                 'image_path' => $imagePath ?? $gallery->image_path,
             ]);
 
+            $this->clearGalleryCache();
             session()->flash('message', 'Gallery updated successfully.');
         } else {
             $maxOrder = Gallery::where('category', $validated['category'])->max('order') ?? 0;
@@ -76,6 +78,7 @@ class Galleries extends Component
                 'image_path' => $imagePath,
             ]);
 
+            $this->clearGalleryCache();
             session()->flash('message', 'Gallery created successfully.');
         }
 
@@ -119,6 +122,7 @@ class Galleries extends Component
         }
 
         $gallery->delete();
+        $this->clearGalleryCache();
         session()->flash('message', 'Gallery deleted successfully.');
 
         $this->reset(['deletingId']);
@@ -129,6 +133,14 @@ class Galleries extends Component
     {
         $this->reset(['title', 'description', 'category', 'image', 'editingId']);
         $this->showFormModal = false;
+    }
+
+    protected function clearGalleryCache(): void
+    {
+        Cache::forget('gallery_fish');
+        Cache::forget('gallery_farm');
+        Cache::forget('gallery_quality');
+        Cache::forget('landing_galleries');
     }
 
     #[Layout('components.layouts.admin', ['heading' => 'Gallery Management'])]

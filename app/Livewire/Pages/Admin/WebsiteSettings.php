@@ -4,6 +4,9 @@ namespace App\Livewire\Pages\Admin;
 
 use App\Mail\ContactFormMail;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;

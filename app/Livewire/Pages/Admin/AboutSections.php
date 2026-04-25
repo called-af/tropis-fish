@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Admin;
 
 use App\Models\AboutSection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -162,11 +163,13 @@ class AboutSections extends Component
             }
 
             $aboutSection->update($data);
+            Cache::forget('landing_about_section');
             session()->flash('message', 'About section updated successfully.');
         } else {
             $maxOrder = AboutSection::query()->max('order') ?? 0;
             $data['order'] = $maxOrder + 1;
             AboutSection::create($data);
+            Cache::forget('landing_about_section');
             session()->flash('message', 'About section created successfully.');
         }
 
@@ -230,6 +233,7 @@ class AboutSections extends Component
         }
 
         AboutSection::findOrFail($this->deletingId)->delete();
+        Cache::forget('landing_about_section');
         session()->flash('message', 'About section deleted successfully.');
         $this->deletingId = null;
         $this->showDeleteModal = false;

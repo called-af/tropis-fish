@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Admin;
 
 use App\Models\Setting;
 use App\Models\Stat;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -47,6 +48,7 @@ class Stats extends Component
         Setting::set('stats_title', $this->statsTitle);
         Setting::set('stats_description', $this->statsDescription);
 
+        Cache::forget('landing_stats');
         session()->flash('message', 'Stats section settings saved successfully.');
     }
 
@@ -64,6 +66,7 @@ class Stats extends Component
                 'value' => $validated['value'],
             ]);
 
+            Cache::forget('landing_stats');
             session()->flash('message', 'Stat updated successfully.');
         } else {
             // Check if we already have 4 stats
@@ -84,6 +87,7 @@ class Stats extends Component
                 'is_active' => true,
             ]);
 
+            Cache::forget('landing_stats');
             session()->flash('message', 'Stat created successfully.');
         }
 
@@ -127,6 +131,7 @@ class Stats extends Component
 
         $stat = Stat::findOrFail($this->deletingId);
         $stat->delete();
+        Cache::forget('landing_stats');
         session()->flash('message', 'Stat deleted successfully.');
 
         $this->reset(['deletingId']);
