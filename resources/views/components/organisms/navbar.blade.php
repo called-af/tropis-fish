@@ -2,6 +2,13 @@
     $companyLogo = App\Models\Setting::get('company_logo');
     $companyName = App\Models\Setting::get('company_name', 'PT. Tropis Fish Indonesia');
     $companyDesc = App\Models\Setting::get('company_description', 'Export of Ornamental Freshwater Fish');
+    
+    $categories = Illuminate\Support\Facades\Cache::remember('navbar_categories', 3600, function() {
+        return App\Models\Category::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+    });
 @endphp
 
 <nav id="desktop-nav"
@@ -36,10 +43,53 @@
                 class="nav-link company-profile-link transition-colors duration-300 text-white hover:text-amber-500">
                 Company Profile
             </a>
-            <a href="{{ route('home') }}#stock-list"
-                class="nav-link stock-list-link transition-colors duration-300 text-white hover:text-amber-500">
-                Stock List
-            </a>
+
+            {{-- Stock List Dropdown --}}
+            <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                <a href="{{ route('stock-list') }}"
+                    class="nav-link stock-list-link transition-colors duration-300 text-white hover:text-amber-500 flex items-center gap-1">
+                    Stock List
+                    <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+                
+                {{-- Dropdown Menu --}}
+                <div x-show="open"
+                    x-transition:enter="transition ease-out duration-205"
+                    x-transition:enter-start="opacity-0 translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 translate-y-0"
+                    x-transition:leave-end="opacity-0 translate-y-1"
+                    class="absolute right-0 mt-1 w-[600px] rounded-xl bg-gray-900 border border-gray-700 shadow-2xl p-4 z-50 backdrop-blur-md bg-opacity-95"
+                    style="display: none;"
+                >
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="col-span-3 pb-2 border-b border-gray-800 flex justify-between items-center">
+                            <a href="{{ route('stock-list') }}" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-amber-500 hover:text-white hover:bg-amber-500/10 rounded-lg transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                                All Stock Lists
+                            </a>
+                            <span class="text-xs text-gray-500 font-semibold px-3">Fish Categories</span>
+                        </div>
+                        @if($categories->count() > 0)
+                            @foreach($categories as $cat)
+                                <a href="{{ route('category.detail', $cat->slug) }}" class="flex items-center px-3 py-2 text-xs font-semibold text-gray-300 hover:text-amber-500 hover:bg-gray-800/50 rounded-lg transition-all duration-200 truncate">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500/40 mr-2 shrink-0"></span>
+                                    {{ $cat->name }}
+                                </a>
+                            @endforeach
+                        @else
+                            <div class="col-span-3 text-center py-4 text-xs text-gray-500">
+                                No active categories found.
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
             <a href="{{ route('home') }}#gallery"
                 class="nav-link gallery-link transition-colors duration-300 text-white hover:text-amber-500">
                 Gallery
@@ -95,10 +145,35 @@
                 class="mobile-link company-profile-link block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300">
                 Company Profile
             </a>
-            <a href="{{ route('home') }}#stock-list"
-                class="mobile-link stock-list-link block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300">
-                Stock List
-            </a>
+
+            {{-- Mobile Stock List Accordion --}}
+            <div x-data="{ open: false }">
+                <button @click="open = !open"
+                    class="w-full text-left block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300 flex items-center justify-between">
+                    <span>Stock List</span>
+                    <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div x-show="open" x-collapse class="p-2 bg-amber-600/30 rounded-lg mt-1 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-700/50">
+                    <div class="grid grid-cols-2 gap-1">
+                        <a href="{{ route('stock-list') }}"
+                            class="mobile-link col-span-2 block px-4 py-2 text-sm text-amber-250 font-bold hover:bg-amber-700/40 rounded-md transition-all duration-300 border-b border-amber-600/20">
+                            All Stock Lists
+                        </a>
+                        @if($categories->count() > 0)
+                            @foreach($categories as $cat)
+                                <a href="{{ route('category.detail', $cat->slug) }}"
+                                    class="mobile-link block px-3 py-2 text-xs text-white hover:bg-amber-700/40 rounded-md transition-all duration-300 truncate">
+                                    • {{ $cat->name }}
+                                </a>
+                            @endforeach
+                        @else
+                            <div class="col-span-2 text-center py-2 text-xs text-amber-200">No active categories.</div>
+                        @endif
+                    </div>
+                </div>
+            </div>
             <a href="{{ route('home') }}#gallery"
                 class="mobile-link gallery-link block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300">
                 Gallery
@@ -117,7 +192,8 @@
 
 <style>
     #mobile-menu.active {
-        max-height: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
         opacity: 1;
     }
 </style>

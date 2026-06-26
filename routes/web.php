@@ -1,40 +1,63 @@
 <?php
 
+use App\Livewire\Pages\Admin\AboutSections;
+use App\Livewire\Pages\Admin\Categories;
+use App\Livewire\Pages\Admin\CompanySections;
+use App\Livewire\Pages\Admin\Dashboard;
+use App\Livewire\Pages\Admin\FooterSections;
+use App\Livewire\Pages\Admin\Galleries;
+use App\Livewire\Pages\Admin\Heroes;
+use App\Livewire\Pages\Admin\Logout;
+use App\Livewire\Pages\Admin\Profile;
+use App\Livewire\Pages\Admin\Stats;
+use App\Livewire\Pages\Admin\StockLists;
+use App\Livewire\Pages\Admin\Terms;
+use App\Livewire\Pages\Admin\WebsiteSettings;
+use App\Livewire\Pages\Auth\Login;
+use App\Livewire\Pages\CategoryDetail;
+use App\Livewire\Pages\Gallery;
+use App\Livewire\Pages\GalleryFarm;
+use App\Livewire\Pages\GalleryFish;
+use App\Livewire\Pages\GalleryQuality;
+use App\Livewire\Pages\Landing;
+use App\Livewire\Pages\StockList;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->group(function (): void {
     // Public Pages — with rate limiting to prevent abuse (60 requests/minute)
     Route::middleware(['throttle:60,1'])->group(function (): void {
-        Route::get('/', App\Livewire\Pages\Landing::class)->name('home');
-        Route::get('/stock-list', App\Livewire\Pages\StockList::class)->name('stock-list');
-        Route::get('/gallery', App\Livewire\Pages\Gallery::class)->name('gallery');
-        Route::get('/gallery/fish', App\Livewire\Pages\GalleryFish::class)->name('gallery.fish');
-        Route::get('/gallery/farm', App\Livewire\Pages\GalleryFarm::class)->name('gallery.farm');
-        Route::get('/gallery/quality', App\Livewire\Pages\GalleryQuality::class)->name('gallery.quality');
+        Route::get('/', Landing::class)->name('home');
+        Route::get('/stock-list', StockList::class)->name('stock-list');
+        Route::get('/category/{slug}', CategoryDetail::class)->name('category.detail');
+        Route::get('/gallery', Gallery::class)->name('gallery');
+        Route::get('/gallery/fish', GalleryFish::class)->name('gallery.fish');
+        Route::get('/gallery/farm', GalleryFarm::class)->name('gallery.farm');
+        Route::get('/gallery/quality', GalleryQuality::class)->name('gallery.quality');
     });
 
     // Authentication Routes
     Route::middleware(['guest:admin', 'throttle:10,1'])->group(function (): void {
-        Route::get('/login', App\Livewire\Pages\Auth\Login::class)->name('login');
+        Route::get('/login', Login::class)->name('login');
     });
 
     // Admin Routes
     Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (): void {
-        Route::get('/dashboard', App\Livewire\Pages\Admin\Dashboard::class)->name('dashboard');
-        Route::get('/profile', App\Livewire\Pages\Admin\Profile::class)->name('profile');
-        Route::get('/logout', App\Livewire\Pages\Admin\Logout::class)->name('logout');
+        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::get('/profile', Profile::class)->name('profile');
+        Route::get('/logout', Logout::class)->name('logout');
     });
 
     // Admin Management Routes
     Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function (): void {
-        Route::get('/heroes', App\Livewire\Pages\Admin\Heroes::class)->name('heroes');
-        Route::get('/galleries', App\Livewire\Pages\Admin\Galleries::class)->name('galleries');
-        Route::get('/stock-lists', App\Livewire\Pages\Admin\StockLists::class)->name('stock-lists');
-        Route::get('/stats', App\Livewire\Pages\Admin\Stats::class)->name('stats');
-        Route::get('/about-sections', App\Livewire\Pages\Admin\AboutSections::class)->name('about-sections');
-        Route::get('/company-sections', App\Livewire\Pages\Admin\CompanySections::class)->name('company-sections');
-        Route::get('/footer-sections', App\Livewire\Pages\Admin\FooterSections::class)->name('footer-sections');
-        Route::get('/terms', App\Livewire\Pages\Admin\Terms::class)->name('terms');
-        Route::get('/settings', App\Livewire\Pages\Admin\WebsiteSettings::class)->name('settings');
+        Route::get('/heroes', Heroes::class)->name('heroes');
+        Route::get('/galleries', Galleries::class)->name('galleries');
+        Route::get('/stock-lists', StockLists::class)->name('stock-lists');
+        Route::get('/categories', Categories::class)->name('categories');
+        Route::get('/stats', Stats::class)->name('stats');
+        Route::get('/about-sections', AboutSections::class)->name('about-sections');
+        Route::get('/company-sections', CompanySections::class)->name('company-sections');
+        Route::get('/footer-sections', FooterSections::class)->name('footer-sections');
+        Route::get('/terms', Terms::class)->name('terms');
+        Route::get('/settings', WebsiteSettings::class)->name('settings');
     });
 });

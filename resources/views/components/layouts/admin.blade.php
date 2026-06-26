@@ -77,6 +77,11 @@
                     <span class="truncate">Stock List</span>
                 </a>
 
+                <a href="{{ route('admin.categories') }}" class="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition {{ request()->routeIs('admin.categories') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
+                    <x-heroicon-o-tag class="w-5 h-5 flex-shrink-0" />
+                    <span class="truncate">Categories</span>
+                </a>
+
                 <a href="{{ route('admin.galleries') }}" class="flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg transition {{ request()->routeIs('admin.galleries') ? 'bg-blue-600 text-white font-semibold' : 'text-gray-300 hover:bg-gray-700' }}">
                     <x-heroicon-o-photo class="w-5 h-5 flex-shrink-0" />
                     <span class="truncate">Gallery</span>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\Admin;
 
+use App\Models\Category;
 use App\Models\Setting;
 use App\Models\StockList;
 use Livewire\Attributes\Layout;
@@ -14,6 +15,8 @@ class StockLists extends Component
 {
     use WithFileUploads;
     use WithPagination;
+
+    public ?int $categoryId = null;
 
     public string $code = '';
 
@@ -89,6 +92,7 @@ class StockLists extends Component
     public function save(): void
     {
         $validated = $this->validate([
+            'categoryId' => 'nullable|exists:categories,id',
             'code' => 'required|string|max:255|unique:stock_lists,code,'.$this->editingId,
             'scientificName' => 'required|string|max:255',
             'commonName' => 'required|string|max:255',
@@ -111,6 +115,7 @@ class StockLists extends Component
             }
 
             $stockList->update([
+                'category_id' => $validated['categoryId'],
                 'code' => $validated['code'],
                 'scientific_name' => $validated['scientificName'],
                 'common_name' => $validated['commonName'],
@@ -122,6 +127,7 @@ class StockLists extends Component
             session()->flash('message', 'Stock list updated successfully.');
         } else {
             StockList::create([
+                'category_id' => $validated['categoryId'],
                 'code' => $validated['code'],
                 'scientific_name' => $validated['scientificName'],
                 'common_name' => $validated['commonName'],
@@ -133,13 +139,13 @@ class StockLists extends Component
             session()->flash('message', 'Stock list created successfully.');
         }
 
-        $this->reset(['code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
         $this->showFormModal = false;
     }
 
     public function openCreateModal(): void
     {
-        $this->reset(['code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
         $this->showFormModal = true;
     }
 
@@ -147,6 +153,7 @@ class StockLists extends Component
     {
         $stockList = StockList::findOrFail($id);
         $this->editingId = $stockList->id;
+        $this->categoryId = $stockList->category_id;
         $this->code = $stockList->code;
         $this->scientificName = $stockList->scientific_name;
         $this->commonName = $stockList->common_name;
@@ -182,7 +189,7 @@ class StockLists extends Component
 
     public function cancelEdit(): void
     {
-        $this->reset(['code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
         $this->showFormModal = false;
     }
 
@@ -192,11 +199,13 @@ class StockLists extends Component
     {
         return view('livewire.pages.admin.stock-lists', [
             'stockLists' => StockList::query()
+                ->with('category')
                 ->when($this->search, fn ($query) => $query->where('code', 'like', "%{$this->search}%")
                     ->orWhere('common_name', 'like', "%{$this->search}%")
                     ->orWhere('scientific_name', 'like', "%{$this->search}%"))
                 ->orderBy('code')
                 ->paginate(10),
+            'categories' => Category::orderBy('name')->get(),
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\StockList;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Large',
                 'length' => '40-50 cm',
                 'image_path' => 'assets/fish/BLACK GHOST.jpeg',
+                'category_slug' => 'brackish-fish-others',
             ],
             [
                 'code' => 'CL001',
@@ -28,6 +30,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Medium',
                 'length' => '15-20 cm',
                 'image_path' => 'assets/fish/CLOWN LOACH.jpeg',
+                'category_slug' => 'loach',
             ],
             [
                 'code' => 'GNT001',
@@ -36,6 +39,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Small',
                 'length' => '2-3 cm',
                 'image_path' => 'assets/fish/GREEN NEON TETRA.png',
+                'category_slug' => 'characin',
             ],
             [
                 'code' => 'OMC001',
@@ -44,6 +48,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Small',
                 'length' => '3-4 cm',
                 'image_path' => 'assets/fish/ORANGE MINI MEXICAN CRAYFISH.png',
+                'category_slug' => 'crayfish',
             ],
             [
                 'code' => 'ORS001',
@@ -52,6 +57,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Medium',
                 'length' => '5-8 cm',
                 'image_path' => 'assets/fish/ORANGE RABBIT SNAIL.png',
+                'category_slug' => 'snail',
             ],
             [
                 'code' => 'PC001',
@@ -60,6 +66,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Small',
                 'length' => '4-5 cm',
                 'image_path' => 'assets/fish/PANDA CORYDORAS.png',
+                'category_slug' => 'corydoras',
             ],
             [
                 'code' => 'RLB001',
@@ -68,6 +75,7 @@ class StockListSeeder extends Seeder
                 'size' => 'Small',
                 'length' => '10-15 cm',
                 'image_path' => 'assets/fish/ROSE LINE BARB.png',
+                'category_slug' => 'barb',
             ],
             [
                 'code' => 'SBS001',
@@ -76,13 +84,22 @@ class StockListSeeder extends Seeder
                 'size' => 'Small',
                 'length' => '2-3 cm',
                 'image_path' => 'assets/fish/SNOWBALL SHRIMP.png',
+                'category_slug' => 'shrimp',
             ],
         ];
 
-        foreach ($stocks as $stock) {
+        foreach ($stocks as $stockData) {
+            $categorySlug = $stockData['category_slug'];
+            unset($stockData['category_slug']);
+
+            $category = Category::where('slug', $categorySlug)->first();
+            if ($category) {
+                $stockData['category_id'] = $category->id;
+            }
+
             StockList::updateOrCreate(
-                ['common_name' => $stock['common_name']],
-                $stock
+                ['common_name' => $stockData['common_name']],
+                $stockData
             );
         }
     }

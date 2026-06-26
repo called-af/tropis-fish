@@ -124,6 +124,7 @@
                         <tr class="bg-gray-900/50 border-b border-gray-700">
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Image</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Code</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Category</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Scientific Name</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Common Name</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Size</th>
@@ -145,6 +146,9 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="text-amber-500 font-mono font-semibold">{{ $stockList->code }}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-blue-400 font-semibold">{{ $stockList->category?->name ?? 'None' }}</span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="text-gray-300 italic">{{ $stockList->scientific_name }}</span>
@@ -201,8 +205,11 @@
                             @endif
 
                             <div class="flex-1 min-w-0">
-                                <div class="mb-2">
+                                <div class="mb-2 flex flex-wrap gap-2 items-center">
                                     <span class="inline-block text-amber-500 font-mono text-sm font-semibold px-2 py-1 bg-amber-500/10 rounded-lg">{{ $stockList->code }}</span>
+                                    @if($stockList->category)
+                                        <span class="inline-block text-blue-400 text-xs font-semibold px-2 py-1 bg-blue-500/10 rounded-lg">{{ $stockList->category->name }}</span>
+                                    @endif
                                 </div>
                                 <h3 class="text-white font-bold text-base sm:text-lg mb-1">{{ $stockList->common_name }}</h3>
                                 <p class="text-gray-400 italic text-sm truncate">{{ $stockList->scientific_name }}</p>
@@ -288,6 +295,17 @@
             </div>
 
             <form wire:submit="save" class="space-y-4 sm:space-y-6">
+                <x-atoms.select
+                    wire:model="categoryId"
+                    label="Category"
+                    placeholder="Select Category (None)"
+                    :error="$errors->first('categoryId')"
+                >
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </x-atoms.select>
+
                 <x-atoms.input
                     type="text"
                     wire:model="code"

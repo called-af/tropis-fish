@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             SettingSeeder::class,
             HeroSeeder::class,
+            CategorySeeder::class,
             StatSeeder::class,
             StockListSeeder::class,
             GallerySeeder::class,

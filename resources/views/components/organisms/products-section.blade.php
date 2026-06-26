@@ -1,5 +1,15 @@
 @props(['stockLists' => [], 'downloadLink' => null])
 
+@php
+    $categories = \Illuminate\Support\Facades\Cache::remember('active_categories', 3600, function () {
+        return \App\Models\Category::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+    });
+    $category = $this->category ?? '';
+@endphp
+
 <section id="stock-list" class="py-24 px-4 sm:px-6 lg:px-8 w-full">
     {{-- Anchor point for stock-list navigation --}}
     <div id="stock-list" class="absolute -top-24"></div>
@@ -17,7 +27,7 @@
             />
         </div>
 
-        @if($stockLists && $stockLists->count() > 0)
+        @if(($stockLists && $stockLists->count() > 0) || $this->search || $category)
             <div
                 x-data="{ viewMode: 'grid' }"
                 class="mt-12"
@@ -48,19 +58,61 @@
                                 </button>
                             @endif
                         </div>
-                        @if($this->search)
-                            <div class="mt-3 flex items-center justify-center gap-2">
-                                <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500 text-sm">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                    Search: "{{ $this->search }}"
-                                    <button wire:click="$set('search', '')" class="hover:text-white transition">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
+
+                        {{-- Category Filter Pills --}}
+                        <div class="mt-4 border-t border-gray-700/50 pt-4">
+                            <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+                                <button
+                                    wire:click="$set('category', '')"
+                                    class="px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 border {{ !$category ? 'bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20' : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-605 hover:text-white' }}"
+                                >
+                                    All Categories
+                                </button>
+                                @foreach($categories as $cat)
+                                    <button
+                                        wire:click="$set('category', '{{ $cat->slug }}')"
+                                        class="px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 border {{ $category === $cat->slug ? 'bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20' : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-605 hover:text-white' }}"
+                                    >
+                                        {{ $cat->name }}
                                     </button>
-                                </span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Active Filters Display --}}
+                        @if($this->search || $category)
+                            <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                                @if($this->search)
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-500 text-sm">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        Search: "{{ $this->search }}"
+                                        <button wire:click="$set('search', '')" class="hover:text-white transition">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </span>
+                                @endif
+                                @if($category)
+                                    @php
+                                        $selectedCat = $categories->firstWhere('slug', $category);
+                                    @endphp
+                                    @if($selectedCat)
+                                        <span class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-400 text-sm">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            Category: {{ $selectedCat->name }}
+                                            <button wire:click="$set('category', '')" class="hover:text-white transition">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    @endif
+                                @endif
                             </div>
                         @endif
                     </div>
@@ -237,7 +289,7 @@
                 <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl border-2 border-amber-500/30 p-16 text-center">
                     <div class="flex flex-col items-center gap-4">
                         <div class="w-20 h-20 bg-amber-500/10 rounded-full flex items-center justify-center">
-                            @if($this->search)
+                            @if($this->search || $category)
                                 <svg class="w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -248,20 +300,23 @@
                             @endif
                         </div>
                         <div>
-                            @if($this->search)
+                            @if($this->search || $category)
                                 <h3 class="text-xl font-bold text-white mb-2">No Fish Found</h3>
                                 <p class="text-gray-400 mb-4">
-                                    We couldn't find any fish matching "{{ $this->search }}".<br>
-                                    Try adjusting your search terms.
+                                    We couldn't find any fish matching your criteria.<br>
+                                    Try adjusting your search terms or filter.
                                 </p>
                                 <button
-                                    wire:click="$set('search', '')"
-                                    class="px-6 py-3 bg-amber-500-600 text-black font-semibold rounded-xl transition inline-flex items-center gap-2"
+                                    wire:click="
+                                        $set('search', '');
+                                        $set('category', '');
+                                    "
+                                    class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-semibold rounded-xl transition inline-flex items-center gap-2"
                                 >
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                     </svg>
-                                    Clear Search
+                                    Clear Filters
                                 </button>
                             @else
                                 <h3 class="text-xl font-bold text-white mb-2">Stock List Coming Soon</h3>

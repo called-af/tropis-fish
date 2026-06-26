@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages;
 
 use App\Models\AboutSection;
+use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Hero;
 use App\Models\Setting;
@@ -19,6 +20,9 @@ class Landing extends Component
 
     #[Url(as: 'q')]
     public $search = '';
+
+    #[Url(as: 'c')]
+    public string $category = '';
 
     public function render()
     {
@@ -37,14 +41,19 @@ class Landing extends Component
         $statsTitle = Setting::get('stats_title', 'Trusted by Thousands of Customers');
         $statsDescription = Setting::get('stats_description', 'Our experience and dedication in the ornamental fish industry');
 
-        // Stock list query with search — NOT cached because of pagination/search
-        $stockListsQuery = StockList::query();
+        $stockListsQuery = StockList::query()->with('category');
 
         if ($this->search) {
             $stockListsQuery->where(function ($query) {
                 $query->where('code', 'like', '%'.$this->search.'%')
                     ->orWhere('common_name', 'like', '%'.$this->search.'%')
                     ->orWhere('scientific_name', 'like', '%'.$this->search.'%');
+            });
+        }
+
+        if ($this->category) {
+            $stockListsQuery->whereHas('category', function ($query) {
+                $query->where('slug', $this->category);
             });
         }
 
@@ -63,6 +72,12 @@ class Landing extends Component
                     ->get();
             }),
             'stockLists' => $stockListsQuery->orderBy('code')->paginate(8),
+            'categories' => Cache::remember('active_categories', 3600, function () {
+                return Category::where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('name')
+                    ->get();
+            }),
             'stats' => Cache::remember('landing_stats', 3600, function () {
                 return Stat::where('is_active', true)
                     ->orderBy('order')
@@ -80,6 +95,11 @@ class Landing extends Component
     }
 
     public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingCategory(): void
     {
         $this->resetPage();
     }
