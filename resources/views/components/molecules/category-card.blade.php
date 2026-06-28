@@ -15,6 +15,5 @@
 
     <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
         <h3 class="text-2xl font-bold mb-1">{{ $name }}</h3>
-        <p class="text-white/90">{{ $count }} Jenis Ikan</p>
     </div>
 </div>

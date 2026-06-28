@@ -24,7 +24,7 @@
     <x-organisms.company-quality-section />
 
     {{-- Products Section --}}
-    <x-organisms.products-section :stockLists="$stockLists" :downloadLink="$downloadLink" />
+    <!-- <x-organisms.products-section :stockLists="$stockLists" :downloadLink="$downloadLink" /> -->
 
     {{-- Gallery Section --}}
     <x-organisms.gallery-section :galleries="$galleries" />
@@ -111,7 +111,7 @@
                             <h4 class="text-amber-500 font-bold text-xs sm:text-sm uppercase tracking-wider mb-2">Email
                             </h4>
                             <a href="mailto:sales@tropisfish.com"
-                                class="text-gray-300 text-sm sm:text-base hover:text-amber-500 transition break-all">sales@tropisfish.com</a>
+                              class="text-gray-300 text-sm sm:text-base hover:text-amber-500 transition break-all">sales@tropisfish.com</a>
                         </div>
                     </div>
 

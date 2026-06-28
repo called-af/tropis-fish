@@ -45,8 +45,7 @@ class Landing extends Component
 
         if ($this->search) {
             $stockListsQuery->where(function ($query) {
-                $query->where('code', 'like', '%'.$this->search.'%')
-                    ->orWhere('common_name', 'like', '%'.$this->search.'%')
+                $query->where('common_name', 'like', '%'.$this->search.'%')
                     ->orWhere('scientific_name', 'like', '%'.$this->search.'%');
             });
         }
@@ -71,7 +70,7 @@ class Landing extends Component
                     ->limit(8)
                     ->get();
             }),
-            'stockLists' => $stockListsQuery->orderBy('code')->paginate(8),
+            'stockLists' => $stockListsQuery->orderBy('common_name')->orderBy('scientific_name')->paginate(8),
             'categories' => Cache::remember('active_categories', 3600, function () {
                 return Category::where('is_active', true)
                     ->orderBy('sort_order')

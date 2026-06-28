@@ -111,7 +111,7 @@
     <div class="mb-8">
         <x-atoms.search-input
             wire:model.live="search"
-            placeholder="Search by code, common name, or scientific name..."
+            placeholder="Search by common name or scientific name..."
         />
     </div>
 
@@ -123,11 +123,9 @@
                     <thead>
                         <tr class="bg-gray-900/50 border-b border-gray-700">
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Image</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Code</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Category</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Scientific Name</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Common Name</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Size</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Scientific Name</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Length (cm)</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Actions</th>
                         </tr>
@@ -145,19 +143,13 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="text-amber-500 font-mono font-semibold">{{ $stockList->code }}</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="text-blue-400 font-semibold">{{ $stockList->category?->name ?? 'None' }}</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="text-gray-300 italic">{{ $stockList->scientific_name }}</span>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="text-white font-medium">{{ $stockList->common_name }}</span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="text-gray-300">{{ $stockList->size }}</span>
+                                <td class="px-6 py-4">
+                                    <span class="text-gray-300 italic">{{ $stockList->scientific_name }}</span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="text-gray-300">{{ $stockList->length }}</span>
@@ -206,7 +198,6 @@
 
                             <div class="flex-1 min-w-0">
                                 <div class="mb-2 flex flex-wrap gap-2 items-center">
-                                    <span class="inline-block text-amber-500 font-mono text-sm font-semibold px-2 py-1 bg-amber-500/10 rounded-lg">{{ $stockList->code }}</span>
                                     @if($stockList->category)
                                         <span class="inline-block text-blue-400 text-xs font-semibold px-2 py-1 bg-blue-500/10 rounded-lg">{{ $stockList->category->name }}</span>
                                     @endif
@@ -216,11 +207,7 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-3 mb-4">
-                            <div class="bg-gray-900/50 rounded-lg p-3">
-                                <p class="text-xs text-gray-400 mb-1">Size</p>
-                                <p class="text-white font-semibold">{{ $stockList->size }}</p>
-                            </div>
+                        <div class="grid grid-cols-1 gap-3 mb-4">
                             <div class="bg-gray-900/50 rounded-lg p-3">
                                 <p class="text-xs text-gray-400 mb-1">Length</p>
                                 <p class="text-white font-semibold">{{ $stockList->length }} cm</p>
@@ -308,10 +295,10 @@
 
                 <x-atoms.input
                     type="text"
-                    wire:model="code"
-                    label="Code *"
-                    placeholder="e.g., DIS-005"
-                    :error="$errors->first('code')"
+                    wire:model="commonName"
+                    label="Common Name *"
+                    placeholder="e.g., Discus Blue Diamond"
+                    :error="$errors->first('commonName')"
                     required
                 />
 
@@ -326,32 +313,12 @@
 
                 <x-atoms.input
                     type="text"
-                    wire:model="commonName"
-                    label="Common Name *"
-                    placeholder="e.g., Discus Blue Diamond"
-                    :error="$errors->first('commonName')"
+                    wire:model="length"
+                    label="Length (cm) *"
+                    placeholder="e.g., 18"
+                    :error="$errors->first('length')"
                     required
                 />
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                    <x-atoms.input
-                        type="text"
-                        wire:model="size"
-                        label="Size *"
-                        placeholder="e.g., Large, Medium, Small"
-                        :error="$errors->first('size')"
-                        required
-                    />
-
-                    <x-atoms.input
-                        type="text"
-                        wire:model="length"
-                        label="Length (cm) *"
-                        placeholder="e.g., 18"
-                        :error="$errors->first('length')"
-                        required
-                    />
-                </div>
 
                 <div x-data="fileInputData">
                     <x-atoms.file-input

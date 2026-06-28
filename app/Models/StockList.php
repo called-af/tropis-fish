@@ -9,10 +9,8 @@ class StockList extends Model
 {
     protected $fillable = [
         'category_id',
-        'code',
         'common_name',
         'scientific_name',
-        'size',
         'length',
         'image_path',
     ];

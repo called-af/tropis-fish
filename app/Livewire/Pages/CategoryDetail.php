@@ -56,10 +56,10 @@ class CategoryDetail extends Component
         }
 
         $stockLists = $this->category->stockLists()
-            ->when($this->search, fn ($query) => $query->where(fn ($q) => $q->where('code', 'like', "%{$this->search}%")
-                ->orWhere('common_name', 'like', "%{$this->search}%")
+            ->when($this->search, fn ($query) => $query->where(fn ($q) => $q->where('common_name', 'like', "%{$this->search}%")
                 ->orWhere('scientific_name', 'like', "%{$this->search}%")))
-            ->orderBy('code')
+            ->orderBy('common_name')
+            ->orderBy('scientific_name')
             ->paginate(12);
 
         return view('livewire.pages.category-detail', [

@@ -44,11 +44,16 @@
                 Company Profile
             </a>
 
-            {{-- Stock List Dropdown --}}
+            <a href="{{ route('home') }}#stock-list"
+                class="nav-link stock-list-link transition-colors duration-300 text-white hover:text-amber-500">
+                Stock List
+            </a>
+
+            {{-- Freshwater Fish Dropdown --}}
             <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <a href="{{ route('stock-list') }}"
-                    class="nav-link stock-list-link transition-colors duration-300 text-white hover:text-amber-500 flex items-center gap-1">
-                    Stock List
+                <a href="{{ route('categories') }}"
+                    class="nav-link transition-colors duration-300 text-white hover:text-amber-500 flex items-center gap-1">
+                    Freshwater Fish
                     <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -67,11 +72,11 @@
                 >
                     <div class="grid grid-cols-3 gap-2">
                         <div class="col-span-3 pb-2 border-b border-gray-800 flex justify-between items-center">
-                            <a href="{{ route('stock-list') }}" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-amber-500 hover:text-white hover:bg-amber-500/10 rounded-lg transition-colors">
+                            <a href="{{ route('categories') }}" class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-amber-500 hover:text-white hover:bg-amber-500/10 rounded-lg transition-colors">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg>
-                                All Stock Lists
+                                All Categories
                             </a>
                             <span class="text-xs text-gray-500 font-semibold px-3">Fish Categories</span>
                         </div>
@@ -113,7 +118,7 @@
             <img src="{{ $companyLogo ? asset('storage/' . $companyLogo) : asset('assets/logo-pt.jpeg') }}"
                 alt="{{ $companyName }}" class="h-10 w-10 object-cover rounded-full border-2 border-amber-400">
             <div class="flex flex-col gap-0.5 items-center sm:hidden">
-                <span class="font-stencil font-bold text-base text-white leading-tight text-center">
+                <span id="mobile-brand" class="font-stencil font-bold text-base text-white leading-tight text-center">
                     {{ $companyName }}
                 </span>
 
@@ -146,20 +151,25 @@
                 Company Profile
             </a>
 
-            {{-- Mobile Stock List Accordion --}}
+            <a href="{{ route('home') }}#stock-list"
+                class="mobile-link stock-list-link block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300">
+                Stock List
+            </a>
+
+            {{-- Mobile Freshwater Fish Accordion --}}
             <div x-data="{ open: false }">
                 <button @click="open = !open"
                     class="w-full text-left block px-4 py-3 text-white hover:bg-amber-600 rounded-lg transition-all duration-300 flex items-center justify-between">
-                    <span>Stock List</span>
+                    <span>Freshwater Fish</span>
                     <svg class="w-4 h-4 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 <div x-show="open" x-collapse class="p-2 bg-amber-600/30 rounded-lg mt-1 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-700/50">
                     <div class="grid grid-cols-2 gap-1">
-                        <a href="{{ route('stock-list') }}"
+                        <a href="{{ route('categories') }}"
                             class="mobile-link col-span-2 block px-4 py-2 text-sm text-amber-250 font-bold hover:bg-amber-700/40 rounded-md transition-all duration-300 border-b border-amber-600/20">
-                            All Stock Lists
+                            All Categories
                         </a>
                         @if($categories->count() > 0)
                             @foreach($categories as $cat)
@@ -238,8 +248,10 @@
                     mobileNav.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
                     mobileNav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
 
-                    mobileBrand.classList.remove('text-gray-800');
-                    mobileBrand.classList.add('text-white');
+                    if (mobileBrand) {
+                        mobileBrand.classList.remove('text-gray-800');
+                        mobileBrand.classList.add('text-white');
+                    }
 
                     menuButton.classList.remove('text-gray-800', 'hover:bg-gray-100');
                     menuButton.classList.add('text-white', 'hover:bg-white/20');
@@ -263,8 +275,10 @@
                     mobileNav.style.backgroundColor = 'transparent';
                     mobileNav.style.boxShadow = '';
 
-                    mobileBrand.classList.remove('text-amber-500');
-                    mobileBrand.classList.add('text-white');
+                    if (mobileBrand) {
+                        mobileBrand.classList.remove('text-amber-500');
+                        mobileBrand.classList.add('text-white');
+                    }
 
                     menuButton.classList.remove('text-amber-500', 'hover:bg-white/20');
                     menuButton.classList.add('text-white', 'hover:bg-white/10');

@@ -18,13 +18,9 @@ class StockLists extends Component
 
     public ?int $categoryId = null;
 
-    public string $code = '';
-
     public string $commonName = '';
 
     public string $scientificName = '';
-
-    public string $size = '';
 
     public string $length = '';
 
@@ -93,10 +89,8 @@ class StockLists extends Component
     {
         $validated = $this->validate([
             'categoryId' => 'nullable|exists:categories,id',
-            'code' => 'required|string|max:255|unique:stock_lists,code,'.$this->editingId,
             'scientificName' => 'required|string|max:255',
             'commonName' => 'required|string|max:255',
-            'size' => 'required|string|max:255',
             'length' => 'required|string|max:255',
             'image' => $this->editingId ? 'nullable|image|max:7168' : 'required|image|max:7168',
         ]);
@@ -116,10 +110,8 @@ class StockLists extends Component
 
             $stockList->update([
                 'category_id' => $validated['categoryId'],
-                'code' => $validated['code'],
                 'scientific_name' => $validated['scientificName'],
                 'common_name' => $validated['commonName'],
-                'size' => $validated['size'],
                 'length' => $validated['length'],
                 'image_path' => $imagePath ?? $stockList->image_path,
             ]);
@@ -128,10 +120,8 @@ class StockLists extends Component
         } else {
             StockList::create([
                 'category_id' => $validated['categoryId'],
-                'code' => $validated['code'],
                 'scientific_name' => $validated['scientificName'],
                 'common_name' => $validated['commonName'],
-                'size' => $validated['size'],
                 'length' => $validated['length'],
                 'image_path' => $imagePath,
             ]);
@@ -139,13 +129,13 @@ class StockLists extends Component
             session()->flash('message', 'Stock list created successfully.');
         }
 
-        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'commonName', 'scientificName', 'length', 'image', 'editingId']);
         $this->showFormModal = false;
     }
 
     public function openCreateModal(): void
     {
-        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'commonName', 'scientificName', 'length', 'image', 'editingId']);
         $this->showFormModal = true;
     }
 
@@ -154,10 +144,8 @@ class StockLists extends Component
         $stockList = StockList::findOrFail($id);
         $this->editingId = $stockList->id;
         $this->categoryId = $stockList->category_id;
-        $this->code = $stockList->code;
         $this->scientificName = $stockList->scientific_name;
         $this->commonName = $stockList->common_name;
-        $this->size = $stockList->size;
         $this->length = $stockList->length;
         $this->showFormModal = true;
     }
@@ -189,7 +177,7 @@ class StockLists extends Component
 
     public function cancelEdit(): void
     {
-        $this->reset(['categoryId', 'code', 'commonName', 'scientificName', 'size', 'length', 'image', 'editingId']);
+        $this->reset(['categoryId', 'commonName', 'scientificName', 'length', 'image', 'editingId']);
         $this->showFormModal = false;
     }
 
@@ -200,10 +188,9 @@ class StockLists extends Component
         return view('livewire.pages.admin.stock-lists', [
             'stockLists' => StockList::query()
                 ->with('category')
-                ->when($this->search, fn ($query) => $query->where('code', 'like', "%{$this->search}%")
-                    ->orWhere('common_name', 'like', "%{$this->search}%")
+                ->when($this->search, fn ($query) => $query->where('common_name', 'like', "%{$this->search}%")
                     ->orWhere('scientific_name', 'like', "%{$this->search}%"))
-                ->orderBy('code')
+                ->orderBy('common_name')
                 ->paginate(10),
             'categories' => Category::orderBy('name')->get(),
         ]);

@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('stock_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
             $table->string('scientific_name');
             $table->string('common_name');
-            $table->string('size')->nullable();
             $table->string('length')->nullable();
             $table->string('image_path')->nullable();
             $table->timestamps();

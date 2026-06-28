@@ -27,7 +27,7 @@ Route::middleware(['web'])->group(function (): void {
     // Public Pages — with rate limiting to prevent abuse (60 requests/minute)
     Route::middleware(['throttle:60,1'])->group(function (): void {
         Route::get('/', Landing::class)->name('home');
-        Route::get('/stock-list', StockList::class)->name('stock-list');
+        Route::get('/category', StockList::class)->name('categories');
         Route::get('/category/{slug}', CategoryDetail::class)->name('category.detail');
         Route::get('/gallery', Gallery::class)->name('gallery');
         Route::get('/gallery/fish', GalleryFish::class)->name('gallery.fish');

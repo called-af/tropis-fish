@@ -120,7 +120,7 @@
                             <div class="flex-1">
                                 <x-atoms.search-input
                                     wire:model.live.debounce.300ms="search"
-                                    placeholder="Search {{ $category->name }} by code, name, or scientific name..."
+                                    placeholder="Search {{ $category->name }} by name or scientific name..."
                                 />
                             </div>
 
@@ -190,10 +190,8 @@
                                             style="transition-delay: {{ $index * 50 }}ms"
                                         >
                                             <x-molecules.product-card
-                                                :code="$stock->code"
                                                 :scientificName="$stock->scientific_name"
                                                 :commonName="$stock->common_name"
-                                                :size="$stock->size"
                                                 :length="$stock->length"
                                                 :image="$stock->image_path ? (str_starts_with($stock->image_path, 'assets/') ? asset($stock->image_path) : asset('storage/' . $stock->image_path)) : null"
                                             />
@@ -208,11 +206,10 @@
                                     <thead class="bg-gray-800/70 border-b border-gray-700">
                                         <tr>
                                             <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Image</th>
-                                            <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Code</th>
                                             <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Common Name</th>
                                             <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Scientific Name</th>
-                                            <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Size</th>
                                             <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Length</th>
+                                            <th class="px-6 py-4 text-left text-xs font-bold text-amber-500 uppercase tracking-wider">Order</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-700">
@@ -232,12 +229,6 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                                {{-- Code --}}
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-3 py-1 bg-amber-500 rounded-md text-xs font-bold text-black">
-                                                        {{ $stock->code }}
-                                                    </span>
-                                                </td>
                                                 {{-- Common Name --}}
                                                 <td class="px-6 py-4">
                                                     <div class="text-sm font-semibold text-white">{{ $stock->common_name }}</div>
@@ -246,28 +237,22 @@
                                                 <td class="px-6 py-4">
                                                     <div class="text-sm text-gray-400 italic">{{ $stock->scientific_name ?? '-' }}</div>
                                                 </td>
-                                                {{-- Size --}}
+                                                {{-- Length --}}
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($stock->size)
-                                                        <span class="px-3 py-1 bg-gray-800 border border-amber-500 rounded-md text-xs font-bold text-amber-500">
-                                                            {{ $stock->size }}
-                                                        </span>
+                                                    @if($stock->length)
+                                                        <span class="text-sm font-semibold text-gray-300">{{ $stock->length }} cm</span>
                                                     @else
                                                         <span class="text-gray-500 text-sm">-</span>
                                                     @endif
                                                 </td>
-                                                {{-- Length --}}
+                                                {{-- Order --}}
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    @if($stock->length)
-                                                        <div class="flex items-center gap-1 text-gray-300">
-                                                            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                                            </svg>
-                                                            <span class="text-sm font-semibold">{{ $stock->length }} cm</span>
-                                                        </div>
-                                                    @else
-                                                        <span class="text-gray-500 text-sm">-</span>
-                                                    @endif
+                                                    <a href="{{ route('home') }}#contact" class="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-black font-bold text-xs rounded transition-all duration-300">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                        </svg>
+                                                        Order
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
